@@ -1,0 +1,4 @@
+ID,Waktu,Sumber,Deskripsi,Status,Server
+MON-001,05/08/2026 08:00,Data Operasional.xlsx,Sinkronisasi selesai,Normal,SRV-INTRA-01
+MON-002,05/08/2026 08:05,Inventori Gudang.xlsx,12 baris memerlukan validasi,Warning,SRV-INTRA-02
+MON-003,05/08/2026 08:10,Laporan Keuangan.xlsx,Respons sumber melebihi 10 detik,Critical,SRV-INTRA-03

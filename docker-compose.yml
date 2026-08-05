@@ -1,0 +1,14 @@
+services:
+  intramon-api:
+    build: ./server
+    ports:
+      - "8787:8787"
+    environment:
+      PORT: 8787
+      HOST: 0.0.0.0
+      DATABASE_PATH: ./data/intramon.db
+      SPREADSHEET_PATH: ./data/monitoring.xlsx
+      CORS_ORIGIN: "*"
+    volumes:
+      - ./server/data:/app/data
+    restart: unless-stopped
