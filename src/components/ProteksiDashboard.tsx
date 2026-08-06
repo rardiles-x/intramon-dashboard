@@ -31,150 +31,63 @@ type SourceColumnKey =
   | "ultg"
   | "gi"
   | "bay"
+  | "redundancy"
   | "critical"
   | "relayType"
+  | "relayBrand"
+  | "relayModel"
   | "ja"
   | "jb"
-  | "jc"
   | "jd"
-  | "je"
-  | "jf";
+  | "je";
 
 type ColumnMap = Record<SourceColumnKey, number>;
 
-const SOURCE_COLUMN_KEYS: readonly SourceColumnKey[] = [
-  "no",
-  "upt",
-  "ultg",
-  "gi",
-  "bay",
-  "critical",
-  "relayType",
-  "ja",
-  "jb",
-  "jc",
-  "jd",
-  "je",
-  "jf",
-];
-
-const REQUIRED_SOURCE_COLUMNS: readonly SourceColumnKey[] = [
-  "upt",
-  "ultg",
-  "gi",
-  "bay",
-  "critical",
-  "relayType",
-  "ja",
-  "jb",
-  "jc",
-  "jd",
-  "je",
-  "jf",
-];
-
-const COLUMN_LABELS: Record<SourceColumnKey, string> = {
-  no: "No",
-  upt: "UPT",
-  ultg: "ULTG",
-  gi: "GI",
-  bay: "Bay",
-  critical: "Kritikal",
-  relayType: "Jenis Relai",
-  ja: "FO Fail → Annunciator",
-  jb: "I Diff → Annunciator",
-  jc: "Target Annunciator",
-  jd: "FO Fail → Dashboard",
-  je: "I Diff → Dashboard",
-  jf: "Target Dashboard",
-};
-
-const HEADER_ALIASES: Record<SourceColumnKey, readonly string[]> = {
-  no: ["no", "nomor", "nomor urut", "urut"],
-  upt: [
-    "upt",
-    "unit pelaksana transmisi",
-    "unit pelaksana",
-  ],
-  ultg: [
-    "ultg",
-    "unit layanan transmisi gardu induk",
-    "unit layanan transmisi",
-  ],
-  gi: ["gi", "gardu induk"],
-  bay: ["bay", "nama bay", "bay penghantar", "bay trafo"],
-  critical: [
-    "kritikal",
-    "critical",
-    "status kritikal",
-    "bay kritikal",
-    "prioritas kritikal",
-  ],
-  relayType: [
-    "jenis relai",
-    "jenis relay",
-    "tipe relai",
-    "tipe relay",
-    "relay type",
-    "merk tipe relai",
-  ],
-  ja: [
-    "ja",
-    "fo fail annunciator",
-    "fo fail ke annunciator",
-    "fo fail annunciator scada",
-    "penarikan fo fail annunciator",
-  ],
-  jb: [
-    "jb",
-    "i diff annunciator",
-    "idiff annunciator",
-    "i diff ke annunciator",
-    "penarikan i diff annunciator",
-  ],
-  jc: [
-    "jc",
-    "target annunciator",
-    "target ke annunciator",
-    "target penarikan annunciator",
-  ],
-  jd: [
-    "jd",
-    "fo fail dashboard",
-    "fo fail ke dashboard",
-    "penarikan fo fail dashboard",
-  ],
-  je: [
-    "je",
-    "i diff dashboard",
-    "idiff dashboard",
-    "i diff ke dashboard",
-    "penarikan i diff dashboard",
-  ],
-  jf: [
-    "jf",
-    "target dashboard",
-    "target ke dashboard",
-    "target penarikan dashboard",
-  ],
-};
-
 /**
- * Isi hanya jika nama header spreadsheet sangat khusus dan tidak cocok
- * dengan HEADER_ALIASES. Angka memakai indeks kolom berbasis nol.
+ * Pemetaan sumber resmi, indeks berbasis nol:
+ * A=0, C=2, D=3, E=4, F=5, I=8, L=11, M=12,
+ * N=13, O=14, R=17, U=20, Y=24, AB=27.
  *
- * Contoh:
- * const COLUMN_OVERRIDES = {
- *   upt: "Unit Transmisi",
- *   bay: 4,
- * } satisfies Partial<Record<SourceColumnKey, string | number>>;
+ * ja = FO Fail ke Annunciator (Y)
+ * jb = Diff Alarm/Spv ke Annunciator (AB)
+ * jd = FO Fail ke Dashboard & EWS (R)
+ * je = Diff Alarm/Spv ke Dashboard & EWS (U)
  */
-const COLUMN_OVERRIDES: Partial<
-  Record<SourceColumnKey, string | number>
-> = {};
+const SOURCE_COLUMN_INDEX: ColumnMap = {
+  no: 0,
+  upt: 2,
+  ultg: 3,
+  gi: 4,
+  bay: 5,
+  redundancy: 8,
+  critical: 11,
+  relayType: 12,
+  relayBrand: 13,
+  relayModel: 14,
+  jd: 17,
+  je: 20,
+  ja: 24,
+  jb: 27,
+};
 
-const HEADER_SEARCH_LIMIT = 20;
-const HEADER_CONTEXT_DEPTH = 3;
+const COLUMN_REFERENCES: Record<SourceColumnKey, string> = {
+  no: "A",
+  upt: "C",
+  ultg: "D",
+  gi: "E",
+  bay: "F",
+  redundancy: "I",
+  critical: "L",
+  relayType: "M",
+  relayBrand: "N",
+  relayModel: "O",
+  jd: "R",
+  je: "U",
+  ja: "Y",
+  jb: "AB",
+};
+
+const HEADER_SEARCH_LIMIT = 40;
 
 
 const MONTHS: Record<string, number> = {
@@ -222,14 +135,16 @@ type CriticalFilter = "" | "YA" | "TIDAK";
 type RelayFilter = "" | "LCD" | "Distance";
 type ScoreFilter = "" | "0" | "1" | "2" | "3" | "4";
 type CompletionKey = "ja" | "jb" | "jd" | "je";
-type TargetKey = "jc" | "jf";
 type SortKey =
   | "uptShort"
   | "ultg"
   | "gi"
   | "bay"
+  | "redundancy"
   | "critical"
   | "relayType"
+  | "relayBrand"
+  | "relayModel"
   | "score";
 type SortDirection = "asc" | "desc";
 
@@ -240,15 +155,16 @@ type ProtectionRecord = {
   ultg: string;
   gi: string;
   bay: string;
+  redundancy: string;
   critical: string;
   relayType: string;
   relayTypeNormalized: string;
+  relayBrand: string;
+  relayModel: string;
   ja: string;
   jb: string;
-  jc: string;
   jd: string;
   je: string;
-  jf: string;
   score: number;
 };
 
@@ -265,11 +181,10 @@ type UptSummary = {
 type TimelinePoint = {
   key: string;
   label: string;
-  actual: number;
-  target: number;
-  targetGroup: "2025" | "2026" | "2027+";
-  cumulativeActual: number;
-  cumulativeAll: number;
+  first: number;
+  second: number;
+  cumulativeFirst: number;
+  cumulativeSecond: number;
 };
 
 type MetricCardProps = {
@@ -287,10 +202,8 @@ type ProgressItem = {
   tone: "blue" | "red" | "green" | "violet";
 };
 
-const hasValue = (value: string) => {
-  const normalized = value.trim();
-  return normalized !== "" && normalized !== "-";
-};
+const hasRealizationDate = (value: string) =>
+  parseDateValue(value) !== null;
 
 const percentage = (value: number, total: number) =>
   total > 0 ? Math.round((value / total) * 100) : 0;
@@ -353,344 +266,10 @@ function normalizeHeader(value: string) {
   return value
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "")
-    .replace(/→|->|=>/g, " ke ")
-    .replace(/&/g, " dan ")
     .replace(/[^a-zA-Z0-9]+/g, " ")
     .trim()
     .toLowerCase()
     .replace(/\s+/g, " ");
-}
-
-function getHeaderVariants(
-  rows: string[][],
-  headerRowIndex: number,
-  columnIndex: number,
-) {
-  const startRow = Math.max(
-    0,
-    headerRowIndex - HEADER_CONTEXT_DEPTH + 1,
-  );
-  const directValues: string[] = [];
-  const inheritedValues: string[] = [];
-
-  for (
-    let rowIndex = startRow;
-    rowIndex <= headerRowIndex;
-    rowIndex += 1
-  ) {
-    const row = rows[rowIndex] ?? [];
-    const directValue = (row[columnIndex] ?? "").trim();
-
-    if (directValue) {
-      directValues.push(directValue);
-      inheritedValues.push(directValue);
-      continue;
-    }
-
-    for (
-      let previousColumn = columnIndex - 1;
-      previousColumn >= 0;
-      previousColumn -= 1
-    ) {
-      const inheritedValue = (row[previousColumn] ?? "").trim();
-
-      if (inheritedValue) {
-        inheritedValues.push(inheritedValue);
-        break;
-      }
-    }
-  }
-
-  const variants = new Set<string>();
-
-  for (const value of directValues) {
-    const normalized = normalizeHeader(value);
-
-    if (normalized) {
-      variants.add(normalized);
-    }
-  }
-
-  const directCombined = normalizeHeader(directValues.join(" "));
-
-  if (directCombined) {
-    variants.add(directCombined);
-  }
-
-  const inheritedCombined = normalizeHeader(
-    inheritedValues.join(" "),
-  );
-
-  if (inheritedCombined) {
-    variants.add(inheritedCombined);
-  }
-
-  return [...variants];
-}
-
-function scoreHeaderMatch(
-  variant: string,
-  alias: string,
-) {
-  const normalizedAlias = normalizeHeader(alias);
-
-  if (!normalizedAlias) {
-    return 0;
-  }
-
-  if (variant === normalizedAlias) {
-    return 1_000 + normalizedAlias.length;
-  }
-
-  if (normalizedAlias.length <= 3) {
-    return 0;
-  }
-
-  const variantWords = variant.split(" ");
-  const aliasWords = normalizedAlias.split(" ");
-  const containsAllWords = aliasWords.every((word) =>
-    variantWords.includes(word),
-  );
-
-  if (containsAllWords) {
-    return 600 + normalizedAlias.length;
-  }
-
-  if (
-    variant.includes(normalizedAlias) ||
-    normalizedAlias.includes(variant)
-  ) {
-    return 400 + Math.min(
-      variant.length,
-      normalizedAlias.length,
-    );
-  }
-
-  return 0;
-}
-
-function resolveOverrideColumn(
-  rows: string[][],
-  headerRowIndex: number,
-  override: string | number,
-) {
-  if (typeof override === "number") {
-    return override >= 0 ? override : null;
-  }
-
-  const normalizedOverride = normalizeHeader(override);
-  const width = Math.max(
-    0,
-    ...rows
-      .slice(0, headerRowIndex + 1)
-      .map((row) => row.length),
-  );
-
-  for (let columnIndex = 0; columnIndex < width; columnIndex += 1) {
-    const variants = getHeaderVariants(
-      rows,
-      headerRowIndex,
-      columnIndex,
-    );
-
-    if (
-      variants.some(
-        (variant) =>
-          variant === normalizedOverride ||
-          variant.includes(normalizedOverride),
-      )
-    ) {
-      return columnIndex;
-    }
-  }
-
-  return null;
-}
-
-function resolveColumnsForHeader(
-  rows: string[][],
-  headerRowIndex: number,
-) {
-  const width = Math.max(
-    0,
-    ...rows
-      .slice(0, headerRowIndex + 1)
-      .map((row) => row.length),
-  );
-  const candidates: Array<{
-    key: SourceColumnKey;
-    columnIndex: number;
-    score: number;
-  }> = [];
-
-  for (const key of SOURCE_COLUMN_KEYS) {
-    const override = COLUMN_OVERRIDES[key];
-
-    if (override !== undefined) {
-      const overrideColumn = resolveOverrideColumn(
-        rows,
-        headerRowIndex,
-        override,
-      );
-
-      if (overrideColumn !== null) {
-        candidates.push({
-          key,
-          columnIndex: overrideColumn,
-          score: 10_000,
-        });
-      }
-
-      continue;
-    }
-
-    for (
-      let columnIndex = 0;
-      columnIndex < width;
-      columnIndex += 1
-    ) {
-      const variants = getHeaderVariants(
-        rows,
-        headerRowIndex,
-        columnIndex,
-      );
-      let bestScore = 0;
-
-      for (const variant of variants) {
-        for (const alias of HEADER_ALIASES[key]) {
-          bestScore = Math.max(
-            bestScore,
-            scoreHeaderMatch(variant, alias),
-          );
-        }
-      }
-
-      if (bestScore > 0) {
-        candidates.push({
-          key,
-          columnIndex,
-          score: bestScore,
-        });
-      }
-    }
-  }
-
-  candidates.sort(
-    (left, right) =>
-      right.score - left.score ||
-      left.columnIndex - right.columnIndex,
-  );
-
-  const assignedKeys = new Set<SourceColumnKey>();
-  const assignedColumns = new Set<number>();
-  const columns: Partial<ColumnMap> = {};
-  let score = 0;
-
-  for (const candidate of candidates) {
-    if (
-      assignedKeys.has(candidate.key) ||
-      assignedColumns.has(candidate.columnIndex)
-    ) {
-      continue;
-    }
-
-    columns[candidate.key] = candidate.columnIndex;
-    assignedKeys.add(candidate.key);
-    assignedColumns.add(candidate.columnIndex);
-    score += candidate.score;
-  }
-
-  const requiredCount = REQUIRED_SOURCE_COLUMNS.filter(
-    (key) => columns[key] !== undefined,
-  ).length;
-
-  return {
-    columns,
-    requiredCount,
-    score,
-    headerRowIndex,
-  };
-}
-
-function detectColumnMap(rows: string[][]) {
-  const searchLimit = Math.min(
-    rows.length,
-    HEADER_SEARCH_LIMIT,
-  );
-  let bestResolution: ReturnType<
-    typeof resolveColumnsForHeader
-  > | null = null;
-
-  for (
-    let headerRowIndex = 0;
-    headerRowIndex < searchLimit;
-    headerRowIndex += 1
-  ) {
-    const resolution = resolveColumnsForHeader(
-      rows,
-      headerRowIndex,
-    );
-
-    if (
-      !bestResolution ||
-      resolution.requiredCount > bestResolution.requiredCount ||
-      (
-        resolution.requiredCount ===
-          bestResolution.requiredCount &&
-        resolution.score > bestResolution.score
-      )
-    ) {
-      bestResolution = resolution;
-    }
-  }
-
-  if (!bestResolution) {
-    throw new Error(
-      "Spreadsheet tidak mempunyai baris header yang dapat dibaca.",
-    );
-  }
-
-  const missingColumns = REQUIRED_SOURCE_COLUMNS.filter(
-    (key) => bestResolution?.columns[key] === undefined,
-  );
-
-  if (missingColumns.length > 0) {
-    const readableMissingColumns = missingColumns
-      .map((key) => COLUMN_LABELS[key])
-      .join(", ");
-    const detectedHeaders = (
-      rows[bestResolution.headerRowIndex] ?? []
-    )
-      .filter((value) => value.trim())
-      .join(" | ");
-
-    throw new Error(
-      `Kolom spreadsheet tidak lengkap. Tidak ditemukan: ` +
-        `${readableMissingColumns}. Header terbaca: ` +
-        `${detectedHeaders || "(kosong)"}.`,
-    );
-  }
-
-  const columns: ColumnMap = {
-    no: bestResolution.columns.no ?? -1,
-    upt: bestResolution.columns.upt as number,
-    ultg: bestResolution.columns.ultg as number,
-    gi: bestResolution.columns.gi as number,
-    bay: bestResolution.columns.bay as number,
-    critical: bestResolution.columns.critical as number,
-    relayType: bestResolution.columns.relayType as number,
-    ja: bestResolution.columns.ja as number,
-    jb: bestResolution.columns.jb as number,
-    jc: bestResolution.columns.jc as number,
-    jd: bestResolution.columns.jd as number,
-    je: bestResolution.columns.je as number,
-    jf: bestResolution.columns.jf as number,
-  };
-
-  return {
-    columns,
-    dataStartIndex: bestResolution.headerRowIndex + 1,
-  };
 }
 
 function getCell(
@@ -704,145 +283,433 @@ function getCell(
   return (row[columnIndex] ?? "").trim();
 }
 
+function looksLikeConfiguredHeader(row: string[]) {
+  const upt = normalizeHeader(
+    getCell(row, SOURCE_COLUMN_INDEX.upt),
+  );
+  const ultg = normalizeHeader(
+    getCell(row, SOURCE_COLUMN_INDEX.ultg),
+  );
+  const gi = normalizeHeader(
+    getCell(row, SOURCE_COLUMN_INDEX.gi),
+  );
+  const bay = normalizeHeader(
+    getCell(row, SOURCE_COLUMN_INDEX.bay),
+  );
+
+  return (
+    (upt === "upt" || upt.includes("unit pelaksana")) &&
+    (ultg === "ultg" || ultg.includes("unit layanan")) &&
+    (gi === "gi" || gi.includes("nama gi") || gi.includes("gis")) &&
+    (bay === "bay" || bay.includes("nama bay"))
+  );
+}
+
+function looksLikeDataRow(row: string[]) {
+  const upt = normalizeHeader(
+    getCell(row, SOURCE_COLUMN_INDEX.upt),
+  );
+  const ultg = normalizeHeader(
+    getCell(row, SOURCE_COLUMN_INDEX.ultg),
+  );
+  const gi = normalizeHeader(
+    getCell(row, SOURCE_COLUMN_INDEX.gi),
+  );
+  const bay = normalizeHeader(
+    getCell(row, SOURCE_COLUMN_INDEX.bay),
+  );
+
+  const headerWords = new Set([
+    "upt",
+    "ultg",
+    "gi",
+    "gis",
+    "nama gi gis",
+    "bay",
+    "nama bay",
+  ]);
+
+  const hasIdentity = [ultg, gi, bay].some(
+    (value) => value !== "" && !headerWords.has(value),
+  );
+  const hasUpt = upt !== "" && !headerWords.has(upt);
+
+  return hasIdentity && (hasUpt || bay !== "");
+}
+
+function findDataStartIndex(rows: string[][]) {
+  const searchLimit = Math.min(rows.length, HEADER_SEARCH_LIMIT);
+
+  for (let rowIndex = 0; rowIndex < searchLimit; rowIndex += 1) {
+    if (looksLikeConfiguredHeader(rows[rowIndex] ?? [])) {
+      for (
+        let dataIndex = rowIndex + 1;
+        dataIndex < rows.length;
+        dataIndex += 1
+      ) {
+        if (looksLikeDataRow(rows[dataIndex] ?? [])) {
+          return dataIndex;
+        }
+      }
+    }
+  }
+
+  for (let rowIndex = 0; rowIndex < searchLimit; rowIndex += 1) {
+    if (looksLikeDataRow(rows[rowIndex] ?? [])) {
+      return rowIndex;
+    }
+  }
+
+  throw new Error(
+    "Baris data tidak ditemukan. Periksa kolom C, D, E, dan F.",
+  );
+}
+
+function validateConfiguredColumns(rows: string[][]) {
+  const maximumIndex = Math.max(
+    ...Object.values(SOURCE_COLUMN_INDEX),
+  );
+  const widestRow = Math.max(0, ...rows.map((row) => row.length));
+
+  if (widestRow <= maximumIndex) {
+    const missing = Object.entries(SOURCE_COLUMN_INDEX)
+      .filter(([, columnIndex]) => columnIndex >= widestRow)
+      .map(
+        ([key]) =>
+          `${COLUMN_REFERENCES[key as SourceColumnKey]} ` +
+          `(${key})`,
+      )
+      .join(", ");
+
+    throw new Error(
+      `Spreadsheet hanya memiliki ${widestRow} kolom. ` +
+        `Kolom yang belum tersedia: ${missing}.`,
+    );
+  }
+}
+
+function normalizeCritical(value: string) {
+  const normalized = value.trim().toUpperCase();
+
+  if (/^(YA|YES|Y)\b/.test(normalized)) {
+    return "YA";
+  }
+
+  if (/^(TIDAK|NO|N)\b/.test(normalized)) {
+    return "TIDAK";
+  }
+
+  return normalized;
+}
+
 function parseProtectionCsv(text: string): ProtectionRecord[] {
   const rows = parseCsvRows(text);
-  const { columns, dataStartIndex } = detectColumnMap(rows);
 
-  return rows
-    .slice(dataStartIndex)
-    .map((row, rowIndex) => {
-      const upt = getCell(row, columns.upt);
-      const relayType = getCell(row, columns.relayType);
-      const ja = getCell(row, columns.ja);
-      const jb = getCell(row, columns.jb);
-      const jd = getCell(row, columns.jd);
-      const je = getCell(row, columns.je);
+  if (rows.length === 0) {
+    return [];
+  }
 
-      return {
-        no:
-          getCell(row, columns.no) ||
-          String(dataStartIndex + rowIndex + 1),
-        upt,
-        uptShort: upt.replace(/^UPT\s+/i, "").trim(),
-        ultg: getCell(row, columns.ultg),
-        gi: getCell(row, columns.gi),
-        bay: getCell(row, columns.bay),
-        critical: getCell(
-          row,
-          columns.critical,
-        ).toUpperCase(),
-        relayType,
-        relayTypeNormalized: relayType.toUpperCase(),
-        ja,
-        jb,
-        jc: getCell(row, columns.jc),
-        jd,
-        je,
-        jf: getCell(row, columns.jf),
-        score:
-          Number(hasValue(ja)) +
-          Number(hasValue(jb)) +
-          Number(hasValue(jd)) +
-          Number(hasValue(je)),
-      };
-    })
-    .filter(
-      (record) =>
-        record.upt !== "" &&
-        (
-          record.ultg !== "" ||
-          record.gi !== "" ||
-          record.bay !== ""
-        ),
+  validateConfiguredColumns(rows);
+  const dataStartIndex = findDataStartIndex(rows);
+  const records: ProtectionRecord[] = [];
+
+  let inheritedUpt = "";
+  let inheritedUltg = "";
+  let inheritedGi = "";
+
+  rows.slice(dataStartIndex).forEach((row, rowIndex) => {
+    const directUpt = getCell(row, SOURCE_COLUMN_INDEX.upt);
+    const directUltg = getCell(row, SOURCE_COLUMN_INDEX.ultg);
+    const directGi = getCell(row, SOURCE_COLUMN_INDEX.gi);
+    const bay = getCell(row, SOURCE_COLUMN_INDEX.bay);
+
+    if (directUpt) {
+      inheritedUpt = directUpt;
+    }
+
+    if (directUltg) {
+      inheritedUltg = directUltg;
+    }
+
+    if (directGi) {
+      inheritedGi = directGi;
+    }
+
+    const upt = directUpt || inheritedUpt;
+    const ultg = directUltg || inheritedUltg;
+    const gi = directGi || inheritedGi;
+    const relayType = getCell(
+      row,
+      SOURCE_COLUMN_INDEX.relayType,
     );
+
+    const ja = getCell(row, SOURCE_COLUMN_INDEX.ja);
+    const jb = getCell(row, SOURCE_COLUMN_INDEX.jb);
+    const jd = getCell(row, SOURCE_COLUMN_INDEX.jd);
+    const je = getCell(row, SOURCE_COLUMN_INDEX.je);
+
+    const normalizedBay = normalizeHeader(bay);
+    const isHeader =
+      normalizeHeader(upt) === "upt" ||
+      normalizeHeader(ultg) === "ultg" ||
+      normalizedBay === "bay" ||
+      normalizedBay === "nama bay";
+
+    if (
+      isHeader ||
+      (
+        bay === "" &&
+        relayType === "" &&
+        ja === "" &&
+        jb === "" &&
+        jd === "" &&
+        je === ""
+      )
+    ) {
+      return;
+    }
+
+    records.push({
+      no:
+        getCell(row, SOURCE_COLUMN_INDEX.no) ||
+        String(dataStartIndex + rowIndex + 1),
+      upt,
+      uptShort: upt.replace(/^UPT\s+/i, "").trim(),
+      ultg,
+      gi,
+      bay,
+      redundancy: getCell(
+        row,
+        SOURCE_COLUMN_INDEX.redundancy,
+      ),
+      critical: normalizeCritical(
+        getCell(row, SOURCE_COLUMN_INDEX.critical),
+      ),
+      relayType,
+      relayTypeNormalized: relayType.toUpperCase(),
+      relayBrand: getCell(
+        row,
+        SOURCE_COLUMN_INDEX.relayBrand,
+      ),
+      relayModel: getCell(
+        row,
+        SOURCE_COLUMN_INDEX.relayModel,
+      ),
+      ja,
+      jb,
+      jd,
+      je,
+      score:
+        Number(hasRealizationDate(ja)) +
+        Number(hasRealizationDate(jb)) +
+        Number(hasRealizationDate(jd)) +
+        Number(hasRealizationDate(je)),
+    });
+  });
+
+  return records.filter(
+    (record) =>
+      record.upt !== "" &&
+      (
+        record.ultg !== "" ||
+        record.gi !== "" ||
+        record.bay !== ""
+      ),
+  );
 }
 
 
-function parseYearMonth(value: string) {
-  if (!value.trim()) {
+type ParsedDateValue = {
+  year: number;
+  month: number;
+  day: number;
+  key: string;
+  label: string;
+  display: string;
+};
+
+function createParsedDate(
+  year: number,
+  month: number,
+  day: number,
+): ParsedDateValue | null {
+  if (
+    year < 2000 ||
+    year > 2100 ||
+    month < 1 ||
+    month > 12 ||
+    day < 1 ||
+    day > 31
+  ) {
     return null;
   }
 
-  const source = value.toUpperCase().trim();
-  const dayMonthYear = source.match(
-    /^(\d{1,2})[-/]([A-Z]+)[-/](\d{2,4})$/,
-  );
+  const date = new Date(Date.UTC(year, month - 1, day));
 
-  if (dayMonthYear) {
-    const month = findMonth(dayMonthYear[2]);
-    const rawYear = Number(dayMonthYear[3]);
-    const year = dayMonthYear[3].length === 2 ? 2000 + rawYear : rawYear;
-
-    if (month && year) {
-      return createYearMonth(year, month);
-    }
-  }
-
-  const monthDayYear = source.match(
-    /^([A-Z]+)[-\s](\d{1,2})[-\s](\d{4})$/,
-  );
-
-  if (monthDayYear) {
-    const month = findMonth(monthDayYear[1]);
-    const year = Number(monthDayYear[3]);
-
-    if (month && year) {
-      return createYearMonth(year, month);
-    }
-  }
-
-  const numericDate = source.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
-
-  if (numericDate) {
-    const first = Number(numericDate[1]);
-    const second = Number(numericDate[2]);
-    const year = Number(numericDate[3]);
-    const month = first > 12 ? second : first;
-
-    if (month >= 1 && month <= 12) {
-      return createYearMonth(year, month);
-    }
-  }
-
-  let month: number | undefined;
-
-  for (const [name, number] of Object.entries(MONTHS)) {
-    if (source.includes(name) || source.startsWith(name.slice(0, 3))) {
-      month = number;
-      break;
-    }
-  }
-
-  const yearMatch = source.match(/\b(20(?:24|25|26|27|28))\b/);
-
-  if (!month || !yearMatch) {
+  if (
+    date.getUTCFullYear() !== year ||
+    date.getUTCMonth() !== month - 1 ||
+    date.getUTCDate() !== day
+  ) {
     return null;
   }
 
-  return createYearMonth(Number(yearMatch[1]), month);
+  return {
+    year,
+    month,
+    day,
+    key: `${year}-${String(month).padStart(2, "0")}`,
+    label: `${MONTH_LABELS[month]} '${String(year).slice(2)}`,
+    display: new Intl.DateTimeFormat("id-ID", {
+      day: "2-digit",
+      month: "short",
+      year: "numeric",
+      timeZone: "UTC",
+    }).format(date),
+  };
 }
 
 function findMonth(value: string) {
-  const exact = MONTHS[value];
+  const normalized = value
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/\./g, "")
+    .toUpperCase();
+
+  const exact = MONTHS[normalized];
 
   if (exact) {
     return exact;
   }
 
-  const prefix = value.slice(0, 3);
+  const prefix = normalized.slice(0, 3);
+
   return Object.entries(MONTHS).find(([name]) =>
     name.startsWith(prefix),
   )?.[1];
 }
 
-function createYearMonth(year: number, month: number) {
+function parseDateValue(value: string): ParsedDateValue | null {
+  const source = value.trim();
+
+  if (!source || source === "-") {
+    return null;
+  }
+
+  const serialNumber = Number(source.replace(",", "."));
+
+  if (
+    Number.isFinite(serialNumber) &&
+    serialNumber >= 30_000 &&
+    serialNumber <= 80_000
+  ) {
+    const milliseconds =
+      Date.UTC(1899, 11, 30) +
+      Math.floor(serialNumber) * 86_400_000;
+    const date = new Date(milliseconds);
+
+    return createParsedDate(
+      date.getUTCFullYear(),
+      date.getUTCMonth() + 1,
+      date.getUTCDate(),
+    );
+  }
+
+  const normalized = source
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/\s+/g, " ")
+    .trim()
+    .toUpperCase();
+
+  const isoMatch = normalized.match(
+    /^(\d{4})[-/](\d{1,2})[-/](\d{1,2})(?:\s.*)?$/,
+  );
+
+  if (isoMatch) {
+    return createParsedDate(
+      Number(isoMatch[1]),
+      Number(isoMatch[2]),
+      Number(isoMatch[3]),
+    );
+  }
+
+  const numericMatch = normalized.match(
+    /^(\d{1,2})[-/](\d{1,2})[-/](\d{2,4})(?:\s.*)?$/,
+  );
+
+  if (numericMatch) {
+    const first = Number(numericMatch[1]);
+    const second = Number(numericMatch[2]);
+    const rawYear = Number(numericMatch[3]);
+    const year =
+      numericMatch[3].length === 2 ? 2000 + rawYear : rawYear;
+
+    const day = second > 12 ? second : first;
+    const month = second > 12 ? first : second;
+
+    return createParsedDate(year, month, day);
+  }
+
+  const dayMonthNameMatch = normalized.match(
+    /^(\d{1,2})[\s/-]+([A-Z]+)[\s/-]+(\d{2,4})(?:\s.*)?$/,
+  );
+
+  if (dayMonthNameMatch) {
+    const month = findMonth(dayMonthNameMatch[2]);
+    const rawYear = Number(dayMonthNameMatch[3]);
+    const year =
+      dayMonthNameMatch[3].length === 2
+        ? 2000 + rawYear
+        : rawYear;
+
+    if (month) {
+      return createParsedDate(
+        year,
+        month,
+        Number(dayMonthNameMatch[1]),
+      );
+    }
+  }
+
+  const monthNameDayMatch = normalized.match(
+    /^([A-Z]+)[\s/-]+(\d{1,2})[,\s/-]+(\d{4})(?:\s.*)?$/,
+  );
+
+  if (monthNameDayMatch) {
+    const month = findMonth(monthNameDayMatch[1]);
+
+    if (month) {
+      return createParsedDate(
+        Number(monthNameDayMatch[3]),
+        month,
+        Number(monthNameDayMatch[2]),
+      );
+    }
+  }
+
+  return null;
+}
+
+function parseYearMonth(value: string) {
+  const parsed = parseDateValue(value);
+
+  if (!parsed) {
+    return null;
+  }
+
   return {
-    year,
-    month,
-    key: `${year}-${String(month).padStart(2, "0")}`,
-    label: `${MONTH_LABELS[month]} '${String(year).slice(2)}`,
+    year: parsed.year,
+    month: parsed.month,
+    key: parsed.key,
+    label: parsed.label,
   };
 }
+
+function formatRealizationDate(value: string) {
+  return parseDateValue(value)?.display ?? "Belum";
+}
+
 
 function getUptSummaries(records: ProtectionRecord[]): UptSummary[] {
   const summaries = new Map<string, UptSummary>();
@@ -859,10 +726,10 @@ function getUptSummaries(records: ProtectionRecord[]): UptSummary[] {
     };
 
     summary.total += 1;
-    summary.ja += Number(hasValue(record.ja));
-    summary.jb += Number(hasValue(record.jb));
-    summary.jd += Number(hasValue(record.jd));
-    summary.je += Number(hasValue(record.je));
+    summary.ja += Number(hasRealizationDate(record.ja));
+    summary.jb += Number(hasRealizationDate(record.jb));
+    summary.jd += Number(hasRealizationDate(record.jd));
+    summary.je += Number(hasRealizationDate(record.je));
     summary.score4 += Number(record.score === 4);
     summaries.set(record.uptShort, summary);
   }
@@ -874,65 +741,55 @@ function getUptSummaries(records: ProtectionRecord[]): UptSummary[] {
 
 function buildTimeline(
   records: ProtectionRecord[],
-  actualKeys: CompletionKey[],
-  targetKey: TargetKey,
+  firstKey: CompletionKey,
+  secondKey: CompletionKey,
 ): TimelinePoint[] {
-  const actual = new Map<string, number>();
-  const target = new Map<string, number>();
+  const first = new Map<string, number>();
+  const second = new Map<string, number>();
   const labels = new Map<string, string>();
 
   for (const record of records) {
-    const isActual = actualKeys.some((key) => hasValue(record[key]));
-    const actualDate = isActual
-      ? actualKeys
-          .map((key) => parseYearMonth(record[key]))
-          .find((value) => value !== null) ??
-        parseYearMonth(record[targetKey])
-      : null;
-    const targetDate = isActual ? null : parseYearMonth(record[targetKey]);
-    const selectedDate = actualDate ?? targetDate;
+    const firstDate = parseYearMonth(record[firstKey]);
+    const secondDate = parseYearMonth(record[secondKey]);
 
-    if (!selectedDate) {
-      continue;
+    if (firstDate) {
+      labels.set(firstDate.key, firstDate.label);
+      first.set(
+        firstDate.key,
+        (first.get(firstDate.key) ?? 0) + 1,
+      );
     }
 
-    labels.set(selectedDate.key, selectedDate.label);
-
-    if (actualDate) {
-      actual.set(
-        selectedDate.key,
-        (actual.get(selectedDate.key) ?? 0) + 1,
-      );
-    } else {
-      target.set(
-        selectedDate.key,
-        (target.get(selectedDate.key) ?? 0) + 1,
+    if (secondDate) {
+      labels.set(secondDate.key, secondDate.label);
+      second.set(
+        secondDate.key,
+        (second.get(secondDate.key) ?? 0) + 1,
       );
     }
   }
 
-  const keys = [...new Set([...actual.keys(), ...target.keys()])].sort();
-  let cumulativeActual = 0;
-  let cumulativeAll = 0;
+  const keys = [
+    ...new Set([...first.keys(), ...second.keys()]),
+  ].sort();
+
+  let cumulativeFirst = 0;
+  let cumulativeSecond = 0;
 
   return keys.map((key) => {
-    const actualValue = actual.get(key) ?? 0;
-    const targetValue = target.get(key) ?? 0;
-    cumulativeActual += actualValue;
-    cumulativeAll += actualValue + targetValue;
+    const firstValue = first.get(key) ?? 0;
+    const secondValue = second.get(key) ?? 0;
+
+    cumulativeFirst += firstValue;
+    cumulativeSecond += secondValue;
 
     return {
       key,
       label: labels.get(key) ?? key,
-      actual: actualValue,
-      target: targetValue,
-      targetGroup: key.startsWith("2025")
-        ? "2025"
-        : key.startsWith("2026")
-          ? "2026"
-          : "2027+",
-      cumulativeActual,
-      cumulativeAll,
+      first: firstValue,
+      second: secondValue,
+      cumulativeFirst,
+      cumulativeSecond,
     };
   });
 }
@@ -962,24 +819,34 @@ function MetricCard({
   );
 }
 
-function CompletionDot({
+function CompletionDate({
   value,
   label,
 }: {
   value: string;
   label: string;
 }) {
-  const completed = hasValue(value);
+  const completed = hasRealizationDate(value);
+  const display = formatRealizationDate(value);
 
   return (
     <span
       className={`proteksi-completion ${
         completed ? "is-complete" : "is-incomplete"
       }`}
-      title={completed ? `${label}: ${value}` : `${label}: belum selesai`}
-      aria-label={completed ? `${label} selesai` : `${label} belum selesai`}
+      title={
+        completed
+          ? `${label}: ${value}`
+          : `${label}: belum terealisasi`
+      }
+      aria-label={
+        completed
+          ? `${label} terealisasi ${display}`
+          : `${label} belum terealisasi`
+      }
     >
       {completed ? <CheckCircle2 size={14} /> : <XCircle size={14} />}
+      <small>{display}</small>
     </span>
   );
 }
@@ -1030,7 +897,7 @@ function RelayDistribution({
 }) {
   const segments = useMemo(() => {
     const lcd = records.filter(
-      (record) => record.relayTypeNormalized === "LCD",
+      (record) => record.relayTypeNormalized.includes("LCD"),
     ).length;
     const distance = records.filter((record) =>
       record.relayTypeNormalized.includes("DISTANCE"),
@@ -1239,9 +1106,9 @@ function MatrixPanel({
               <th>UPT</th>
               <th>LCD</th>
               <th>FO Fail Ann.</th>
-              <th>I Diff Ann.</th>
-              <th>FO Fail Dash.</th>
-              <th>I Diff Dash.</th>
+              <th>Diff Ann.</th>
+              <th>FO Fail Dash/EWS</th>
+              <th>Diff Dash/EWS</th>
               <th>Skor</th>
             </tr>
           </thead>
@@ -1306,14 +1173,18 @@ function TimelinePanel({
   title,
   subtitle,
   points,
+  firstLabel,
+  secondLabel,
 }: {
   title: string;
   subtitle: string;
   points: TimelinePoint[];
+  firstLabel: string;
+  secondLabel: string;
 }) {
   const maxValue = Math.max(
     1,
-    ...points.map((point) => point.actual + point.target),
+    ...points.map((point) => point.first + point.second),
   );
 
   return (
@@ -1327,7 +1198,7 @@ function TimelinePanel({
 
       {points.length === 0 ? (
         <p className="proteksi-empty">
-          Tanggal realisasi atau target belum tersedia.
+          Tanggal realisasi belum tersedia.
         </p>
       ) : (
         <>
@@ -1339,40 +1210,38 @@ function TimelinePanel({
               } as CSSProperties}
             >
               {points.map((point) => {
-                const actualHeight =
-                  (point.actual / maxValue) * 100;
-                const targetHeight =
-                  (point.target / maxValue) * 100;
+                const firstHeight =
+                  (point.first / maxValue) * 100;
+                const secondHeight =
+                  (point.second / maxValue) * 100;
 
                 return (
                   <div className="proteksi-timeline-column" key={point.key}>
                     <div className="proteksi-timeline-values">
                       <small>
-                        {point.actual + point.target || ""}
+                        {point.first + point.second || ""}
                       </small>
                       <div>
-                        {point.target > 0 && (
-                          <i
-                            className={`is-target is-${point.targetGroup.replace(
-                              "+",
-                              "plus",
-                            )}`}
-                            style={{ height: `${targetHeight}%` }}
-                            title={`Target ${point.targetGroup}: ${point.target} bay`}
-                          />
-                        )}
-                        {point.actual > 0 && (
+                        {point.first > 0 && (
                           <i
                             className="is-actual"
-                            style={{ height: `${actualHeight}%` }}
-                            title={`Realisasi: ${point.actual} bay`}
+                            style={{ height: `${firstHeight}%` }}
+                            title={`${firstLabel}: ${point.first} bay`}
+                          />
+                        )}
+                        {point.second > 0 && (
+                          <i
+                            className="is-target is-2026"
+                            style={{ height: `${secondHeight}%` }}
+                            title={`${secondLabel}: ${point.second} bay`}
                           />
                         )}
                       </div>
                     </div>
                     <b>{point.label}</b>
                     <span>
-                      {point.cumulativeActual}/{point.cumulativeAll}
+                      {point.cumulativeFirst}/
+                      {point.cumulativeSecond}
                     </span>
                   </div>
                 );
@@ -1381,11 +1250,9 @@ function TimelinePanel({
           </div>
 
           <div className="proteksi-timeline-legend">
-            <span><i className="is-actual" />Realisasi</span>
-            <span><i className="is-2025" />Target 2025</span>
-            <span><i className="is-2026" />Target 2026</span>
-            <span><i className="is-2027plus" />Target 2027+</span>
-            <small>Kumulatif: realisasi/total rencana</small>
+            <span><i className="is-actual" />{firstLabel}</span>
+            <span><i className="is-2026" />{secondLabel}</span>
+            <small>Kumulatif: {firstLabel}/{secondLabel}</small>
           </div>
         </>
       )}
@@ -1495,7 +1362,7 @@ export default function ProteksiDashboard() {
 
       if (
         relayFilter === "LCD" &&
-        record.relayTypeNormalized !== "LCD"
+        !record.relayTypeNormalized.includes("LCD")
       ) {
         return false;
       }
@@ -1520,7 +1387,10 @@ export default function ProteksiDashboard() {
         record.ultg,
         record.gi,
         record.bay,
+        record.redundancy,
         record.relayType,
+        record.relayBrand,
+        record.relayModel,
       ].some((value) =>
         value.toLocaleLowerCase("id-ID").includes(query),
       );
@@ -1553,7 +1423,7 @@ export default function ProteksiDashboard() {
   const lcdRecords = useMemo(
     () =>
       filteredRecords.filter(
-        (record) => record.relayTypeNormalized === "LCD",
+        (record) => record.relayTypeNormalized.includes("LCD"),
       ),
     [filteredRecords],
   );
@@ -1564,18 +1434,18 @@ export default function ProteksiDashboard() {
   );
 
   const annunciatorTimeline = useMemo(
-    () => buildTimeline(lcdRecords, ["ja", "jb"], "jc"),
+    () => buildTimeline(lcdRecords, "ja", "jb"),
     [lcdRecords],
   );
 
   const dashboardTimeline = useMemo(
-    () => buildTimeline(lcdRecords, ["jd", "je"], "jf"),
+    () => buildTimeline(lcdRecords, "jd", "je"),
     [lcdRecords],
   );
 
   const metrics = useMemo(() => {
     const completed = (key: CompletionKey) =>
-      lcdRecords.filter((record) => hasValue(record[key])).length;
+      lcdRecords.filter((record) => hasRealizationDate(record[key])).length;
     const totalLcd = lcdRecords.length;
 
     return {
@@ -1602,21 +1472,21 @@ export default function ProteksiDashboard() {
         tone: "blue",
       },
       {
-        label: "I Diff → Annunciator",
+        label: "Diff Alarm/Spv → Annunciator",
         key: "jb",
         count: metrics.jb,
         percent: percentage(metrics.jb, metrics.lcd),
         tone: "red",
       },
       {
-        label: "FO Fail → Dashboard",
+        label: "FO Fail → Dashboard & EWS",
         key: "jd",
         count: metrics.jd,
         percent: percentage(metrics.jd, metrics.lcd),
         tone: "green",
       },
       {
-        label: "I Diff → Dashboard",
+        label: "Diff Alarm/Spv → Dashboard & EWS",
         key: "je",
         count: metrics.je,
         percent: percentage(metrics.je, metrics.lcd),
@@ -1666,18 +1536,19 @@ export default function ProteksiDashboard() {
 
   const exportFilteredData = () => {
     const headers = [
-      "UPT",
-      "ULTG",
-      "Gardu Induk",
-      "Bay",
-      "Kritikal",
-      "Jenis Relai",
-      "FO Fail Annunciator",
-      "I Diff Annunciator",
-      "FO Fail Dashboard",
-      "I Diff Dashboard",
-      "Target Annunciator",
-      "Target Dashboard",
+      "UPT (C)",
+      "ULTG (D)",
+      "GI/GIS (E)",
+      "Bay (F)",
+      "GI-Bay-Redundant (I)",
+      "Kritikal UIP2B ABO 2026 (L)",
+      "Jenis Relay (M)",
+      "Merk MPU (N)",
+      "Tipe MPU (O)",
+      "Realisasi FO Fail Dashboard & EWS (R)",
+      "Realisasi Diff Alarm/Spv Dashboard & EWS (U)",
+      "Realisasi FO Fail Annunciator (Y)",
+      "Realisasi Diff Alarm/Spv Annunciator (AB)",
       "Skor",
     ];
     const rows = sortedRecords.map((record) => [
@@ -1685,14 +1556,15 @@ export default function ProteksiDashboard() {
       record.ultg.replace(/^ULTG\s+/i, ""),
       record.gi,
       record.bay,
+      record.redundancy,
       record.critical,
       record.relayType,
-      record.ja,
-      record.jb,
+      record.relayBrand,
+      record.relayModel,
       record.jd,
       record.je,
-      record.jc,
-      record.jf,
+      record.ja,
+      record.jb,
       `${record.score}/4`,
     ]);
     const csv = [headers, ...rows]
@@ -1730,7 +1602,7 @@ export default function ProteksiDashboard() {
           <div>
             <strong>Monitoring Relai LCD — UITJBM</strong>
             <small>
-              FO Fail dan I Diff menuju Annunciator, Dashboard, dan EWS
+              Realisasi FO Fail dan Diff Alarm/Spv menuju Annunciator, Dashboard, dan EWS
             </small>
           </div>
         </div>
@@ -1795,7 +1667,7 @@ export default function ProteksiDashboard() {
                 onChange={(event: ChangeEvent<HTMLInputElement>) =>
                   setSearchQuery(event.target.value)
                 }
-                placeholder="Cari UPT, ULTG, gardu induk, atau bay..."
+                placeholder="Cari UPT, ULTG, GI/GIS, bay, redundant, merk, atau tipe MPU..."
                 aria-label="Cari data proteksi"
               />
             </div>
@@ -1905,19 +1777,19 @@ export default function ProteksiDashboard() {
                   tone="green"
                 />
                 <MetricCard
-                  label="I Diff → Ann."
+                  label="Diff → Ann."
                   value={metrics.jb}
                   detail={`${percentage(metrics.jb, metrics.lcd)}% selesai`}
                   tone="red"
                 />
                 <MetricCard
-                  label="FO Fail → Dash."
+                  label="FO Fail → Dash/EWS"
                   value={metrics.jd}
                   detail={`${percentage(metrics.jd, metrics.lcd)}% selesai`}
                   tone="green"
                 />
                 <MetricCard
-                  label="I Diff → Dash."
+                  label="Diff → Dash/EWS"
                   value={metrics.je}
                   detail={`${percentage(metrics.je, metrics.lcd)}% selesai`}
                   tone="violet"
@@ -1941,21 +1813,21 @@ export default function ProteksiDashboard() {
               <div className="proteksi-two-columns">
                 <UptProgressPanel
                   title="Status Annunciator per UPT"
-                  subtitle="FO Fail dan I Diff yang telah ditarik"
+                  subtitle="Realisasi tanggal FO Fail dan Diff Alarm/Spv"
                   summaries={uptSummaries}
                   firstKey="ja"
                   secondKey="jb"
                   firstLabel="FO Fail"
-                  secondLabel="I Diff"
+                  secondLabel="Diff Alarm/Spv"
                 />
                 <UptProgressPanel
                   title="Status Dashboard & EWS per UPT"
-                  subtitle="FO Fail dan I Diff yang telah ditarik"
+                  subtitle="Realisasi tanggal FO Fail dan Diff Alarm/Spv"
                   summaries={uptSummaries}
                   firstKey="jd"
                   secondKey="je"
                   firstLabel="FO Fail"
-                  secondLabel="I Diff"
+                  secondLabel="Diff Alarm/Spv"
                 />
               </div>
 
@@ -1964,13 +1836,17 @@ export default function ProteksiDashboard() {
               <div className="proteksi-two-columns">
                 <TimelinePanel
                   title="Timeline Annunciator"
-                  subtitle="Realisasi JA/JB dan target JC per bulan"
+                  subtitle="Tanggal realisasi kolom Y dan AB per bulan"
                   points={annunciatorTimeline}
+                  firstLabel="FO Fail (Y)"
+                  secondLabel="Diff Alarm/Spv (AB)"
                 />
                 <TimelinePanel
                   title="Timeline Dashboard & EWS"
-                  subtitle="Realisasi JD/JE dan target JF per bulan"
+                  subtitle="Tanggal realisasi kolom R dan U per bulan"
                   points={dashboardTimeline}
+                  firstLabel="FO Fail (R)"
+                  secondLabel="Diff Alarm/Spv (U)"
                 />
               </div>
 
@@ -2020,12 +1896,17 @@ export default function ProteksiDashboard() {
                         </th>
                         <th>
                           <button type="button" onClick={() => changeSort("gi")}>
-                            Gardu Induk {sortIndicator("gi")}
+                            GI/GIS {sortIndicator("gi")}
                           </button>
                         </th>
                         <th>
                           <button type="button" onClick={() => changeSort("bay")}>
                             Bay {sortIndicator("bay")}
+                          </button>
+                        </th>
+                        <th>
+                          <button type="button" onClick={() => changeSort("redundancy")}>
+                            GI-Bay-Redundant {sortIndicator("redundancy")}
                           </button>
                         </th>
                         <th>
@@ -2035,15 +1916,23 @@ export default function ProteksiDashboard() {
                         </th>
                         <th>
                           <button type="button" onClick={() => changeSort("relayType")}>
-                            Jenis {sortIndicator("relayType")}
+                            Jenis Relay {sortIndicator("relayType")}
                           </button>
                         </th>
-                        <th>FO Fail Ann.</th>
-                        <th>I Diff Ann.</th>
-                        <th>FO Fail Dash.</th>
-                        <th>I Diff Dash.</th>
-                        <th>Target Ann.</th>
-                        <th>Target Dash.</th>
+                        <th>
+                          <button type="button" onClick={() => changeSort("relayBrand")}>
+                            Merk MPU {sortIndicator("relayBrand")}
+                          </button>
+                        </th>
+                        <th>
+                          <button type="button" onClick={() => changeSort("relayModel")}>
+                            Tipe MPU {sortIndicator("relayModel")}
+                          </button>
+                        </th>
+                        <th>FO Fail Dash/EWS (R)</th>
+                        <th>Diff Dash/EWS (U)</th>
+                        <th>FO Fail Ann. (Y)</th>
+                        <th>Diff Ann. (AB)</th>
                         <th>
                           <button type="button" onClick={() => changeSort("score")}>
                             Skor {sortIndicator("score")}
@@ -2054,7 +1943,7 @@ export default function ProteksiDashboard() {
                     <tbody>
                       {pagedRecords.length === 0 ? (
                         <tr>
-                          <td className="proteksi-table-empty" colSpan={13}>
+                          <td className="proteksi-table-empty" colSpan={14}>
                             Tidak ada data yang cocok dengan filter.
                           </td>
                         </tr>
@@ -2077,6 +1966,9 @@ export default function ProteksiDashboard() {
                             <td>{record.ultg.replace(/^ULTG\s+/i, "") || "—"}</td>
                             <td title={record.gi}>{record.gi || "—"}</td>
                             <td title={record.bay}>{record.bay || "—"}</td>
+                            <td title={record.redundancy}>
+                              {record.redundancy || "—"}
+                            </td>
                             <td>
                               <span
                                 className={`proteksi-tag ${
@@ -2091,7 +1983,7 @@ export default function ProteksiDashboard() {
                             <td>
                               <span
                                 className={`proteksi-tag ${
-                                  record.relayTypeNormalized === "LCD"
+                                  record.relayTypeNormalized.includes("LCD")
                                     ? "is-lcd"
                                     : "is-neutral"
                                 }`}
@@ -2099,20 +1991,44 @@ export default function ProteksiDashboard() {
                                 {record.relayType || "—"}
                               </span>
                             </td>
-                            <td><CompletionDot value={record.ja} label="FO Fail Annunciator" /></td>
-                            <td><CompletionDot value={record.jb} label="I Diff Annunciator" /></td>
-                            <td><CompletionDot value={record.jd} label="FO Fail Dashboard" /></td>
-                            <td><CompletionDot value={record.je} label="I Diff Dashboard" /></td>
-                            <td>{record.jc || "—"}</td>
-                            <td>{record.jf || "—"}</td>
+                            <td title={record.relayBrand}>
+                              {record.relayBrand || "—"}
+                            </td>
+                            <td title={record.relayModel}>
+                              {record.relayModel || "—"}
+                            </td>
+                            <td>
+                              <CompletionDate
+                                value={record.jd}
+                                label="FO Fail Dashboard & EWS"
+                              />
+                            </td>
+                            <td>
+                              <CompletionDate
+                                value={record.je}
+                                label="Diff Alarm/Spv Dashboard & EWS"
+                              />
+                            </td>
+                            <td>
+                              <CompletionDate
+                                value={record.ja}
+                                label="FO Fail Annunciator"
+                              />
+                            </td>
+                            <td>
+                              <CompletionDate
+                                value={record.jb}
+                                label="Diff Alarm/Spv Annunciator"
+                              />
+                            </td>
                             <td>
                               <span
                                 className={`proteksi-score is-${record.score}`}
                                 title={[
-                                  record.ja || "Belum",
-                                  record.jb || "Belum",
-                                  record.jd || "Belum",
-                                  record.je || "Belum",
+                                  `R: ${formatRealizationDate(record.jd)}`,
+                                  `U: ${formatRealizationDate(record.je)}`,
+                                  `Y: ${formatRealizationDate(record.ja)}`,
+                                  `AB: ${formatRealizationDate(record.jb)}`,
                                 ].join(" · ")}
                               >
                                 {record.score}/4

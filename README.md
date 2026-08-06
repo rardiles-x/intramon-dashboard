@@ -126,3 +126,19 @@ Sumber CSV:
 ```text
 https://docs.google.com/spreadsheets/d/e/2PACX-1vTF582KzohQo5LW0gWLPiK60V-bHmBWQ_EZ3mxYPkf8m5oalArzAo78jKttHAnHZTlEGRGhoUZkmJ5q/pub?gid=855839774&single=true&output=csv
 ```
+
+<!-- MONSTER-ALL-IN-ONE-V4.2 -->
+## MONSTER Proteksi Native
+
+**Smart Monitoring for Reliable Protection**
+
+Menu **Proteksi Relai LCD** dibangun langsung sebagai komponen React,
+tanpa iframe. Data diambil dari Google Sheets CSV publik dengan parser
+header fleksibel, filter, KPI, grafik, timeline, tabel, pagination,
+ekspor CSV, dark mode, dan layout mobile.
+
+Sumber CSV:
+
+```text
+https://docs.google.com/spreadsheets/d/e/2PACX-1vTF582KzohQo5LW0gWLPiK60V-bHmBWQ_EZ3mxYPkf8m5oalArzAo78jKttHAnHZTlEGRGhoUZkmJ5q/pub?gid=855839774&single=true&output=csv
+```
