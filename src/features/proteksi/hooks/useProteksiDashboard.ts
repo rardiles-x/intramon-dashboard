@@ -10,13 +10,84 @@ import {
 import type {
   CompletionKey,
   CriticalFilter,
+  DetailColumnFilters,
+  DetailFilterOptions,
   ProgressItem,
+  RealizationFilter,
   RelayFilter,
   ScoreFilter,
   SortDirection,
   SortKey,
+  UpdateDetailColumnFilter,
 } from "../types";
 import { useProteksiData } from "./useProteksiData";
+
+const EMPTY_DETAIL_FILTERS: DetailColumnFilters = {
+  uptShort: "",
+  ultg: "",
+  gi: "",
+  bay: "",
+  redundancy: "",
+  critical: "",
+  relayType: "",
+  relayBrand: "",
+  relayModel: "",
+  jd: "",
+  je: "",
+  ja: "",
+  jb: "",
+  score: "",
+};
+
+function normalizeSearchValue(value: string): string {
+  return value.trim().toLocaleLowerCase("id-ID");
+}
+
+function includesFilter(value: string, filter: string): boolean {
+  const normalizedFilter = normalizeSearchValue(filter);
+
+  return (
+    !normalizedFilter ||
+    normalizeSearchValue(value).includes(normalizedFilter)
+  );
+}
+
+function matchesRealization(
+  value: string,
+  filter: RealizationFilter,
+): boolean {
+  if (!filter) {
+    return true;
+  }
+
+  const completed = hasRealizationDate(value);
+  return filter === "complete" ? completed : !completed;
+}
+
+function uniqueValues(values: string[]): string[] {
+  const displayByKey = new Map<string, string>();
+
+  values.forEach((value) => {
+    const display = value.trim().replace(/\s+/g, " ");
+
+    if (!display) {
+      return;
+    }
+
+    const key = display.toLocaleUpperCase("id-ID");
+
+    if (!displayByKey.has(key)) {
+      displayByKey.set(key, display);
+    }
+  });
+
+  return [...displayByKey.values()].sort((left, right) =>
+    left.localeCompare(right, "id", {
+      numeric: true,
+      sensitivity: "base",
+    }),
+  );
+}
 
 export function useProteksiDashboard() {
   const {
@@ -30,10 +101,15 @@ export function useProteksiDashboard() {
   const [uptFilter, setUptFilter] = useState("");
   const [criticalFilter, setCriticalFilter] =
     useState<CriticalFilter>("YA");
-  const [relayFilter, setRelayFilter] = useState<RelayFilter>("LCD");
-  const [scoreFilter, setScoreFilter] = useState<ScoreFilter>("");
+  const [relayFilter, setRelayFilter] =
+    useState<RelayFilter>("LCD");
+  const [scoreFilter, setScoreFilter] =
+    useState<ScoreFilter>("");
   const [searchQuery, setSearchQuery] = useState("");
-  const [sortKey, setSortKey] = useState<SortKey>("uptShort");
+  const [detailFilters, setDetailFilters] =
+    useState<DetailColumnFilters>(EMPTY_DETAIL_FILTERS);
+  const [sortKey, setSortKey] =
+    useState<SortKey>("uptShort");
   const [sortDirection, setSortDirection] =
     useState<SortDirection>("asc");
   const [currentPage, setCurrentPage] = useState(1);
@@ -46,6 +122,7 @@ export function useProteksiDashboard() {
     relayFilter,
     scoreFilter,
     searchQuery,
+    detailFilters,
     sortKey,
     sortDirection,
   ]);
@@ -54,19 +131,43 @@ export function useProteksiDashboard() {
     () =>
       [...new Set(records.map((record) => record.uptShort))]
         .filter(Boolean)
-        .sort((left, right) => left.localeCompare(right, "id")),
+        .sort((left, right) =>
+          left.localeCompare(right, "id"),
+        ),
+    [records],
+  );
+
+  const detailFilterOptions = useMemo<DetailFilterOptions>(
+    () => ({
+      uptShort: uniqueValues(
+        records.map((record) => record.uptShort),
+      ),
+      relayType: uniqueValues(
+        records.map((record) => record.relayType),
+      ),
+      relayBrand: uniqueValues(
+        records.map((record) => record.relayBrand),
+      ),
+    }),
     [records],
   );
 
   const filteredRecords = useMemo(() => {
-    const query = searchQuery.trim().toLocaleLowerCase("id-ID");
+    const query =
+      searchQuery.trim().toLocaleLowerCase("id-ID");
 
     return records.filter((record) => {
-      if (uptFilter && record.uptShort !== uptFilter) {
+      if (
+        uptFilter &&
+        record.uptShort !== uptFilter
+      ) {
         return false;
       }
 
-      if (criticalFilter && record.critical !== criticalFilter) {
+      if (
+        criticalFilter &&
+        record.critical !== criticalFilter
+      ) {
         return false;
       }
 
@@ -84,7 +185,10 @@ export function useProteksiDashboard() {
         return false;
       }
 
-      if (scoreFilter !== "" && record.score !== Number(scoreFilter)) {
+      if (
+        scoreFilter !== "" &&
+        record.score !== Number(scoreFilter)
+      ) {
         return false;
       }
 
@@ -114,26 +218,104 @@ export function useProteksiDashboard() {
     searchQuery,
   ]);
 
+  const detailFilteredRecords = useMemo(
+    () =>
+      filteredRecords.filter((record) => {
+        if (
+          detailFilters.uptShort &&
+          record.uptShort !== detailFilters.uptShort
+        ) {
+          return false;
+        }
+
+        if (
+          !includesFilter(
+            record.ultg.replace(/^ULTG\s+/i, ""),
+            detailFilters.ultg,
+          ) ||
+          !includesFilter(record.gi, detailFilters.gi) ||
+          !includesFilter(record.bay, detailFilters.bay) ||
+          !includesFilter(
+            record.redundancy,
+            detailFilters.redundancy,
+          ) ||
+          !includesFilter(
+            record.relayModel,
+            detailFilters.relayModel,
+          )
+        ) {
+          return false;
+        }
+
+        if (
+          detailFilters.critical &&
+          record.critical !== detailFilters.critical
+        ) {
+          return false;
+        }
+
+        if (
+          detailFilters.relayType &&
+          record.relayType !== detailFilters.relayType
+        ) {
+          return false;
+        }
+
+        if (
+          detailFilters.relayBrand &&
+          record.relayBrand !== detailFilters.relayBrand
+        ) {
+          return false;
+        }
+
+        if (
+          !matchesRealization(record.jd, detailFilters.jd) ||
+          !matchesRealization(record.je, detailFilters.je) ||
+          !matchesRealization(record.ja, detailFilters.ja) ||
+          !matchesRealization(record.jb, detailFilters.jb)
+        ) {
+          return false;
+        }
+
+        return (
+          detailFilters.score === "" ||
+          record.score === Number(detailFilters.score)
+        );
+      }),
+    [detailFilters, filteredRecords],
+  );
+
   const sortedRecords = useMemo(() => {
-    return [...filteredRecords].sort((left, right) => {
+    return [...detailFilteredRecords].sort((left, right) => {
       const leftValue = left[sortKey];
       const rightValue = right[sortKey];
       const comparison =
-        typeof leftValue === "number" && typeof rightValue === "number"
+        typeof leftValue === "number" &&
+        typeof rightValue === "number"
           ? leftValue - rightValue
-          : String(leftValue).localeCompare(String(rightValue), "id", {
-              numeric: true,
-              sensitivity: "base",
-            });
+          : String(leftValue).localeCompare(
+              String(rightValue),
+              "id",
+              {
+                numeric: true,
+                sensitivity: "base",
+              },
+            );
 
-      return sortDirection === "asc" ? comparison : -comparison;
+      return sortDirection === "asc"
+        ? comparison
+        : -comparison;
     });
-  }, [filteredRecords, sortKey, sortDirection]);
+  }, [
+    detailFilteredRecords,
+    sortKey,
+    sortDirection,
+  ]);
 
   const lcdRecords = useMemo(
     () =>
-      filteredRecords.filter(
-        (record) => record.relayTypeNormalized.includes("LCD"),
+      filteredRecords.filter((record) =>
+        record.relayTypeNormalized.includes("LCD"),
       ),
     [filteredRecords],
   );
@@ -144,18 +326,32 @@ export function useProteksiDashboard() {
   );
 
   const annunciatorTimeline = useMemo(
-    () => buildTimeline(lcdRecords, "ja", "jb"),
+    () =>
+      buildTimeline(
+        lcdRecords,
+        "targetAnnunciator",
+        "ja",
+        "jb",
+      ),
     [lcdRecords],
   );
 
   const dashboardTimeline = useMemo(
-    () => buildTimeline(lcdRecords, "jd", "je"),
+    () =>
+      buildTimeline(
+        lcdRecords,
+        "targetDashboard",
+        "jd",
+        "je",
+      ),
     [lcdRecords],
   );
 
   const metrics = useMemo(() => {
     const completed = (key: CompletionKey) =>
-      lcdRecords.filter((record) => hasRealizationDate(record[key])).length;
+      lcdRecords.filter((record) =>
+        hasRealizationDate(record[key]),
+      ).length;
     const totalLcd = lcdRecords.length;
 
     return {
@@ -168,7 +364,9 @@ export function useProteksiDashboard() {
       jb: completed("jb"),
       jd: completed("jd"),
       je: completed("je"),
-      score4: lcdRecords.filter((record) => record.score === 4).length,
+      score4: lcdRecords.filter(
+        (record) => record.score === 4,
+      ).length,
     };
   }, [filteredRecords, lcdRecords]);
 
@@ -210,7 +408,10 @@ export function useProteksiDashboard() {
     1,
     Math.ceil(sortedRecords.length / PAGE_SIZE),
   );
-  const safeCurrentPage = Math.min(currentPage, pageCount);
+  const safeCurrentPage = Math.min(
+    currentPage,
+    pageCount,
+  );
   const pagedRecords = sortedRecords.slice(
     (safeCurrentPage - 1) * PAGE_SIZE,
     safeCurrentPage * PAGE_SIZE,
@@ -223,6 +424,24 @@ export function useProteksiDashboard() {
     setScoreFilter("");
     setSearchQuery("");
   };
+
+  const updateDetailFilter: UpdateDetailColumnFilter = (
+    key,
+    value,
+  ) => {
+    setDetailFilters((current) => ({
+      ...current,
+      [key]: value,
+    }));
+  };
+
+  const resetDetailFilters = () => {
+    setDetailFilters(EMPTY_DETAIL_FILTERS);
+  };
+
+  const hasActiveDetailFilters = Object.values(
+    detailFilters,
+  ).some(Boolean);
 
   const changeSort = (key: SortKey) => {
     if (sortKey === key) {
@@ -295,11 +514,15 @@ export function useProteksiDashboard() {
         : `${records.length.toLocaleString("id-ID")} bay dimuat`;
 
   const previousPage = () => {
-    setCurrentPage((page) => Math.max(1, page - 1));
+    setCurrentPage((page) =>
+      Math.max(1, page - 1),
+    );
   };
 
   const nextPage = () => {
-    setCurrentPage((page) => Math.min(pageCount, page + 1));
+    setCurrentPage((page) =>
+      Math.min(pageCount, page + 1),
+    );
   };
 
   return {
@@ -321,6 +544,12 @@ export function useProteksiDashboard() {
     setSearchQuery,
     uptOptions,
     filteredRecords,
+    detailFilteredRecords,
+    detailFilters,
+    detailFilterOptions,
+    updateDetailFilter,
+    resetDetailFilters,
+    hasActiveDetailFilters,
     sortedRecords,
     pagedRecords,
     sortKey,

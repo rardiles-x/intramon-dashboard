@@ -1,20 +1,31 @@
-import { Download } from "lucide-react";
+import { Download, RotateCcw } from "lucide-react";
 import { UPT_COLORS } from "../config";
 import { formatRealizationDate } from "../utils/domain";
 import type {
+  DetailColumnFilters,
+  DetailFilterOptions,
   ProtectionRecord,
   SortDirection,
   SortKey,
+  UpdateDetailColumnFilter,
 } from "../types";
 import { CompletionDate } from "./CompletionDate";
+import { ProteksiDetailFilters } from "./ProteksiDetailFilters";
 
 type ProteksiDetailTableProps = {
   records: ProtectionRecord[];
+  filteredCount: number;
+  globalCount: number;
   lastUpdated: Date | null;
   sortKey: SortKey;
   sortDirection: SortDirection;
   onSort: (key: SortKey) => void;
   onExport: () => void;
+  columnFilters: DetailColumnFilters;
+  filterOptions: DetailFilterOptions;
+  onColumnFilterChange: UpdateDetailColumnFilter;
+  onResetColumnFilters: () => void;
+  hasActiveColumnFilters: boolean;
   currentPage: number;
   pageCount: number;
   onPreviousPage: () => void;
@@ -23,11 +34,18 @@ type ProteksiDetailTableProps = {
 
 export function ProteksiDetailTable({
   records,
+  filteredCount,
+  globalCount,
   lastUpdated,
   sortKey,
   sortDirection,
   onSort,
   onExport,
+  columnFilters,
+  filterOptions,
+  onColumnFilterChange,
+  onResetColumnFilters,
+  hasActiveColumnFilters,
   currentPage,
   pageCount,
   onPreviousPage,
@@ -47,10 +65,15 @@ export function ProteksiDetailTable({
         <span>
           <strong>Detail Data Bay</strong>
           <small>
-            Data dapat diurutkan dan diekspor sesuai filter aktif
+            Filter setiap kolom pada baris kedua, lalu urutkan atau ekspor hasilnya
           </small>
         </span>
+
         <div>
+          <span className="proteksi-detail-count">
+            {filteredCount.toLocaleString("id-ID")} dari{" "}
+            {globalCount.toLocaleString("id-ID")} data
+          </span>
           {lastUpdated && (
             <small>
               Diperbarui{" "}
@@ -63,8 +86,17 @@ export function ProteksiDetailTable({
           <button
             className="secondary-action"
             type="button"
+            onClick={onResetColumnFilters}
+            disabled={!hasActiveColumnFilters}
+          >
+            <RotateCcw size={14} />
+            Reset kolom
+          </button>
+          <button
+            className="secondary-action"
+            type="button"
             onClick={onExport}
-            disabled={records.length === 0}
+            disabled={filteredCount === 0}
           >
             <Download size={14} />
             Ekspor CSV
@@ -75,49 +107,76 @@ export function ProteksiDetailTable({
       <div className="proteksi-table-scroll proteksi-detail-scroll">
         <table className="proteksi-detail-table">
           <thead>
-            <tr>
+            <tr className="proteksi-column-heading-row">
               <th>
-                <button type="button" onClick={() => onSort("uptShort")}>
+                <button
+                  type="button"
+                  onClick={() => onSort("uptShort")}
+                >
                   UPT {sortIndicator("uptShort")}
                 </button>
               </th>
               <th>
-                <button type="button" onClick={() => onSort("ultg")}>
+                <button
+                  type="button"
+                  onClick={() => onSort("ultg")}
+                >
                   ULTG {sortIndicator("ultg")}
                 </button>
               </th>
               <th>
-                <button type="button" onClick={() => onSort("gi")}>
+                <button
+                  type="button"
+                  onClick={() => onSort("gi")}
+                >
                   GI/GIS {sortIndicator("gi")}
                 </button>
               </th>
               <th>
-                <button type="button" onClick={() => onSort("bay")}>
+                <button
+                  type="button"
+                  onClick={() => onSort("bay")}
+                >
                   Bay {sortIndicator("bay")}
                 </button>
               </th>
               <th>
-                <button type="button" onClick={() => onSort("redundancy")}>
+                <button
+                  type="button"
+                  onClick={() => onSort("redundancy")}
+                >
                   GI-Bay-Redundant {sortIndicator("redundancy")}
                 </button>
               </th>
               <th>
-                <button type="button" onClick={() => onSort("critical")}>
+                <button
+                  type="button"
+                  onClick={() => onSort("critical")}
+                >
                   Kritikal {sortIndicator("critical")}
                 </button>
               </th>
               <th>
-                <button type="button" onClick={() => onSort("relayType")}>
+                <button
+                  type="button"
+                  onClick={() => onSort("relayType")}
+                >
                   Jenis Relay {sortIndicator("relayType")}
                 </button>
               </th>
               <th>
-                <button type="button" onClick={() => onSort("relayBrand")}>
+                <button
+                  type="button"
+                  onClick={() => onSort("relayBrand")}
+                >
                   Merk MPU {sortIndicator("relayBrand")}
                 </button>
               </th>
               <th>
-                <button type="button" onClick={() => onSort("relayModel")}>
+                <button
+                  type="button"
+                  onClick={() => onSort("relayModel")}
+                >
                   Tipe MPU {sortIndicator("relayModel")}
                 </button>
               </th>
@@ -126,23 +185,39 @@ export function ProteksiDetailTable({
               <th>FO Fail Ann. (Y)</th>
               <th>Diff Ann. (AB)</th>
               <th>
-                <button type="button" onClick={() => onSort("score")}>
+                <button
+                  type="button"
+                  onClick={() => onSort("score")}
+                >
                   Skor {sortIndicator("score")}
                 </button>
               </th>
             </tr>
+
+            <ProteksiDetailFilters
+              filters={columnFilters}
+              options={filterOptions}
+              onChange={onColumnFilterChange}
+            />
           </thead>
+
           <tbody>
             {records.length === 0 ? (
               <tr>
-                <td className="proteksi-table-empty" colSpan={14}>
+                <td
+                  className="proteksi-table-empty"
+                  colSpan={14}
+                >
                   Tidak ada data yang cocok dengan filter.
                 </td>
               </tr>
             ) : (
               records.map((record, index) => (
                 <tr
-                  key={`${record.no}-${record.uptShort}-${record.bay}-${index}`}
+                  key={
+                    `${record.no}-${record.uptShort}-` +
+                    `${record.bay}-${index}`
+                  }
                 >
                   <td>
                     <i
@@ -155,9 +230,16 @@ export function ProteksiDetailTable({
                     />
                     <strong>{record.uptShort}</strong>
                   </td>
-                  <td>{record.ultg.replace(/^ULTG\s+/i, "") || "—"}</td>
-                  <td title={record.gi}>{record.gi || "—"}</td>
-                  <td title={record.bay}>{record.bay || "—"}</td>
+                  <td>
+                    {record.ultg.replace(/^ULTG\s+/i, "") ||
+                      "—"}
+                  </td>
+                  <td title={record.gi}>
+                    {record.gi || "—"}
+                  </td>
+                  <td title={record.bay}>
+                    {record.bay || "—"}
+                  </td>
                   <td title={record.redundancy}>
                     {record.redundancy || "—"}
                   </td>
@@ -175,7 +257,9 @@ export function ProteksiDetailTable({
                   <td>
                     <span
                       className={`proteksi-tag ${
-                        record.relayTypeNormalized.includes("LCD")
+                        record.relayTypeNormalized.includes(
+                          "LCD",
+                        )
                           ? "is-lcd"
                           : "is-neutral"
                       }`}

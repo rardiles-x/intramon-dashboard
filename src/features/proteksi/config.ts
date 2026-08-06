@@ -11,8 +11,10 @@ export const PAGE_SIZE = 25;
 /**
  * Pemetaan sumber resmi, indeks berbasis nol:
  * A=0, C=2, D=3, E=4, F=5, I=8, L=11, M=12,
- * N=13, O=14, R=17, U=20, Y=24, AB=27.
+ * N=13, O=14, P=15, R=17, U=20, W=22, Y=24, AB=27.
  *
+ * targetAnnunciator = Target Integrasi Annunciator (P)
+ * targetDashboard = Target Integrasi Dashboard & EWS (W)
  * ja = FO Fail ke Annunciator (Y)
  * jb = Diff Alarm/Spv ke Annunciator (AB)
  * jd = FO Fail ke Dashboard & EWS (R)
@@ -29,6 +31,8 @@ export const SOURCE_COLUMN_INDEX: ColumnMap = {
   relayType: 12,
   relayBrand: 13,
   relayModel: 14,
+  targetAnnunciator: 15,
+  targetDashboard: 22,
   jd: 17,
   je: 20,
   ja: 24,
@@ -46,6 +50,8 @@ export const COLUMN_REFERENCES: Record<SourceColumnKey, string> = {
   relayType: "M",
   relayBrand: "N",
   relayModel: "O",
+  targetAnnunciator: "P",
+  targetDashboard: "W",
   jd: "R",
   je: "U",
   ja: "Y",

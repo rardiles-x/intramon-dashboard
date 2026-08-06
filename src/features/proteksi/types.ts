@@ -9,6 +9,8 @@ export type SourceColumnKey =
   | "relayType"
   | "relayBrand"
   | "relayModel"
+  | "targetAnnunciator"
+  | "targetDashboard"
   | "ja"
   | "jb"
   | "jd"
@@ -21,6 +23,10 @@ export type CriticalFilter = "" | "YA" | "TIDAK";
 export type RelayFilter = "" | "LCD" | "Distance";
 export type ScoreFilter = "" | "0" | "1" | "2" | "3" | "4";
 export type CompletionKey = "ja" | "jb" | "jd" | "je";
+export type TimelineDateKey =
+  | "targetAnnunciator"
+  | "targetDashboard"
+  | CompletionKey;
 
 export type SortKey =
   | "uptShort"
@@ -49,6 +55,8 @@ export type ProtectionRecord = {
   relayTypeNormalized: string;
   relayBrand: string;
   relayModel: string;
+  targetAnnunciator: string;
+  targetDashboard: string;
   ja: string;
   jb: string;
   jd: string;
@@ -69,8 +77,10 @@ export type UptSummary = {
 export type TimelinePoint = {
   key: string;
   label: string;
+  target: number;
   first: number;
   second: number;
+  cumulativeTarget: number;
   cumulativeFirst: number;
   cumulativeSecond: number;
 };
@@ -101,3 +111,35 @@ export type ProteksiMetrics = {
   je: number;
   score4: number;
 };
+
+export type RealizationFilter = "" | "complete" | "incomplete";
+
+export type DetailColumnFilters = {
+  uptShort: string;
+  ultg: string;
+  gi: string;
+  bay: string;
+  redundancy: string;
+  critical: string;
+  relayType: string;
+  relayBrand: string;
+  relayModel: string;
+  jd: RealizationFilter;
+  je: RealizationFilter;
+  ja: RealizationFilter;
+  jb: RealizationFilter;
+  score: ScoreFilter;
+};
+
+export type DetailFilterOptions = {
+  uptShort: string[];
+  relayType: string[];
+  relayBrand: string[];
+};
+
+export type UpdateDetailColumnFilter = <
+  Key extends keyof DetailColumnFilters,
+>(
+  key: Key,
+  value: DetailColumnFilters[Key],
+) => void;

@@ -9,6 +9,7 @@ import {
 import { ProteksiFilters } from "./components/ProteksiFilters";
 import { ProteksiMetrics } from "./components/ProteksiMetrics";
 import { ProteksiToolbar } from "./components/ProteksiToolbar";
+import { RelayBrandDistribution } from "./components/RelayBrandDistribution";
 import { RelayDistribution } from "./components/RelayDistribution";
 import { TimelinePanel } from "./components/TimelinePanel";
 import { UptProgressPanel } from "./components/UptProgressPanel";
@@ -57,12 +58,16 @@ export default function ProteksiDashboard() {
             <>
               <ProteksiMetrics metrics={dashboard.metrics} />
 
+              <ProgressPanel
+                items={dashboard.progressItems}
+                total={dashboard.metrics.lcd}
+              />
+
               <div className="proteksi-two-columns">
-                <ProgressPanel
-                  items={dashboard.progressItems}
-                  total={dashboard.metrics.lcd}
-                />
                 <RelayDistribution
+                  records={dashboard.filteredRecords}
+                />
+                <RelayBrandDistribution
                   records={dashboard.filteredRecords}
                 />
               </div>
@@ -93,15 +98,17 @@ export default function ProteksiDashboard() {
               <div className="proteksi-two-columns">
                 <TimelinePanel
                   title="Timeline Annunciator"
-                  subtitle="Tanggal realisasi kolom Y dan AB per bulan"
+                  subtitle="Target kolom P dan realisasi kolom Y/AB per bulan"
                   points={dashboard.annunciatorTimeline}
+                  targetLabel="Target Integrasi (P)"
                   firstLabel="FO Fail (Y)"
                   secondLabel="Diff Alarm/Spv (AB)"
                 />
                 <TimelinePanel
                   title="Timeline Dashboard & EWS"
-                  subtitle="Tanggal realisasi kolom R dan U per bulan"
+                  subtitle="Target kolom W dan realisasi kolom R/U per bulan"
                   points={dashboard.dashboardTimeline}
+                  targetLabel="Target Integrasi (W)"
                   firstLabel="FO Fail (R)"
                   secondLabel="Diff Alarm/Spv (U)"
                 />
@@ -109,11 +116,26 @@ export default function ProteksiDashboard() {
 
               <ProteksiDetailTable
                 records={dashboard.pagedRecords}
+                filteredCount={
+                  dashboard.detailFilteredRecords.length
+                }
+                globalCount={dashboard.filteredRecords.length}
                 lastUpdated={dashboard.lastUpdated}
                 sortKey={dashboard.sortKey}
                 sortDirection={dashboard.sortDirection}
                 onSort={dashboard.changeSort}
                 onExport={dashboard.exportFilteredData}
+                columnFilters={dashboard.detailFilters}
+                filterOptions={dashboard.detailFilterOptions}
+                onColumnFilterChange={
+                  dashboard.updateDetailFilter
+                }
+                onResetColumnFilters={
+                  dashboard.resetDetailFilters
+                }
+                hasActiveColumnFilters={
+                  dashboard.hasActiveDetailFilters
+                }
                 currentPage={dashboard.safeCurrentPage}
                 pageCount={dashboard.pageCount}
                 onPreviousPage={dashboard.previousPage}

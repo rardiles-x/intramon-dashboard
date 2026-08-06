@@ -6,9 +6,9 @@ import {
   SOURCE_COLUMN_INDEX,
 } from "../config";
 import type {
-  CompletionKey,
   ProtectionRecord,
   SourceColumnKey,
+  TimelineDateKey,
   TimelinePoint,
   UptSummary,
 } from "../types";
@@ -254,6 +254,14 @@ export function parseProtectionCsv(text: string): ProtectionRecord[] {
       SOURCE_COLUMN_INDEX.relayType,
     );
 
+    const targetAnnunciator = getCell(
+      row,
+      SOURCE_COLUMN_INDEX.targetAnnunciator,
+    );
+    const targetDashboard = getCell(
+      row,
+      SOURCE_COLUMN_INDEX.targetDashboard,
+    );
     const ja = getCell(row, SOURCE_COLUMN_INDEX.ja);
     const jb = getCell(row, SOURCE_COLUMN_INDEX.jb);
     const jd = getCell(row, SOURCE_COLUMN_INDEX.jd);
@@ -271,6 +279,8 @@ export function parseProtectionCsv(text: string): ProtectionRecord[] {
       (
         bay === "" &&
         relayType === "" &&
+        targetAnnunciator === "" &&
+        targetDashboard === "" &&
         ja === "" &&
         jb === "" &&
         jd === "" &&
@@ -306,6 +316,8 @@ export function parseProtectionCsv(text: string): ProtectionRecord[] {
         row,
         SOURCE_COLUMN_INDEX.relayModel,
       ),
+      targetAnnunciator,
+      targetDashboard,
       ja,
       jb,
       jd,
@@ -505,16 +517,78 @@ function parseDateValue(value: string): ParsedDateValue | null {
 function parseYearMonth(value: string) {
   const parsed = parseDateValue(value);
 
-  if (!parsed) {
+  if (parsed) {
+    return {
+      year: parsed.year,
+      month: parsed.month,
+      key: parsed.key,
+      label: parsed.label,
+    };
+  }
+
+  const normalized = value
+    .trim()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/\./g, "")
+    .replace(/\s+/g, " ")
+    .toUpperCase();
+
+  if (!normalized || normalized === "-") {
     return null;
   }
 
-  return {
-    year: parsed.year,
-    month: parsed.month,
-    key: parsed.key,
-    label: parsed.label,
+  const createYearMonth = (year: number, month: number) => {
+    if (year < 2000 || year > 2100 || month < 1 || month > 12) {
+      return null;
+    }
+
+    return {
+      year,
+      month,
+      key: `${year}-${String(month).padStart(2, "0")}`,
+      label: `${MONTH_LABELS[month]} '${String(year).slice(2)}`,
+    };
   };
+
+  const yearMonthMatch = normalized.match(
+    /^(\d{4})[-/](\d{1,2})$/,
+  );
+
+  if (yearMonthMatch) {
+    return createYearMonth(
+      Number(yearMonthMatch[1]),
+      Number(yearMonthMatch[2]),
+    );
+  }
+
+  const monthYearMatch = normalized.match(
+    /^(\d{1,2})[-/](\d{4})$/,
+  );
+
+  if (monthYearMatch) {
+    return createYearMonth(
+      Number(monthYearMatch[2]),
+      Number(monthYearMatch[1]),
+    );
+  }
+
+  const monthNameMatch = normalized.match(
+    /^([A-Z]+)[\s/-]+(\d{4})$/,
+  );
+
+  if (monthNameMatch) {
+    const month = findMonth(monthNameMatch[1]);
+
+    if (month) {
+      return createYearMonth(
+        Number(monthNameMatch[2]),
+        month,
+      );
+    }
+  }
+
+  return null;
 }
 
 export function formatRealizationDate(value: string) {
@@ -552,53 +626,66 @@ export function getUptSummaries(records: ProtectionRecord[]): UptSummary[] {
 
 export function buildTimeline(
   records: ProtectionRecord[],
-  firstKey: CompletionKey,
-  secondKey: CompletionKey,
+  targetKey: TimelineDateKey,
+  firstKey: TimelineDateKey,
+  secondKey: TimelineDateKey,
 ): TimelinePoint[] {
+  const target = new Map<string, number>();
   const first = new Map<string, number>();
   const second = new Map<string, number>();
   const labels = new Map<string, string>();
 
+  const addValue = (
+    value: string,
+    values: Map<string, number>,
+  ) => {
+    const parsed = parseYearMonth(value);
+
+    if (!parsed) {
+      return;
+    }
+
+    labels.set(parsed.key, parsed.label);
+    values.set(
+      parsed.key,
+      (values.get(parsed.key) ?? 0) + 1,
+    );
+  };
+
   for (const record of records) {
-    const firstDate = parseYearMonth(record[firstKey]);
-    const secondDate = parseYearMonth(record[secondKey]);
-
-    if (firstDate) {
-      labels.set(firstDate.key, firstDate.label);
-      first.set(
-        firstDate.key,
-        (first.get(firstDate.key) ?? 0) + 1,
-      );
-    }
-
-    if (secondDate) {
-      labels.set(secondDate.key, secondDate.label);
-      second.set(
-        secondDate.key,
-        (second.get(secondDate.key) ?? 0) + 1,
-      );
-    }
+    addValue(record[targetKey], target);
+    addValue(record[firstKey], first);
+    addValue(record[secondKey], second);
   }
 
   const keys = [
-    ...new Set([...first.keys(), ...second.keys()]),
+    ...new Set([
+      ...target.keys(),
+      ...first.keys(),
+      ...second.keys(),
+    ]),
   ].sort();
 
+  let cumulativeTarget = 0;
   let cumulativeFirst = 0;
   let cumulativeSecond = 0;
 
   return keys.map((key) => {
+    const targetValue = target.get(key) ?? 0;
     const firstValue = first.get(key) ?? 0;
     const secondValue = second.get(key) ?? 0;
 
+    cumulativeTarget += targetValue;
     cumulativeFirst += firstValue;
     cumulativeSecond += secondValue;
 
     return {
       key,
       label: labels.get(key) ?? key,
+      target: targetValue,
       first: firstValue,
       second: secondValue,
+      cumulativeTarget,
       cumulativeFirst,
       cumulativeSecond,
     };

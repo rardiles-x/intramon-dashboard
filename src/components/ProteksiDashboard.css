@@ -750,34 +750,24 @@
 }
 
 .proteksi-timeline-values i {
-  width: 50%;
+  width: 33.333%;
   min-height: 0;
   display: block;
   transition: height 0.35s ease;
 }
 
-.proteksi-timeline-values i.is-actual {
+.proteksi-timeline-values i.is-plan {
   border-radius: 4px 0 0;
+  background: #f59e0b;
+}
+
+.proteksi-timeline-values i.is-first {
   background: var(--green);
 }
 
-.proteksi-timeline-values i.is-target {
+.proteksi-timeline-values i.is-second {
   border-radius: 0 4px 0 0;
-}
-
-.proteksi-timeline-values i.is-2025,
-.proteksi-timeline-legend i.is-2025 {
-  background: #a3e635;
-}
-
-.proteksi-timeline-values i.is-2026,
-.proteksi-timeline-legend i.is-2026 {
   background: var(--blue);
-}
-
-.proteksi-timeline-values i.is-2027plus,
-.proteksi-timeline-legend i.is-2027plus {
-  background: #94a3b8;
 }
 
 .proteksi-timeline-column > b {
@@ -816,8 +806,16 @@
   display: inline-block;
 }
 
-.proteksi-timeline-legend i.is-actual {
+.proteksi-timeline-legend i.is-plan {
+  background: #f59e0b;
+}
+
+.proteksi-timeline-legend i.is-first {
   background: var(--green);
+}
+
+.proteksi-timeline-legend i.is-second {
+  background: var(--blue);
 }
 
 .proteksi-timeline-legend small {
@@ -1201,6 +1199,108 @@
 @media (max-width: 760px) {
   .proteksi-detail-table {
     min-width: 1720px;
+  }
+}
+
+/* Relay brand distribution and detail column filters */
+.proteksi-legend > div {
+  min-width: 0;
+}
+
+.proteksi-legend span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.proteksi-detail-count {
+  min-height: 24px;
+  padding: 0 8px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  color: var(--blue);
+  background: var(--blue-soft);
+  font-size: 7px;
+  font-weight: 750;
+  white-space: nowrap;
+}
+
+.proteksi-detail-table thead .proteksi-column-heading-row th {
+  top: 0;
+  z-index: 4;
+}
+
+.proteksi-detail-table thead .proteksi-column-filter-row th {
+  top: 42px;
+  z-index: 3;
+  height: 42px;
+  padding: 6px 5px;
+  background: color-mix(
+    in srgb,
+    var(--surface-2) 97%,
+    transparent
+  );
+}
+
+.proteksi-column-filter {
+  width: 100%;
+  min-width: 82px;
+  height: 28px;
+  padding: 0 7px;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  outline: 0;
+  color: var(--ink);
+  background: var(--surface);
+  font: inherit;
+  font-size: 7px;
+  font-weight: 600;
+}
+
+.proteksi-column-filter[type="search"] {
+  appearance: none;
+}
+
+.proteksi-column-filter::placeholder {
+  color: color-mix(in srgb, var(--muted) 72%, transparent);
+}
+
+.proteksi-column-filter:hover {
+  border-color: color-mix(in srgb, var(--blue) 48%, var(--border));
+}
+
+.proteksi-column-filter:focus {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 2px var(--blue-soft);
+}
+
+.proteksi-column-filter.is-narrow {
+  min-width: 72px;
+}
+
+.proteksi-column-filter.is-score {
+  min-width: 60px;
+}
+
+.proteksi-column-filter-row th:nth-child(3),
+.proteksi-column-filter-row th:nth-child(4),
+.proteksi-column-filter-row th:nth-child(5),
+.proteksi-column-filter-row th:nth-child(8),
+.proteksi-column-filter-row th:nth-child(9) {
+  min-width: 138px;
+}
+
+.proteksi-column-filter-row th:nth-child(n + 10):nth-child(-n + 13) {
+  min-width: 108px;
+}
+
+@media (max-width: 760px) {
+  .proteksi-detail-count {
+    width: 100%;
+    justify-content: center;
   }
 }
 
