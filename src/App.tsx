@@ -177,8 +177,6 @@ const navigation: Array<{ section?: string; items: NavItem[] }> = [
           label: "Pengaturan",
           icon: Settings,
           children: [
-            { label: "Koneksi API" },
-            { label: "Pengguna & Akses" },
             { label: "Preferensi" },
           ],
         },
