@@ -45,6 +45,7 @@ import {
 } from "lucide-react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { ChangeEvent } from "react";
+import ProteksiDashboard from "./components/ProteksiDashboard";
 
 type Status = "Normal" | "Warning" | "Critical";
 type View =
@@ -56,6 +57,7 @@ type View =
   | "Server Monitoring"
   | "Kesehatan Jaringan"
   | "Peta Monitoring"
+  | "Proteksi Relai LCD"
   | "Pusat Notifikasi"
   | "Laporan Harian"
   | "Ketersediaan Sistem"
@@ -150,6 +152,17 @@ const navigation: Array<{ section?: string; items: NavItem[] }> = [
     ],
   },
   {
+    section: "PROTEKSI",
+    items: [
+      {
+        label: "Proteksi Relai LCD",
+        icon: ShieldCheck,
+        view: "Proteksi Relai LCD",
+        badge: "Live",
+      },
+    ],
+  },
+  {
     section: "PELAPORAN",
     items: [
       { label: "Laporan", icon: FileBarChart, children: [{ label: "Laporan Harian" }, { label: "Ketersediaan Sistem" }, { label: "Audit Log" }] },
@@ -164,7 +177,7 @@ const navigation: Array<{ section?: string; items: NavItem[] }> = [
 ];
 
 const pageCopy: Record<View, { title: string; subtitle: string; parent: string }> = {
-  "Dashboard Utama": { title: "Dashboard", subtitle: "Ringkasan operasional pusat monitoring intranet", parent: "Dashboard" },
+  "Dashboard Utama": { title: "Dashboard", subtitle: "Smart Monitoring for Reliable Protection", parent: "Dashboard" },
   Analytics: { title: "Analytics", subtitle: "Analisis tren, kualitas data, dan performa sumber", parent: "Dashboard" },
   "Data Spreadsheet": { title: "Data Spreadsheet", subtitle: "Telusuri dan validasi seluruh hasil sinkronisasi", parent: "Data & Integrasi" },
   "Import Data": { title: "Import Data", subtitle: "Tambahkan sumber monitoring melalui file CSV", parent: "Data & Integrasi" },
@@ -172,6 +185,11 @@ const pageCopy: Record<View, { title: string; subtitle: string; parent: string }
   "Server Monitoring": { title: "Server Monitoring", subtitle: "Kesehatan, kapasitas, dan performa server intranet", parent: "Infrastruktur" },
   "Kesehatan Jaringan": { title: "Kesehatan Jaringan", subtitle: "Ketersediaan jalur dan latensi antarlayanan", parent: "Infrastruktur" },
   "Peta Monitoring": { title: "Peta Monitoring", subtitle: "Sebaran lokasi dan status perangkat pada wilayah operasional", parent: "Infrastruktur" },
+  "Proteksi Relai LCD": {
+    title: "Proteksi Relai LCD",
+    subtitle: "Monitoring penarikan indikasi FO Fail dan I Diff",
+    parent: "Proteksi",
+  },
   "Pusat Notifikasi": { title: "Alert Center", subtitle: "Peringatan sistem yang memerlukan perhatian", parent: "Infrastruktur" },
   "Laporan Harian": { title: "Laporan Harian", subtitle: "Ringkasan aktivitas dan kondisi sistem hari ini", parent: "Pelaporan" },
   "Ketersediaan Sistem": { title: "Ketersediaan Sistem", subtitle: "Analisis uptime dan catatan downtime", parent: "Pelaporan" },
@@ -538,7 +556,7 @@ export default function Home() {
     const url = URL.createObjectURL(new Blob([csv], { type: "text/csv;charset=utf-8" }));
     const link = document.createElement("a");
     link.href = url;
-    link.download = "intramon-monitoring.csv";
+    link.download = "monster-monitoring.csv";
     link.click();
     URL.revokeObjectURL(url);
     flash("Laporan CSV berhasil disiapkan");
@@ -586,7 +604,14 @@ export default function Home() {
       {mobileOpen && <button className="sidebar-scrim" aria-label="Tutup navigasi" type="button" onClick={() => setMobileOpen(false)} />}
       <aside className={`sidebar ${mobileOpen ? "mobile-open" : ""}`}>
         <div className="brand-row">
-          <button className="brand" type="button" onClick={() => chooseView("Dashboard Utama")} aria-label="Buka dashboard"><span className="brand-mark"><Activity size={22} /></span><span className="brand-name">intra<span>mon</span></span></button>
+          <button className="brand" type="button" onClick={() => chooseView("Dashboard Utama")} aria-label="Buka dashboard MONSTER">
+  <span className="brand-mark"><Activity size={22} /></span>
+  <span className="brand-copy">
+    <span className="brand-name">MON<span>STER</span></span>
+    <span className="brand-expansion">(Monitoring Sistem Proteksi Terintegrasi)</span>
+    <span className="brand-tagline">Smart Monitoring for Reliable Protection</span>
+  </span>
+</button>
           <button className="sidebar-close" type="button" aria-label="Tutup navigasi" onClick={() => setMobileOpen(false)}><X size={19} /></button>
         </div>
         <nav aria-label="Navigasi utama">
@@ -649,6 +674,7 @@ export default function Home() {
 
         {activeView === "Peta Monitoring" && <section className="content-view map-view"><div className="view-actions"><div className="map-summary"><MapPinned size={19} /><span><strong>{visibleMapLocations.length} lokasi ditampilkan</strong><small>Data contoh · siap dihubungkan ke REST API intranet</small></span></div><div className="map-legend"><span><i className="normal" />Normal</span><span><i className="warning" />Warning</span><span><i className="critical" />Critical</span><span><i className="offline" />Offline</span></div></div><div className="map-layout"><article className="panel map-panel"><div className="panel-head"><div><h2>Wilayah Operasional</h2><p>Pilih marker untuk melihat detail lokasi</p></div><div className="filter-tabs map-filters" aria-label="Filter status lokasi">{(["Semua", "Normal", "Warning", "Critical", "Offline"] as const).map((status) => <button key={status} className={mapStatusFilter === status ? "active" : ""} type="button" onClick={() => setMapStatusFilter(status)}>{status}</button>)}</div></div><MonitoringMap locations={visibleMapLocations} selectedId={selectedMapLocation} onSelect={setSelectedMapLocation} /></article><aside className="panel map-location-panel"><div className="panel-head"><div><h2>Daftar Lokasi</h2><p>Status pembaruan terakhir</p></div></div><div className="map-location-list">{visibleMapLocations.map((location) => <button className={selectedMapLocation === location.id ? "active" : ""} key={location.id} type="button" onClick={() => setSelectedMapLocation(location.id)}><span className={`map-pin-dot ${location.status.toLowerCase()}`} /><span><strong>{location.name}</strong><small>{location.area} · {location.server}</small></span><span><b>{location.status}</b><small>{location.lastUpdate}</small></span></button>)}</div>{visibleMapLocations.length === 0 && <div className="empty-state"><MapPinned size={26} /><strong>Lokasi tidak ditemukan</strong><span>Pilih status lain untuk menampilkan marker.</span></div>}</aside></div></section>}
 
+        {activeView === "Proteksi Relai LCD" && <ProteksiDashboard />}
         {activeView === "Pusat Notifikasi" && <section className="content-view"><div className="view-actions"><div className="notification-summary"><BellRing size={19} /><span><strong>{unread} notifikasi belum dibaca</strong><small>Peringatan sistem selama 24 jam terakhir</small></span></div><button className="secondary-action" type="button" onClick={() => { setUnread(0); flash("Semua notifikasi ditandai dibaca"); }}><Check size={14} />Tandai semua dibaca</button></div><div className="notification-list"><article className="notification critical"><span><CircleAlert size={18} /></span><div><h3>Koneksi sumber melambat</h3><p>Laporan Keuangan.xlsx membutuhkan waktu respons lebih dari 10 detik.</p><small>SRV-INTRA-03 · 07:57 WIB</small></div><StatusBadge status="Critical" /></article><article className="notification warning"><span><TriangleAlert size={18} /></span><div><h3>Data tidak valid ditemukan</h3><p>12 baris pada Inventori Gudang.xlsx memerlukan pemeriksaan.</p><small>SRV-INTRA-01 · 08:15 WIB</small></div><StatusBadge status="Warning" /></article><article className="notification normal"><span><CheckCircle2 size={18} /></span><div><h3>Sinkronisasi harian selesai</h3><p>Semua data operasional berhasil diperbarui tanpa kendala.</p><small>SRV-INTRA-01 · 08:42 WIB</small></div><StatusBadge status="Normal" /></article></div></section>}
 
         {activeView === "Laporan Harian" && <section className="content-view"><div className="view-actions"><div className="report-date"><FileClock size={18} /><span><strong>Rabu, 5 Agustus 2026</strong><small>Laporan operasional otomatis</small></span></div>{dataActions}</div><div className="report-grid">{[{ label: "Data diproses", value: "12.451", icon: Database }, { label: "Sumber aktif", value: "8/8", icon: FileSpreadsheet }, { label: "Server online", value: `${onlineCount}/${servers.length}`, icon: Server }, { label: "Alert terbuka", value: String(counts.warning + counts.critical || 2), icon: BellRing }].map(({ label, value, icon: Icon }) => <article className="panel report-card" key={label}><span><Icon size={18} /></span><small>{label}</small><strong>{value}</strong></article>)}</div><article className="panel daily-report"><div className="panel-head"><div><h2>Ringkasan Aktivitas</h2><p>Kondisi sistem berdasarkan pembaruan hari ini</p></div><span className="healthy"><Check size={13} />Stabil</span></div>{renderTable(6)}</article></section>}
@@ -674,7 +700,7 @@ export default function Home() {
 
         {activeView === "Preferensi" && <section className="content-view settings-grid"><article className="panel settings-card"><div className="settings-title"><span><Sun size={19} /></span><div><h2>Tampilan</h2><p>Tema antarmuka dashboard</p></div></div><div className="theme-options"><button className={!darkMode ? "active" : ""} type="button" onClick={() => darkMode && toggleTheme()}><Sun size={19} /><span><strong>Light</strong><small>Tampilan terang</small></span></button><button className={darkMode ? "active" : ""} type="button" onClick={() => !darkMode && toggleTheme()}><Moon size={19} /><span><strong>Dark</strong><small>Tampilan gelap</small></span></button></div></article><article className="panel settings-card"><div className="settings-title"><span><ListChecks size={19} /></span><div><h2>Kepadatan data</h2><p>Ukuran baris tabel monitoring</p></div></div><div className="setting-toggle"><span><strong>Mode tabel ringkas</strong><small>Tampilkan lebih banyak record</small></span><button className={`toggle ${compactTable ? "on" : ""}`} aria-label="Ubah kepadatan tabel" type="button" onClick={() => setCompactTable((value) => !value)}><i /></button></div><div className="setting-toggle"><span><strong>Sidebar ringkas</strong><small>Sembunyikan label menu</small></span><button className={`toggle ${collapsed ? "on" : ""}`} aria-label="Ubah ukuran sidebar" type="button" onClick={() => setCollapsed((value) => !value)}><i /></button></div></article><article className="panel settings-card wide"><div className="settings-title"><span><SlidersHorizontal size={19} /></span><div><h2>Perilaku dashboard</h2><p>Pengaturan pembaruan dan notifikasi</p></div></div><div className="preference-row"><label className="field-label">Interval refresh<select value={refreshSeconds} onChange={(event) => setRefreshSeconds(Number(event.target.value))}><option value={15}>15 detik</option><option value={30}>30 detik</option><option value={60}>1 menit</option><option value={300}>5 menit</option></select></label><div className="setting-toggle"><span><strong>Auto-refresh</strong><small>Pembaruan data otomatis</small></span><button className={`toggle ${autoRefresh ? "on" : ""}`} aria-label="Ubah auto-refresh" type="button" onClick={() => setAutoRefresh((value) => !value)}><i /></button></div></div><button className="primary-action save-action" type="button" onClick={saveSettings}><Save size={14} />Simpan preferensi</button></article></section>}
 
-        <footer><span>INTRAMON · Pusat Monitoring Intranet</span><span><span className="server-dot" />Terakhir diperbarui {lastSync} WIB</span></footer>
+        <footer><span>MONSTER · Monitoring Sistem Proteksi Terintegrasi</span><span><span className="server-dot" />Terakhir diperbarui {lastSync} WIB</span></footer>
       </main>
       {toast && <div className="toast" role="status"><CheckCircle2 size={16} />{toast}<button type="button" aria-label="Tutup" onClick={() => setToast("")}><X size={13} /></button></div>}
     </div>

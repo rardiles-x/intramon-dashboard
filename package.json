@@ -1,5 +1,5 @@
 {
-  "name": "intramon-dashboard",
+  "name": "monster-dashboard",
   "version": "1.0.0",
   "private": true,
   "type": "module",
@@ -26,5 +26,6 @@
     "@vitejs/plugin-react": "^6.0.0",
     "typescript": "^5.9.3",
     "vite": "^8.0.0"
-  }
+  },
+  "description": "MONSTER — Monitoring Sistem Proteksi Terintegrasi. Smart Monitoring for Reliable Protection."
 }

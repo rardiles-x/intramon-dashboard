@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="monster-gradient" x1="8" y1="8" x2="56" y2="56">
+      <stop stop-color="#21c7f5"/>
+      <stop offset="1" stop-color="#236fd2"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="16" fill="#071b31"/>
+  <path
+    d="M32 8 52 16v15c0 12.2-7.7 21.7-20 25-12.3-3.3-20-12.8-20-25V16L32 8Z"
+    fill="url(#monster-gradient)"
+  />
+  <path
+    d="M18 38V23h5l9 13 9-13h5v15h-6v-7l-8 11-8-11v7h-6Z"
+    fill="#fff"
+  />
+</svg>

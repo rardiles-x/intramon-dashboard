@@ -194,3 +194,68 @@ footer { min-height: 48px; display: flex; align-items: center; justify-content: 
 }
 
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; } }
+
+/* MONSTER branding */
+.brand-row {
+  min-height: 72px;
+}
+
+.brand {
+  min-width: 0;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.brand-mark {
+  margin-top: 2px;
+  flex: 0 0 auto;
+}
+
+.brand-copy {
+  min-width: 0;
+  display: grid;
+  gap: 2px;
+}
+
+.brand-name {
+  display: block;
+  color: var(--heading);
+  font-size: 20px;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: .065em;
+}
+
+.brand-name span {
+  color: #1c64bd;
+}
+
+.brand-expansion {
+  max-width: 170px;
+  color: var(--ink);
+  font-size: 7.2px;
+  font-weight: 650;
+  line-height: 1.25;
+}
+
+.brand-tagline {
+  max-width: 170px;
+  color: var(--muted);
+  font-size: 6.8px;
+  font-style: italic;
+  line-height: 1.2;
+}
+
+.is-collapsed .brand-copy {
+  display: none;
+}
+
+.is-collapsed .brand-row {
+  min-height: 48px;
+}
+
+@media (max-width: 960px) {
+  .brand-row {
+    min-height: 72px;
+  }
+}

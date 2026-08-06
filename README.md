@@ -1,4 +1,4 @@
-# Intramon — Dashboard Monitoring Intranet
+# MONSTER — Monitoring Sistem Proteksi Terintegrasi
 
 Paket ini sudah siap dijadikan satu repository GitHub. Dashboard memakai React + TypeScript + Vite, dapat dipublikasikan otomatis melalui GitHub Pages, dan tidak memakai backend ChatGPT.
 
@@ -102,3 +102,11 @@ Nilai Status: `Normal`, `Warning`, atau `Critical`.
 ID,Waktu,Sumber,Deskripsi,Status,Server
 MON-001,05/08/2026 08:00,Data Operasional.xlsx,Sinkronisasi selesai,Normal,SRV-INTRA-01
 ```
+
+<!-- MONSTER-INTEGRATION -->
+## Branding dan Proteksi Terintegrasi
+
+**Smart Monitoring for Reliable Protection**
+
+Dashboard menyediakan menu **Proteksi Relai LCD** yang menampilkan
+[Dashboard Monitoring Relai LCD](https://ipn-ugraha.github.io/proteksi/) langsung di area utama aplikasi.

@@ -1,0 +1,152 @@
+/* src/components/ProteksiDashboard.css */
+.proteksi-view {
+  display: grid;
+  gap: 12px;
+  min-height: calc(100vh - 150px);
+}
+
+.proteksi-toolbar {
+  min-height: 58px;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(14px);
+}
+
+.proteksi-summary {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.proteksi-summary-icon {
+  width: 39px;
+  height: 39px;
+  flex: 0 0 auto;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  color: var(--blue);
+  background: var(--blue-soft);
+}
+
+.proteksi-summary-copy {
+  min-width: 0;
+  display: grid;
+  gap: 3px;
+}
+
+.proteksi-summary-copy strong {
+  color: var(--heading);
+  font-size: 10px;
+}
+
+.proteksi-summary-copy small {
+  overflow: hidden;
+  color: var(--muted);
+  font-size: 8px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.proteksi-actions {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.proteksi-actions a {
+  text-decoration: none;
+}
+
+.proteksi-frame-panel {
+  position: relative;
+  min-height: 720px;
+  padding: 0;
+  overflow: hidden;
+}
+
+.proteksi-frame {
+  width: 100%;
+  height: calc(100vh - 210px);
+  min-height: 720px;
+  border: 0;
+  display: block;
+  background: #ffffff;
+}
+
+.proteksi-loading {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: var(--blue);
+  background: rgba(247, 251, 255, 0.96);
+  backdrop-filter: blur(8px);
+}
+
+.theme-dark .proteksi-loading {
+  background: rgba(4, 17, 34, 0.94);
+}
+
+.proteksi-loading > span {
+  display: grid;
+  gap: 4px;
+}
+
+.proteksi-loading strong {
+  color: var(--heading);
+  font-size: 10px;
+}
+
+.proteksi-loading small {
+  color: var(--muted);
+  font-size: 8px;
+}
+
+.proteksi-spin {
+  animation: proteksi-rotate 0.85s linear infinite;
+}
+
+@keyframes proteksi-rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 760px) {
+  .proteksi-toolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .proteksi-actions {
+    width: 100%;
+  }
+
+  .proteksi-actions .primary-action,
+  .proteksi-actions .secondary-action {
+    flex: 1;
+    justify-content: center;
+  }
+
+  .proteksi-frame-panel,
+  .proteksi-frame {
+    min-height: calc(100vh - 255px);
+  }
+
+  .proteksi-frame {
+    height: calc(100vh - 255px);
+  }
+}
