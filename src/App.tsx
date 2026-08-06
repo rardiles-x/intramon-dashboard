@@ -160,42 +160,30 @@ const demoMapLocations: MapLocation[] = [
 
 const navigation: Array<{ section?: string; items: NavItem[] }> = [
   {
-    items: [
-      {
-        label: "Dashboard",
-        icon: LayoutDashboard,
-        children: [
-          { label: "Dashboard Utama" },
-          { label: "Analytics" },
-        ],
-      },
-    ],
-  },
+      section: "PROTEKSI",
+      items: [
+        {
+          label: "Proteksi Relai LCD",
+          icon: ShieldCheck,
+          view: "Proteksi Relai LCD",
+          badge: "Live",
+        },
+      ],
+    },
   {
-    section: "PROTEKSI",
-    items: [
-      {
-        label: "Proteksi Relai LCD",
-        icon: ShieldCheck,
-        view: "Proteksi Relai LCD",
-        badge: "Live",
-      },
-    ],
-  },
-  {
-    section: "SISTEM",
-    items: [
-      {
-        label: "Pengaturan",
-        icon: Settings,
-        children: [
-          { label: "Koneksi API" },
-          { label: "Pengguna & Akses" },
-          { label: "Preferensi" },
-        ],
-      },
-    ],
-  },
+      section: "SISTEM",
+      items: [
+        {
+          label: "Pengaturan",
+          icon: Settings,
+          children: [
+            { label: "Koneksi API" },
+            { label: "Pengguna & Akses" },
+            { label: "Preferensi" },
+          ],
+        },
+      ],
+    },
 ];
 
 const pageCopy: Record<View, { title: string; subtitle: string; parent: string }> = {
@@ -349,8 +337,8 @@ function MonitoringMap({ locations, selectedId, onSelect }: { locations: MapLoca
 }
 
 export default function Home() {
-  const [activeView, setActiveView] = useState<View>("Dashboard Utama");
-  const [openGroups, setOpenGroups] = useState<Record<string, boolean>>({ Dashboard: true, Pengaturan: false });
+  const [activeView, setActiveView] = useState<View>("Proteksi Relai LCD");
+  const [openGroups, setOpenGroups] = useState<Record<string, boolean>>({ Pengaturan: false });
   const [query, setQuery] = useState("");
   const searchRef = useRef<HTMLInputElement>(null);
   const [statusFilter, setStatusFilter] = useState<"Semua" | Status>("Semua");
@@ -643,7 +631,7 @@ export default function Home() {
       {mobileOpen && <button className="sidebar-scrim" aria-label="Tutup navigasi" type="button" onClick={() => setMobileOpen(false)} />}
       <aside className={`sidebar ${mobileOpen ? "mobile-open" : ""}`}>
         <div className="brand-row">
-          <button className="brand" type="button" onClick={() => chooseView("Dashboard Utama")} aria-label="Buka dashboard MONSTER">
+          <button className="brand" type="button" onClick={() => chooseView("Proteksi Relai LCD")} aria-label="Buka Proteksi Relai LCD">
   <span className="brand-mark"><Activity size={27} /></span>
   <span className="brand-copy">
     <span className="brand-name">MON<span>STER</span></span>
