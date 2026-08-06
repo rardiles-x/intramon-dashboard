@@ -9,7 +9,7 @@ export function ProgressPanel({
   total: number;
 }) {
   return (
-    <article className="panel proteksi-panel">
+    <article className="panel proteksi-panel proteksi-progress-panel">
       <div className="proteksi-panel-head">
         <span>
           <strong>Progress Penarikan Indikasi</strong>

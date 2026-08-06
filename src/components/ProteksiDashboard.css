@@ -1722,3 +1722,336 @@
     margin-left: 0;
   }
 }
+
+/* MONSTER_PROTEKSI_TYPOGRAPHY_START */
+.proteksi-native {
+  --proteksi-font-family:
+    "Segoe UI Variable Text",
+    "Aptos",
+    "Inter",
+    "Segoe UI",
+    Roboto,
+    Helvetica,
+    Arial,
+    sans-serif;
+  font-family: var(--proteksi-font-family);
+  font-size: 13px;
+  line-height: 1.5;
+  letter-spacing: 0;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.proteksi-native button,
+.proteksi-native input,
+.proteksi-native select,
+.proteksi-native textarea,
+.proteksi-native table {
+  font-family: inherit;
+  letter-spacing: inherit;
+}
+
+.proteksi-native-title strong {
+  font-size: 14px;
+  font-weight: 750;
+  line-height: 1.3;
+}
+
+.proteksi-native-title small {
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+.proteksi-data-status {
+  font-size: 11px;
+  font-weight: 650;
+}
+
+.proteksi-filter-panel select,
+.proteksi-search,
+.proteksi-search input,
+.proteksi-filter-count {
+  font-size: 12px;
+}
+
+.proteksi-loading strong,
+.proteksi-error strong {
+  font-size: 15px;
+  line-height: 1.35;
+}
+
+.proteksi-loading small,
+.proteksi-error p {
+  font-size: 12px;
+}
+
+.proteksi-metric > span {
+  font-size: 11px;
+  font-weight: 650;
+}
+
+.proteksi-metric strong {
+  font-size: 26px;
+  font-weight: 750;
+}
+
+.proteksi-metric small {
+  font-size: 10px;
+  font-weight: 650;
+}
+
+.proteksi-panel-head strong,
+.proteksi-detail-head strong {
+  font-size: 14px;
+  font-weight: 750;
+  line-height: 1.35;
+}
+
+.proteksi-panel-head small,
+.proteksi-detail-head small {
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+.proteksi-progress-panel {
+  border-color: rgba(96, 165, 250, 0.25);
+  color: #ffffff;
+  background:
+    radial-gradient(
+      circle at 96% 0%,
+      rgba(59, 130, 246, 0.16),
+      transparent 30%
+    ),
+    linear-gradient(135deg, #061b31 0%, #102748 55%, #172e55 100%);
+  box-shadow:
+    0 18px 45px rgba(2, 12, 27, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.proteksi-progress-panel .proteksi-panel-head {
+  min-height: 72px;
+  padding: 17px 18px;
+  border-bottom-color: rgba(148, 163, 184, 0.22);
+}
+
+.proteksi-progress-panel .proteksi-panel-head strong {
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 750;
+  letter-spacing: -0.015em;
+}
+
+.proteksi-progress-panel .proteksi-panel-head small {
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 12px;
+  font-weight: 450;
+}
+
+.proteksi-progress-panel .proteksi-panel-head > svg {
+  width: 24px;
+  height: 24px;
+  color: #60a5fa;
+  stroke-width: 2.1;
+}
+
+.proteksi-progress-panel .proteksi-progress-list {
+  padding: 20px 18px 22px;
+  gap: 22px;
+}
+
+.proteksi-progress-panel .proteksi-progress-item {
+  gap: 10px;
+}
+
+.proteksi-progress-panel .proteksi-progress-item span,
+.proteksi-progress-panel .proteksi-progress-item b,
+.proteksi-progress-panel .proteksi-text-blue,
+.proteksi-progress-panel .proteksi-text-red,
+.proteksi-progress-panel .proteksi-text-green,
+.proteksi-progress-panel .proteksi-text-violet {
+  color: #ffffff;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.proteksi-progress-panel .proteksi-progress-item span {
+  font-weight: 550;
+}
+
+.proteksi-progress-panel .proteksi-progress-item b {
+  font-weight: 750;
+  white-space: nowrap;
+}
+
+.proteksi-progress-panel .proteksi-progress-track {
+  height: 10px;
+  background: rgba(148, 163, 184, 0.24);
+}
+
+.proteksi-progress-panel .proteksi-progress-track i {
+  box-shadow: 0 0 16px color-mix(in srgb, currentColor 22%, transparent);
+}
+
+.proteksi-donut > span strong {
+  font-size: 27px;
+  font-weight: 750;
+}
+
+.proteksi-donut > span small {
+  font-size: 11px;
+}
+
+.proteksi-legend span {
+  font-size: 12px;
+}
+
+.proteksi-legend b {
+  font-size: 13px;
+  font-weight: 750;
+}
+
+.proteksi-upt-label span {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.proteksi-upt-label small {
+  font-size: 10px;
+}
+
+.proteksi-upt-bars span,
+.proteksi-upt-bars b {
+  font-size: 10.5px;
+}
+
+.proteksi-matrix-table,
+.proteksi-detail-table {
+  font-size: 11.5px;
+  line-height: 1.45;
+}
+
+.proteksi-matrix-table th,
+.proteksi-detail-table th {
+  font-size: 11px;
+  letter-spacing: 0.01em;
+}
+
+.proteksi-pill,
+.proteksi-tag,
+.proteksi-score {
+  font-size: 10px;
+  font-weight: 750;
+}
+
+.proteksi-detail-count {
+  font-size: 10px;
+}
+
+.proteksi-column-filter {
+  font-size: 10.5px;
+}
+
+.proteksi-timeline-values > small,
+.proteksi-timeline-column > b,
+.proteksi-timeline-legend > span,
+.proteksi-timeline-legend small {
+  font-size: 10px;
+}
+
+.proteksi-timeline-column > span {
+  font-size: 9px;
+}
+
+.proteksi-empty {
+  font-size: 12px;
+}
+
+.proteksi-map-head strong {
+  font-size: 14px;
+  font-weight: 750;
+}
+
+.proteksi-map-head small {
+  font-size: 11px;
+}
+
+.proteksi-map-summary > span,
+.proteksi-map-filter button {
+  font-size: 10.5px;
+}
+
+.proteksi-map-empty strong {
+  font-size: 14px;
+}
+
+.proteksi-map-empty span {
+  font-size: 11px;
+}
+
+.proteksi-map-list-head strong {
+  font-size: 12px;
+}
+
+.proteksi-map-list-head small {
+  font-size: 10px;
+}
+
+.proteksi-map-list-scroll > button > span:nth-child(2) strong {
+  font-size: 11px;
+}
+
+.proteksi-map-list-scroll > button > span:nth-child(2) small {
+  font-size: 9.5px;
+}
+
+.proteksi-map-list-scroll > button > span:last-child b {
+  font-size: 10.5px;
+}
+
+.proteksi-map-list-scroll > button > span:last-child small {
+  font-size: 9px;
+}
+
+.proteksi-map-unresolved,
+.proteksi-map-footnote,
+.proteksi-map-footnote small {
+  font-size: 9.5px;
+}
+
+.proteksi-map-popup {
+  font-family: var(--proteksi-font-family);
+}
+
+@media (max-width: 760px) {
+  .proteksi-native {
+    font-size: 12px;
+  }
+
+  .proteksi-native-title strong {
+    font-size: 13px;
+  }
+
+  .proteksi-native-title small {
+    font-size: 10px;
+  }
+
+  .proteksi-progress-panel .proteksi-panel-head strong {
+    font-size: 16px;
+  }
+
+  .proteksi-progress-panel .proteksi-progress-item span,
+  .proteksi-progress-panel .proteksi-progress-item b,
+  .proteksi-progress-panel .proteksi-text-blue,
+  .proteksi-progress-panel .proteksi-text-red,
+  .proteksi-progress-panel .proteksi-text-green,
+  .proteksi-progress-panel .proteksi-text-violet {
+    font-size: 12px;
+  }
+
+  .proteksi-matrix-table,
+  .proteksi-detail-table {
+    font-size: 10.5px;
+  }
+}
+/* MONSTER_PROTEKSI_TYPOGRAPHY_END */
