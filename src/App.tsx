@@ -160,28 +160,28 @@ const demoMapLocations: MapLocation[] = [
 
 const navigation: Array<{ section?: string; items: NavItem[] }> = [
   {
-      section: "PROTEKSI",
-      items: [
-        {
-          label: "Proteksi Relai LCD",
-          icon: ShieldCheck,
-          view: "Proteksi Relai LCD",
-          badge: "Live",
-        },
-      ],
-    },
+        section: "PROTEKSI",
+        items: [
+          {
+            label: "Proteksi Relai LCD",
+            icon: ShieldCheck,
+            view: "Proteksi Relai LCD",
+            badge: "Live",
+          },
+        ],
+      },
   {
-      section: "SISTEM",
-      items: [
-        {
-          label: "Pengaturan",
-          icon: Settings,
-          children: [
-            { label: "Preferensi" },
-          ],
-        },
-      ],
-    },
+        section: "SISTEM",
+        items: [
+          {
+            label: "Pengaturan",
+            icon: Settings,
+            children: [
+              { label: "Preferensi" },
+            ],
+          },
+        ],
+      },
 ];
 
 const pageCopy: Record<View, { title: string; subtitle: string; parent: string }> = {
