@@ -8,15 +8,21 @@ type MapFilter = "all" | "complete" | "incomplete";
 const STATUS_COPY = {
   complete: {
     label: "Selesai",
-    description: "Semua bay menyelesaikan empat progress",
+    description: "GI memiliki realisasi Y, AB, R, dan U",
     color: "#00d27a",
   },
   incomplete: {
     label: "Belum lengkap",
-    description: "Minimal satu progress pada salah satu bay belum selesai",
+    description: "Minimal satu indikator GI belum memiliki realisasi",
     color: "#e63757",
   },
 } as const;
+
+function countCompletedIndicators(node: GiProgressNode) {
+  return [node.ja, node.jb, node.jd, node.je].filter(
+    (count) => count > 0,
+  ).length;
+}
 
 function createPopupContent(node: GiProgressNode) {
   const popup = document.createElement("div");
@@ -35,7 +41,7 @@ function createPopupContent(node: GiProgressNode) {
   status.className = `is-${node.status}`;
   status.textContent =
     `${STATUS_COPY[node.status].label} · ` +
-    `${node.completeBay}/${node.totalBay} bay lengkap`;
+    `${countCompletedIndicators(node)}/4 indikator terealisasi`;
 
   const progress = document.createElement("small");
   progress.textContent =
@@ -218,8 +224,8 @@ export function ProteksiMap({
           <span>
             <strong>Peta Progress Gardu Induk</strong>
             <small>
-              Hijau jika seluruh bay menyelesaikan Y, AB, R, dan U;
-              merah jika masih ada progress yang belum terealisasi
+              Hijau jika GI memiliki realisasi Y, AB, R, dan U;
+              merah jika minimal satu indikator belum terealisasi
             </small>
           </span>
         </div>
@@ -307,9 +313,9 @@ export function ProteksiMap({
                 </span>
                 <span>
                   <b>
-                    {node.completeBay}/{node.totalBay}
+                    {countCompletedIndicators(node)}/4
                   </b>
-                  <small>bay lengkap</small>
+                  <small>indikator</small>
                 </span>
               </button>
             ))}
@@ -331,11 +337,11 @@ export function ProteksiMap({
       <div className="proteksi-map-footnote">
         <span>
           <i className="is-complete" />
-          Selesai: seluruh bay pada GI memiliki empat tanggal realisasi
+          Selesai: GI memiliki realisasi pada Y, AB, R, dan U
         </span>
         <span>
           <i className="is-incomplete" />
-          Belum lengkap: minimal satu tanggal realisasi masih kosong
+          Belum lengkap: minimal satu indikator GI belum terealisasi
         </span>
         <small>
           Marker garis putus-putus menggunakan hasil lokasi perkiraan

@@ -66,6 +66,23 @@ export function buildGiProgressMap(
     }
 
     const completeBay = group.filter(isRecordComplete).length;
+    const ja = group.filter((record) =>
+      hasRealizationDate(record.ja),
+    ).length;
+    const jb = group.filter((record) =>
+      hasRealizationDate(record.jb),
+    ).length;
+    const jd = group.filter((record) =>
+      hasRealizationDate(record.jd),
+    ).length;
+    const je = group.filter((record) =>
+      hasRealizationDate(record.je),
+    ).length;
+    const hasAllGiIndicators =
+      ja > 0 &&
+      jb > 0 &&
+      jd > 0 &&
+      je > 0;
 
     nodes.push({
       id: key,
@@ -76,25 +93,14 @@ export function buildGiProgressMap(
       longitude: coordinate.longitude,
       precision: coordinate.precision,
       locationLabel: coordinate.displayName,
-      status:
-        completeBay === group.length && group.length > 0
-          ? "complete"
-          : "incomplete",
+      status: hasAllGiIndicators ? "complete" : "incomplete",
       totalBay: group.length,
       completeBay,
       incompleteBay: group.length - completeBay,
-      ja: group.filter((record) =>
-        hasRealizationDate(record.ja),
-      ).length,
-      jb: group.filter((record) =>
-        hasRealizationDate(record.jb),
-      ).length,
-      jd: group.filter((record) =>
-        hasRealizationDate(record.jd),
-      ).length,
-      je: group.filter((record) =>
-        hasRealizationDate(record.je),
-      ).length,
+      ja,
+      jb,
+      jd,
+      je,
     });
   }
 
