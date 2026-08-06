@@ -135,19 +135,15 @@ const demoMapLocations: MapLocation[] = [
 
 const navigation: Array<{ section?: string; items: NavItem[] }> = [
   {
-    items: [{ label: "Dashboard", icon: LayoutDashboard, children: [{ label: "Dashboard Utama" }, { label: "Analytics" }] }],
-  },
-  {
-    section: "DATA & INTEGRASI",
     items: [
-      { label: "Spreadsheet", icon: FileSpreadsheet, children: [{ label: "Data Spreadsheet" }, { label: "Import Data" }, { label: "Riwayat Sinkronisasi" }] },
-      { label: "Sinkronkan Sekarang", icon: RefreshCw, view: "Riwayat Sinkronisasi", badge: "Live" },
-    ],
-  },
-  {
-    section: "INFRASTRUKTUR",
-    items: [
-      { label: "Server", icon: Server, children: [{ label: "Server Monitoring" }, { label: "Kesehatan Jaringan" }] },
+      {
+        label: "Dashboard",
+        icon: LayoutDashboard,
+        children: [
+          { label: "Dashboard Utama" },
+          { label: "Analytics" },
+        ],
+      },
     ],
   },
   {
@@ -162,15 +158,17 @@ const navigation: Array<{ section?: string; items: NavItem[] }> = [
     ],
   },
   {
-    section: "PELAPORAN",
-    items: [
-      { label: "Laporan", icon: FileBarChart, children: [{ label: "Laporan Harian" }, { label: "Ketersediaan Sistem" }, { label: "Audit Log" }] },
-    ],
-  },
-  {
     section: "SISTEM",
     items: [
-      { label: "Pengaturan", icon: Settings, children: [{ label: "Koneksi API" }, { label: "Pengguna & Akses" }, { label: "Preferensi" }] },
+      {
+        label: "Pengaturan",
+        icon: Settings,
+        children: [
+          { label: "Koneksi API" },
+          { label: "Pengguna & Akses" },
+          { label: "Preferensi" },
+        ],
+      },
     ],
   },
 ];
@@ -327,7 +325,7 @@ function MonitoringMap({ locations, selectedId, onSelect }: { locations: MapLoca
 
 export default function Home() {
   const [activeView, setActiveView] = useState<View>("Dashboard Utama");
-  const [openGroups, setOpenGroups] = useState<Record<string, boolean>>({ Dashboard: true, Spreadsheet: true, Server: true, Laporan: false, Pengaturan: false });
+  const [openGroups, setOpenGroups] = useState<Record<string, boolean>>({ Dashboard: true, Pengaturan: false });
   const [query, setQuery] = useState("");
   const searchRef = useRef<HTMLInputElement>(null);
   const [statusFilter, setStatusFilter] = useState<"Semua" | Status>("Semua");
