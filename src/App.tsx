@@ -147,7 +147,7 @@ const navigation: Array<{ section?: string; items: NavItem[] }> = [
   {
     section: "INFRASTRUKTUR",
     items: [
-      { label: "Server", icon: Server, children: [{ label: "Server Monitoring" }, { label: "Kesehatan Jaringan" }, { label: "Peta Monitoring" }] },
+      { label: "Server", icon: Server, children: [{ label: "Server Monitoring" }, { label: "Kesehatan Jaringan" }] },
     ],
   },
   {

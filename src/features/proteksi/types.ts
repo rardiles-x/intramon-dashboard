@@ -143,3 +143,42 @@ export type UpdateDetailColumnFilter = <
   key: Key,
   value: DetailColumnFilters[Key],
 ) => void;
+
+export type GiCoordinatePrecision =
+  | "manual"
+  | "exact"
+  | "approximate";
+
+export type GiCoordinate = {
+  latitude: number;
+  longitude: number;
+  precision: GiCoordinatePrecision;
+  displayName: string;
+  query: string;
+};
+
+export type GiProgressStatus = "complete" | "incomplete";
+
+export type GiProgressNode = {
+  id: string;
+  gi: string;
+  upt: string;
+  ultg: string;
+  latitude: number;
+  longitude: number;
+  precision: GiCoordinatePrecision;
+  locationLabel: string;
+  status: GiProgressStatus;
+  totalBay: number;
+  completeBay: number;
+  incompleteBay: number;
+  ja: number;
+  jb: number;
+  jd: number;
+  je: number;
+};
+
+export type GiProgressMapResult = {
+  nodes: GiProgressNode[];
+  unresolvedGi: string[];
+};

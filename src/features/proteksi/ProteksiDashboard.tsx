@@ -8,6 +8,7 @@ import {
 } from "./components/ProteksiFeedback";
 import { ProteksiFilters } from "./components/ProteksiFilters";
 import { ProteksiMetrics } from "./components/ProteksiMetrics";
+import { ProteksiMap } from "./components/ProteksiMap";
 import { ProteksiToolbar } from "./components/ProteksiToolbar";
 import { RelayBrandDistribution } from "./components/RelayBrandDistribution";
 import { RelayDistribution } from "./components/RelayDistribution";
@@ -94,6 +95,8 @@ export default function ProteksiDashboard() {
               </div>
 
               <MatrixPanel summaries={dashboard.uptSummaries} />
+
+              <ProteksiMap records={dashboard.filteredRecords} />
 
               <div className="proteksi-two-columns">
                 <TimelinePanel
