@@ -110,3 +110,19 @@ MON-001,05/08/2026 08:00,Data Operasional.xlsx,Sinkronisasi selesai,Normal,SRV-I
 
 Dashboard menyediakan menu **Proteksi Relai LCD** yang menampilkan
 [Dashboard Monitoring Relai LCD](https://ipn-ugraha.github.io/proteksi/) langsung di area utama aplikasi.
+
+<!-- MONSTER-ALL-IN-ONE-V4 -->
+## MONSTER Proteksi Native
+
+**Smart Monitoring for Reliable Protection**
+
+Menu **Proteksi Relai LCD** dibangun langsung sebagai komponen React,
+tanpa iframe. Data diambil dari Google Sheets CSV publik dengan parser
+header fleksibel, filter, KPI, grafik, timeline, tabel, pagination,
+ekspor CSV, dark mode, dan layout mobile.
+
+Sumber CSV:
+
+```text
+https://docs.google.com/spreadsheets/d/e/2PACX-1vTF582KzohQo5LW0gWLPiK60V-bHmBWQ_EZ3mxYPkf8m5oalArzAo78jKttHAnHZTlEGRGhoUZkmJ5q/pub?gid=855839774&single=true&output=csv
+```
