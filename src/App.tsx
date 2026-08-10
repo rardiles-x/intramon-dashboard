@@ -148,7 +148,7 @@ const navigation: Array<{ section?: string; items: NavItem[] }> = [
             badge: "Live",
           },
           {
-            label: "Monitoring 3V0",
+            label: "Monitoring OCR LV/SBEF",
             icon: Gauge,
             view: "Monitoring 3V0",
             badge: "Live",
