@@ -389,18 +389,18 @@ export default function ThreeV0Dashboard() {
 
   const exportFiltered = () => {
     const headers = [
-      "UPT (B)",
-      "ULTG (C)",
-      "GI (D)",
-      "Bay (E)",
-      "MERK DAN TIPE SBEF (AO)",
-      "Status Penarikan Analog Tegangan (AP)",
-      "Target Penarikan Analog Tegangan (AQ)",
-      "Realisasi Penarikan Analog Tegangan (AR)",
-      "Aktivasi 3V0 untuk Alarm (AS)",
-      "Target Aktivasi 3V0 untuk Alarm (AT)",
-      "Realisasi Aktivasi 3V0 untuk Alarm (AU)",
-      "SBEF Terpisah / Gabung OCR HV / LV (AV)",
+      "UPT",
+      "ULTG",
+      "GI",
+      "Bay",
+      "MERK DAN TIPE SBEF",
+      "Status Penarikan Analog Tegangan",
+      "Target Penarikan Analog Tegangan",
+      "Realisasi Analog Tegangan LV",
+      "Aktivasi 3V0 untuk Alarm",
+      "Target Aktivasi 3V0 untuk Alarm",
+      "Realisasi Alarm 3V0",
+      "SBEF Terpisah / Gabung OCR HV / LV",
     ];
 
     const rows =
@@ -778,9 +778,6 @@ export default function ThreeV0Dashboard() {
             }
             totalCount={
               data.records.length
-            }
-            lastUpdated={
-              data.lastUpdated
             }
             sortKey={sortKey}
             sortDirection={

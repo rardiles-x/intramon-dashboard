@@ -17,9 +17,7 @@ import {
 type Props = {
   records: ThreeV0Record[];
   filteredCount: number;
-  totalCount: number;
-  lastUpdated: Date | null;
-  sortKey: ThreeV0SortKey;
+  totalCount: number;  sortKey: ThreeV0SortKey;
   sortDirection: ThreeV0SortDirection;
   onSort: (
     key: ThreeV0SortKey,
@@ -35,48 +33,48 @@ const COLUMNS: Array<{
   key: ThreeV0SortKey;
   label: string;
 }> = [
-  { key: "upt", label: "UPT (B)" },
-  { key: "ultg", label: "ULTG (C)" },
-  { key: "gi", label: "GI (D)" },
-  { key: "bay", label: "Bay (E)" },
+  { key: "upt", label: "UPT" },
+  { key: "ultg", label: "ULTG" },
+  { key: "gi", label: "GI" },
+  { key: "bay", label: "Bay" },
   {
     key: "sbefModel",
-    label: "Merk dan Tipe SBEF (AO)",
+    label: "Merk dan Tipe SBEF",
   },
   {
     key: "analogStatus",
     label:
-      "Status Penarikan Analog Tegangan (AP)",
+      "Status Penarikan Analog Tegangan",
   },
   {
     key: "analogTarget",
     label:
-      "Target Penarikan Analog Tegangan (AQ)",
+      "Target Penarikan Analog Tegangan",
   },
   {
     key: "analogRealization",
     label:
-      "Realisasi Penarikan Analog Tegangan (AR)",
+      "Realisasi Analog Tegangan LV",
   },
   {
     key: "alarmStatus",
     label:
-      "Aktivasi 3V0 untuk Alarm (AS)",
+      "Aktivasi 3V0 untuk Alarm",
   },
   {
     key: "alarmTarget",
     label:
-      "Target Aktivasi 3V0 untuk Alarm (AT)",
+      "Target Aktivasi 3V0 untuk Alarm",
   },
   {
     key: "alarmRealization",
     label:
-      "Realisasi Aktivasi 3V0 untuk Alarm (AU)",
+      "Realisasi Alarm 3V0",
   },
   {
     key: "sbefConfiguration",
     label:
-      "SBEF Terpisah / Gabung OCR HV / LV (AV)",
+      "SBEF Terpisah / Gabung OCR HV / LV",
   },
 ];
 
@@ -163,9 +161,7 @@ function SortLabel({
 export function ThreeV0DetailTable({
   records,
   filteredCount,
-  totalCount,
-  lastUpdated,
-  sortKey,
+  totalCount,  sortKey,
   sortDirection,
   onSort,
   onExport,
@@ -181,18 +177,6 @@ export function ThreeV0DetailTable({
           <strong>
             Detail Monitoring 3V0
           </strong>
-          <small>
-            Kolom B, C, D, E dan AO–AV ·
-            terakhir dimuat{" "}
-            {lastUpdated
-              ? lastUpdated.toLocaleTimeString(
-                  "id-ID",
-                  {
-                    hour12: false,
-                  },
-                )
-              : "--:--:--"}
-          </small>
         </span>
 
         <div>
