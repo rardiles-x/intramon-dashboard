@@ -291,3 +291,18 @@ footer { min-height: 48px; display: flex; align-items: center; justify-content: 
   min-height: 48px;
 }
 /* MONSTER_BRAND_SCALE_V2_END */
+
+/* MONSTER_PROTEKSI_TEXT_SCALE_START */
+.page-toolbar.proteksi-lcd-heading p {
+  margin-top: 5px;
+  font-size: 12px;
+  font-weight: 560;
+  line-height: 1.35;
+}
+
+.sidebar .brand-tagline {
+  max-width: 190px;
+  font-size: 10px;
+  line-height: 1.3;
+}
+/* MONSTER_PROTEKSI_TEXT_SCALE_END */
