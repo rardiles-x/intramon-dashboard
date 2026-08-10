@@ -760,13 +760,13 @@ export default function ThreeV0Dashboard() {
           <div className="proteksi-two-columns">
             <ThreeV0TimelinePanel
               title="Timeline Penarikan Analog Tegangan"
-              subtitle="Target AQ dibanding Realisasi AR per bulan"
+              subtitle="Target dan Realisasi Penarikan Analog Tegangan per bulan"
               points={analogTimeline}
             />
 
             <ThreeV0TimelinePanel
               title="Timeline Aktivasi 3V0 untuk Alarm"
-              subtitle="Target AT dibanding Realisasi AU per bulan"
+              subtitle="Target dan Realisasi Aktivasi 3V0 Alarm per bulan"
               points={alarmTimeline}
             />
           </div>
