@@ -128,10 +128,6 @@ export function ThreeV0ProgressPanel({
           <strong>
             Progress Implementasi 3V0
           </strong>
-          <small>
-            Realisasi AR dan AU terhadap
-            seluruh Bay / Trafo hasil filter
-          </small>
         </span>
         <ListChecks size={18} />
       </div>
@@ -196,10 +192,6 @@ export function ThreeV0StatusDistribution({
           <strong>
             Status Realisasi
           </strong>
-          <small>
-            Selesai, sebagian, dan belum
-            berdasarkan AR + AU
-          </small>
         </span>
         <Gauge size={18} />
       </div>

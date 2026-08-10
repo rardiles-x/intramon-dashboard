@@ -485,7 +485,7 @@ export default function ThreeV0Dashboard() {
             <small>
               Progress Penarikan Analog
               Tegangan dan Aktivasi 3V0
-              untuk Alarm · B/C/D/E/AO–AV
+              untuk Alarm
             </small>
           </div>
         </div>

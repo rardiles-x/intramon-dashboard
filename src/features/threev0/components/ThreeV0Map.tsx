@@ -416,11 +416,6 @@ export function ThreeV0Map({
             <strong>
               Peta Realisasi Monitoring 3V0
             </strong>
-            <small>
-              Hijau seluruh Bay selesai
-              AR+AU; kuning sebagian;
-              merah belum ada realisasi
-            </small>
           </span>
         </div>
 
