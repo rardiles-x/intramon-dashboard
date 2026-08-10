@@ -1220,3 +1220,55 @@ export const GI_COORDINATES: Record<string, GiCoordinate> =
     "query": "GI UIT JBM_050326.xls"
   }
 };
+
+// MONSTER_MANUAL_GPS_3V0_START
+const THREE_V0_GI_COORDINATE_OVERRIDES = {
+  "70KV SELOREJO": {
+    latitude: -7.873210306,
+    longitude: 112.3517573,
+    precision: "manual",
+    displayName: "GI 70KV SELOREJO · UPT MALANG",
+    query: "Manual GPS user 2026-08-10",
+  },
+  "70 KV SELOREJO": {
+    latitude: -7.873210306,
+    longitude: 112.3517573,
+    precision: "manual",
+    displayName: "GI 70KV SELOREJO · UPT MALANG",
+    query: "Manual GPS user 2026-08-10",
+  },
+  "150KV NEWNGANJUK": {
+    latitude: -7.6418290194521,
+    longitude: 111.8702981,
+    precision: "manual",
+    displayName: "GI 150KV NEWNGANJUK · UPT MADIUN",
+    query: "Manual GPS user 2026-08-10",
+  },
+  "150 KV NEWNGANJUK": {
+    latitude: -7.6418290194521,
+    longitude: 111.8702981,
+    precision: "manual",
+    displayName: "GI 150KV NEWNGANJUK · UPT MADIUN",
+    query: "Manual GPS user 2026-08-10",
+  },
+  "150KV CELUKAN BAWANG": {
+    latitude: -8.1962945,
+    longitude: 114.8515677,
+    precision: "manual",
+    displayName: "GIS 150KV CELUKAN BAWANG · UPT BALI",
+    query: "Manual GPS user 2026-08-10",
+  },
+  "150 KV CELUKAN BAWANG": {
+    latitude: -8.1962945,
+    longitude: 114.8515677,
+    precision: "manual",
+    displayName: "GIS 150KV CELUKAN BAWANG · UPT BALI",
+    query: "Manual GPS user 2026-08-10",
+  },
+} satisfies Record<string, GiCoordinate>;
+
+Object.assign(
+  GI_COORDINATES,
+  THREE_V0_GI_COORDINATE_OVERRIDES,
+);
+// MONSTER_MANUAL_GPS_3V0_END
