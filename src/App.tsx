@@ -184,7 +184,7 @@ const pageCopy: Record<View, { title: string; subtitle: string; parent: string }
     parent: "Proteksi",
   },
   "Monitoring 3V0": {
-    title: "Monitoring 3V0",
+    title: "Monitoring Penarikan Analog Tegangan dan Alarm 3V0",
     subtitle: "Monitoring progress Penarikan Analog Tegangan dan Aktivasi 3V0 untuk Alarm OCR sisi LV Trafo",
     parent: "Proteksi",
   },

@@ -480,12 +480,10 @@ export default function ThreeV0Dashboard() {
 
           <div>
             <strong>
-              Monitoring 3V0 OCR LV Trafo
+              Status Implementasi
             </strong>
             <small>
-              Progress Penarikan Analog
-              Tegangan dan Aktivasi 3V0
-              untuk Alarm
+              Penarikan Analog Tegangan dan Aktivasi 3V0 untuk Alarm
             </small>
           </div>
         </div>
