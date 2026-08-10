@@ -639,7 +639,7 @@ export default function Home() {
         </header>
 
         <div className={`page-toolbar ${activeView === "Proteksi Relai LCD" ? "proteksi-lcd-heading" : ""}`}>
-          <div><div className="breadcrumb"><span>{pageCopy[activeView].parent}</span><ChevronRight size={11} /><span>{pageCopy[activeView].title}</span></div><h1>{pageCopy[activeView].title}</h1><p>{pageCopy[activeView].subtitle}</p></div>
+          <div><div className="breadcrumb"><span>{pageCopy[activeView].parent}</span><ChevronRight size={11} /><span>{pageCopy[activeView].title}</span></div><h1>{pageCopy[activeView].title}</h1><p className={activeView === "Monitoring 3V0" ? "threev0-page-subtitle" : undefined}>{pageCopy[activeView].subtitle}</p></div>
           <div className="live-state"><span className="server-dot" /><span><strong>Live monitoring</strong><small>{sourceMode === "api" ? "API eksternal terhubung" : "Mode lokal browser"}</small></span></div>
         </div>
 
