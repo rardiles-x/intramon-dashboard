@@ -514,3 +514,43 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* MONSTER_3V0_STATUS_LEGEND_FONT_START */
+.threev0-status-legend > div {
+  min-height: 46px;
+  padding: 0 14px;
+  gap: 10px;
+}
+
+.threev0-status-legend i {
+  width: 10px;
+  height: 10px;
+}
+
+.threev0-status-legend span {
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.threev0-status-legend b {
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+@media (max-width: 760px) {
+  .threev0-status-legend > div {
+    min-height: 44px;
+    padding: 0 12px;
+  }
+
+  .threev0-status-legend span {
+    font-size: 10px;
+  }
+
+  .threev0-status-legend b {
+    font-size: 11px;
+  }
+}
+/* MONSTER_3V0_STATUS_LEGEND_FONT_END */
