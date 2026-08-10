@@ -43,7 +43,7 @@ export function ThreeV0MetricsGrid({
     {
       label: "Selesai",
       value: metrics.complete,
-      hint: "AR + AU lengkap",
+      hint: "Analog Tegangan dan 3V0 Alarm lengkap",
       tone: "green",
     },
     {
