@@ -96,7 +96,7 @@ export default function ProteksiDashboard() {
 
               <MatrixPanel summaries={dashboard.uptSummaries} />
 
-              <ProteksiMap records={dashboard.filteredRecords} />
+              <ProteksiMap records={dashboard.records} />
 
               <div className="proteksi-two-columns">
                 <TimelinePanel
