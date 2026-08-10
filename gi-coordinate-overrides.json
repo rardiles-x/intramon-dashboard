@@ -1,1221 +1,1386 @@
-/**
- * Generated from verified GI UIT JBM GPS data.
- *
- * Sources:
- * - GI UIT JBM_050326.xls
- * - Manual GPS GI 150KV WILMAR
- *
- * Edit gi-coordinate-overrides.json for verified corrections.
- */
-import type { GiCoordinate } from "../types";
-
-export const GI_COORDINATES_GENERATED_AT =
-  "2026-08-10T05:08:48.823Z";
-
-export const GI_COORDINATES: Record<string, GiCoordinate> =
-  {
+{
   "150KV ALTAPRIMA": {
     "latitude": -7.1946571,
     "longitude": 112.6368767,
-    "precision": "manual",
     "displayName": "GI 150KV ALTAPRIMA · KAWASAN INDUSTRI ALTA PRIMA, GRESIK",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "KAWASAN INDUSTRI ALTA PRIMA, GRESIK",
+    "upt": "UPT GRESIK",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV AMLAPURA": {
     "latitude": -8.4478,
     "longitude": 115.5879,
-    "precision": "manual",
     "displayName": "GI 150KV AMLAPURA · JL. SUBAGAN AMLAPURA",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. SUBAGAN AMLAPURA",
+    "upt": "UPT BALI",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV ANTOSARI": {
     "latitude": -8.5164,
     "longitude": 115.0149,
-    "precision": "manual",
     "displayName": "GI 150KV ANTOSARI · JL. RAYA DENPASAR-GILIMANUK",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. RAYA DENPASAR-GILIMANUK",
+    "upt": "UPT BALI",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV BABADAN": {
     "latitude": -7.3889637,
     "longitude": 112.6755286,
-    "precision": "manual",
     "displayName": "GI 150KV BABADAN · JL. RAYA KLETEK, SUKODONO, SIDOARJO",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. RAYA KLETEK, SUKODONO, SIDOARJO",
+    "upt": "UPT SURABAYA",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV BABAT": {
     "latitude": -7.1237376970127,
     "longitude": 112.14656830462,
-    "precision": "manual",
     "displayName": "GI 150KV BABAT · JL. RAYA BABAT, BAURENO, BABAT",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. RAYA BABAT, BAURENO, BABAT",
+    "upt": "UPT MADIUN",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV BALONGBENDO": {
     "latitude": -7.4128,
     "longitude": 112.5578,
-    "precision": "manual",
     "displayName": "GI 150KV BALONGBENDO · JL. RAYA MOJOKERTO, DS. BALONG BENDO KRIAN",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. RAYA MOJOKERTO, DS. BALONG BENDO KRIAN",
+    "upt": "UPT MALANG",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV BAMBE": {
     "latitude": -7.3424,
     "longitude": 112.6642,
-    "precision": "manual",
     "displayName": "GI 150KV BAMBE · JL. SEMERU 2 PERUM PATRA, RT 19, RW 1 DESA BAMBE, KEC. DRIYOREJO KAB. GRESIK",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. SEMERU 2 PERUM PATRA, RT 19, RW 1 DESA BAMBE, KEC. DRIYOREJO KAB. GRESIK",
+    "upt": "UPT MALANG",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV BANARAN": {
     "latitude": -7.8368312536827,
     "longitude": 112.03212231322,
-    "precision": "manual",
     "displayName": "GI 150KV BANARAN · JL. KAPTEN TENDEAN, BANARAN, KEDIRI, TELP. 0354-82732",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. KAPTEN TENDEAN, BANARAN, KEDIRI, TELP. 0354-82732",
+    "upt": "UPT MADIUN",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV BANDARA NGURAHRAI": {
     "latitude": -8.754062,
     "longitude": 115.1706983,
-    "precision": "manual",
     "displayName": "GIS 150KV BANDARA NGURAHRAI · DUSUN KELAN KEL. TUBAN KEC. KUTA SELATAN BADUNG",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "DUSUN KELAN KEL. TUBAN KEC. KUTA SELATAN BADUNG",
+    "upt": "UPT BALI",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV BANGIL": {
     "latitude": -7.604185,
     "longitude": 112.7760514,
-    "precision": "manual",
     "displayName": "GIS 150KV BANGIL · JL. MANGGA 68, BANGIL, PASURUAN",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. MANGGA 68, BANGIL, PASURUAN",
+    "upt": "UPT PROBOLINGGO",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV BANGKALAN": {
     "latitude": -7.057128,
     "longitude": 112.79296,
-    "precision": "manual",
     "displayName": "GI 150KV BANGKALAN · DS. BURNEH, BANGKALAN",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "DS. BURNEH, BANGKALAN",
+    "upt": "UPT GRESIK",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV BANYUWANGI": {
     "latitude": -8.1890533,
     "longitude": 114.3550603,
-    "precision": "manual",
     "displayName": "GI 150KV BANYUWANGI · JL. RADEN WIJAYA NO.79, KLUNCING, BANYUWANGI",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. RADEN WIJAYA NO.79, KLUNCING, BANYUWANGI",
+    "upt": "UPT PROBOLINGGO",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV BATURITI": {
     "latitude": -8.2577,
     "longitude": 115.1615,
-    "precision": "manual",
     "displayName": "GI 150KV BATURITI · JL. RAYA DENPASAR - SINGARAJA, BATURITI, TABANAN",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. RAYA DENPASAR - SINGARAJA, BATURITI, TABANAN",
+    "upt": "UPT BALI",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV BOJONEGORO": {
     "latitude": -7.1758979008863,
     "longitude": 111.86721932777,
-    "precision": "manual",
     "displayName": "GI 150KV BOJONEGORO · JL. RAYA DANDER NO.45, BOJONEGORO",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. RAYA DANDER NO.45, BOJONEGORO",
+    "upt": "UPT MADIUN",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV BONDOWOSO": {
     "latitude": -7.9376,
     "longitude": 113.8334,
-    "precision": "manual",
     "displayName": "GI 150KV BONDOWOSO · DESA SUMBER SALAM, KEC. TENGGARANG, BONDOWOSO",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "DESA SUMBER SALAM, KEC. TENGGARANG, BONDOWOSO",
+    "upt": "UPT PROBOLINGGO",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV BUDURAN": {
     "latitude": -7.4229495,
     "longitude": 112.7208816,
-    "precision": "manual",
     "displayName": "GIS 150KV BUDURAN · JL. INDUSTRI, BUDURAN, SIDOARJO",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. INDUSTRI, BUDURAN, SIDOARJO",
+    "upt": "UPT SURABAYA",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV BULUKANDANG": {
     "latitude": -7.7004,
     "longitude": 112.6874,
-    "precision": "manual",
     "displayName": "GI 150KV BULUKANDANG · DS. BULUKANDANG, PRIGGEN (PABRIK ROKOK SAMPOERNA)",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "DS. BULUKANDANG, PRIGGEN (PABRIK ROKOK SAMPOERNA)",
+    "upt": "UPT PROBOLINGGO",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV BUMICOKRO": {
     "latitude": -7.6056,
     "longitude": 112.7245,
-    "precision": "manual",
     "displayName": "GI 150KV BUMICOKRO · DS. KASUR REJO KEC. BEJI KAB. PASURUAN",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "DS. KASUR REJO KEC. BEJI KAB. PASURUAN",
+    "upt": "UPT PROBOLINGGO",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV BUNGAH": {
     "latitude": -7.092935508656,
     "longitude": 112.59993804707,
-    "precision": "manual",
     "displayName": "GI 150KV BUNGAH · JL RAYA MANYAR KM 11, KEL. MANYAR SIDORUKUN, KEC. MANYAR, KABUPATEN GRESIK, JAWA TIMUR 61151",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL RAYA MANYAR KM 11, KEL. MANYAR SIDORUKUN, KEC. MANYAR, KABUPATEN GRESIK, JAWA TIMUR 61151",
+    "upt": "UPT GRESIK",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV CERME": {
     "latitude": -7.1821,
     "longitude": 112.5777,
-    "precision": "manual",
     "displayName": "GI 150KV CERME · JL. RAYA BANJARSARI, GRESIK",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. RAYA BANJARSARI, GRESIK",
+    "upt": "UPT GRESIK",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV DARMOGRANDE": {
     "latitude": -7.2882394,
     "longitude": 112.6745519,
-    "precision": "manual",
     "displayName": "GIS 150KV DARMOGRANDE · DS LONTAR, LAKARSANTRI, SURABAYA",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "DS LONTAR, LAKARSANTRI, SURABAYA",
+    "upt": "UPT SURABAYA",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV DRIYOREJO": {
     "latitude": -7.3696183,
     "longitude": 112.5990719,
-    "precision": "manual",
     "displayName": "GIS 150KV DRIYOREJO · JL. RAYA DRIYOREJO 322, DRIYOREJO, GRESIK",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. RAYA DRIYOREJO 322, DRIYOREJO, GRESIK",
+    "upt": "UPT MALANG",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV GEMBONG": {
     "latitude": -7.24139,
     "longitude": 112.75018,
-    "precision": "manual",
     "displayName": "GIS 150KV GEMBONG · JL.GEMBONG SAWAH 18-20 SURABAYA",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL.GEMBONG SAWAH 18-20 SURABAYA",
+    "upt": "UPT SURABAYA",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV GENDING": {
     "latitude": -7.7971,
     "longitude": 113.3135,
-    "precision": "manual",
     "displayName": "GI 150KV GENDING · PT. SASA INTI, KEC. GENDING, PROBOLINGGO",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "PT. SASA INTI, KEC. GENDING, PROBOLINGGO",
+    "upt": "UPT PROBOLINGGO",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV GENTENG": {
     "latitude": -8.3865,
     "longitude": 114.1643,
-    "precision": "manual",
     "displayName": "GI 150KV GENTENG · JL.NGAMPEL KELURAHAN YOSOMULYO, KECAMATAN GAMBIRAN - GENTENG",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL.NGAMPEL KELURAHAN YOSOMULYO, KECAMATAN GAMBIRAN - GENTENG",
+    "upt": "UPT PROBOLINGGO",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV GIANYAR": {
     "latitude": -8.5616,
     "longitude": 115.3347,
-    "precision": "manual",
     "displayName": "GI 150KV GIANYAR · JL. SAJURA KM 3 GIANYAR",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. SAJURA KM 3 GIANYAR",
+    "upt": "UPT BALI",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV GILIMANUK": {
     "latitude": -8.1748,
     "longitude": 114.4417,
-    "precision": "manual",
     "displayName": "GI 150KV GILIMANUK · JL. JALAK PUTIH GANG 6",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. JALAK PUTIH GANG 6",
+    "upt": "UPT BALI",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV GILITIMUR": {
     "latitude": -7.1483,
     "longitude": 112.7192,
-    "precision": "manual",
     "displayName": "GI 150KV GILITIMUR · DS. GILITIMUR, KAMAL, BANGKALAN",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "DS. GILITIMUR, KAMAL, BANGKALAN",
+    "upt": "UPT GRESIK",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV GONDANGWETAN": {
     "latitude": -7.6877,
     "longitude": 112.8957,
-    "precision": "manual",
     "displayName": "GI 150KV GONDANGWETAN · DESA BAJANGAN, GONDANG WETAN, PASURUAN",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "DESA BAJANGAN, GONDANG WETAN, PASURUAN",
+    "upt": "UPT PROBOLINGGO",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV GRATI": {
     "latitude": -7.653186,
     "longitude": 113.022383,
-    "precision": "manual",
     "displayName": "GI 150KV GRATI · JL. RAYA SURABAYA - PROBOLINGGO KM 73 DESA WATES LEKOK PROBOLINGGO",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. RAYA SURABAYA - PROBOLINGGO KM 73 DESA WATES LEKOK PROBOLINGGO",
+    "upt": "UPT PROBOLINGGO",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV GRESIK": {
     "latitude": -7.164752,
     "longitude": 112.660084,
-    "precision": "manual",
     "displayName": "GIS 150KV GRESIK · JL. BAKTI PERTIWI RAYA WETAN NO.3 GRESIK JAWA TIMUR",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. BAKTI PERTIWI RAYA WETAN NO.3 GRESIK JAWA TIMUR",
+    "upt": "UPT GRESIK",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV GULUK GULUK": {
     "latitude": -7.06602,
     "longitude": 113.685272,
-    "precision": "manual",
     "displayName": "GI 150KV GULUK-GULUK · JL. RAYA GANDING - PRENDUAN, DESA BATAAL BARAT, KEC. GANDING, SUMENEP",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. RAYA GANDING - PRENDUAN, DESA BATAAL BARAT, KEC. GANDING, SUMENEP",
+    "upt": "UPT GRESIK",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV GUNUNGSARI": {
     "latitude": -7.30322,
     "longitude": 112.70702,
-    "precision": "manual",
     "displayName": "GIS 150KV GUNUNG SARI · JL. JAJARTUNGGAL TIMUR III NO.3, JAJAR TUNGGAL, WIYUNG SURABAYA",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. JAJARTUNGGAL TIMUR III NO.3, JAJAR TUNGGAL, WIYUNG SURABAYA",
+    "upt": "UPT SURABAYA",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV JATIGEDONG": {
     "latitude": -7.4372728610499,
     "longitude": 112.24989036317,
-    "precision": "manual",
     "displayName": "GI 150KV JATIGEDONG · DUSUN LENGKO DESA JATIGEDONG, KECAMATAN PLOSO",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "DUSUN LENGKO DESA JATIGEDONG, KECAMATAN PLOSO",
+    "upt": "UPT MADIUN",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV JAYAKERTAS": {
     "latitude": -7.6111073818171,
     "longitude": 112.08956381263,
-    "precision": "manual",
     "displayName": "GI 150KV JAYAKERTAS · PABRIK KERTAS, PT. JAYA KERTAS, KERTOSONO",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "PABRIK KERTAS, PT. JAYA KERTAS, KERTOSONO",
+    "upt": "UPT MADIUN",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV JEMBER": {
     "latitude": -8.192,
     "longitude": 113.6985,
-    "precision": "manual",
     "displayName": "GI 150KV JEMBER · JL. TEUKU UMAR NO.41, JEMBER",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. TEUKU UMAR NO.41, JEMBER",
+    "upt": "UPT PROBOLINGGO",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV JOMBANG": {
     "latitude": -7.5393296959148,
     "longitude": 112.20851489874,
-    "precision": "manual",
     "displayName": "GI 150KV JOMBANG · JL.BROMO ,DSN. KARANGTIMONGO, DS.DENANYAR, KAB.JOMBANG",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL.BROMO ,DSN. KARANGTIMONGO, DS.DENANYAR, KAB.JOMBANG",
+    "upt": "UPT MADIUN",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV KALISARI": {
     "latitude": -7.270889,
     "longitude": 112.7976139,
-    "precision": "manual",
     "displayName": "GI 150KV KALISARI · JL. MULYOSARI 185 KEL. KALISARI KEC. MULYOREJO SURABAYA",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. MULYOSARI 185 KEL. KALISARI KEC. MULYOREJO SURABAYA",
+    "upt": "UPT SURABAYA",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV KAPAL": {
     "latitude": -8.5827,
     "longitude": 115.1824,
-    "precision": "manual",
     "displayName": "GI 150KV KAPAL · BR. SEMETE KECAMATAN MENGWI BADUNG",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "BR. SEMETE KECAMATAN MENGWI BADUNG",
+    "upt": "UPT BALI",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV KARANGPILANG": {
     "latitude": -7.3268314,
     "longitude": 112.6500281,
-    "precision": "manual",
     "displayName": "GIS 150KV KARANGPILANG · DS. BANGKINGAN, LAKARSANTRI, SURABAYA",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "DS. BANGKINGAN, LAKARSANTRI, SURABAYA",
+    "upt": "UPT MALANG",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV KASIHJATIM": {
     "latitude": -7.3482,
     "longitude": 112.5674,
-    "precision": "manual",
     "displayName": "GI 150KV KASIHJATIM · KARANGANDONG, GRESIK, INDONESIA",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "KARANGANDONG, GRESIK, INDONESIA",
+    "upt": "UPT MALANG",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV KEBONAGUNG": {
     "latitude": -8.0212,
     "longitude": 112.6167,
-    "precision": "manual",
     "displayName": "GI 150KV KEBONAGUNG · JL. SUPRIADI, MALANG",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. SUPRIADI, MALANG",
+    "upt": "UPT MALANG",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV KEDINDING": {
     "latitude": -7.2233349,
     "longitude": 112.7814226,
-    "precision": "manual",
     "displayName": "GIS 150KV KEDINDING · JL. NAMBANGAN NO. 66 SURABAYA",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. NAMBANGAN NO. 66 SURABAYA",
+    "upt": "UPT SURABAYA",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV KEDIRI": {
     "latitude": -7.8404974216416,
     "longitude": 112.03519321616,
-    "precision": "manual",
     "displayName": "GI 150KV KEDIRI · JL. KAPTEN TENDEAN, KELURAHAN BENCE, KEDIRI",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. KAPTEN TENDEAN, KELURAHAN BENCE, KEDIRI",
+    "upt": "UPT MADIUN",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV KENJERAN": {
     "latitude": -7.2549203,
     "longitude": 112.7708457,
-    "precision": "manual",
     "displayName": "GI 150KV KENJERAN · JL. KARANG ASEM 22B, SURABAYA",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. KARANG ASEM 22B, SURABAYA",
+    "upt": "UPT SURABAYA",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV KEREK": {
     "latitude": -6.865568,
     "longitude": 111.915883,
-    "precision": "manual",
     "displayName": "GI 150KV KEREK · PT. SEMEN GRESIK, DESA SUMBER ARUM, KEREK, TUBAN",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "PT. SEMEN GRESIK, DESA SUMBER ARUM, KEREK, TUBAN",
+    "upt": "UPT MADIUN",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV KERTOSONO": {
     "latitude": -7.6148105028092,
     "longitude": 112.09825797119,
-    "precision": "manual",
     "displayName": "GI 150KV KERTOSONO · JL. RAYA JUWONO NO.10 DRENGES, KERTOSONO",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. RAYA JUWONO NO.10 DRENGES, KERTOSONO",
+    "upt": "UPT MADIUN",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV KIS": {
     "latitude": -7.545519,
     "longitude": 112.771045,
-    "precision": "manual",
     "displayName": "GI 150KV KIS · BANGUNREJO, TAMBAK KALISOGO, KEC. JABON, KABUPATEN SIDOARJO, JAWA TIMUR",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "BANGUNREJO, TAMBAK KALISOGO, KEC. JABON, KABUPATEN SIDOARJO, JAWA TIMUR",
+    "upt": "UPT PROBOLINGGO",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV KRAKSAAN": {
     "latitude": -7.7794,
     "longitude": 113.4272,
-    "precision": "manual",
     "displayName": "GI 150KV KRAKSAAN · DESA WIDORO, KREJENGAN, PROBOLINGGO",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "DESA WIDORO, KREJENGAN, PROBOLINGGO",
+    "upt": "UPT PROBOLINGGO",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV KREMBANGAN": {
     "latitude": -7.2244562,
     "longitude": 112.7250573,
-    "precision": "manual",
     "displayName": "GIS 150KV KREMBANGAN · JL. TANJUNG SADARI 84, SURABAYA",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. TANJUNG SADARI 84, SURABAYA",
+    "upt": "UPT SURABAYA",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV KUBU": {
     "latitude": -8.203619996577,
     "longitude": 115.49715533006,
-    "precision": "manual",
     "displayName": "GI 150KV KUBU · JL. KUTUH PUNGGUL, TIANYAR, KUBU, KARANGASEM REGENCY, BALI",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. KUTUH PUNGGUL, TIANYAR, KUBU, KARANGASEM REGENCY, BALI",
+    "upt": "UPT BALI",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV KUPANG": {
     "latitude": -7.2685204,
     "longitude": 112.7355798,
-    "precision": "manual",
     "displayName": "GIS 150KV KUPANG · JL. KEDUNG SARI NO 19, SURABAYA",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. KEDUNG SARI NO 19, SURABAYA",
+    "upt": "UPT SURABAYA",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV LAMONGAN": {
     "latitude": -7.1419882094483,
     "longitude": 112.41285133893,
-    "precision": "manual",
     "displayName": "GI 150KV LAMONGAN · JL. MANTUB, LAMONGAN",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. MANTUB, LAMONGAN",
+    "upt": "UPT MADIUN",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV LAWANG": {
     "latitude": -7.8489,
     "longitude": 112.6903,
-    "precision": "manual",
     "displayName": "GI 150KV LAWANG · JL. INDROKILO 44, LAWANG, MALANG",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. INDROKILO 44, LAWANG, MALANG",
+    "upt": "UPT MALANG",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV LUMAJANG": {
     "latitude": -8.1287,
     "longitude": 113.2126,
-    "precision": "manual",
     "displayName": "GI 150KV LUMAJANG · JL. PULOSARI NO.29, LUMAJANG",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. PULOSARI NO.29, LUMAJANG",
+    "upt": "UPT PROBOLINGGO",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV MANISREJO": {
     "latitude": -7.640513,
     "longitude": 111.547782,
-    "precision": "manual",
     "displayName": "GI 150KV MANISREJO · JL. TANJUNG RAYA, MADIUN",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. TANJUNG RAYA, MADIUN",
+    "upt": "UPT MADIUN",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV MANYAR": {
     "latitude": -7.1288,
     "longitude": 112.6131,
-    "precision": "manual",
     "displayName": "GI 150KV MANYAR · JL DELTA MASPION NOMER 5 MANYAR, GRESIK",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL DELTA MASPION NOMER 5 MANYAR, GRESIK",
+    "upt": "UPT GRESIK",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV MLIWANG": {
     "latitude": -6.8191522291426,
     "longitude": 111.8915692,
-    "precision": "manual",
     "displayName": "GI 150KV MLIWANG · JL. GLONDONG KEREK KM.3, DESA KARANG ASEM, KECAMATAN JENU, TUBAN",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. GLONDONG KEREK KM.3, DESA KARANG ASEM, KECAMATAN JENU, TUBAN",
+    "upt": "UPT MADIUN",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV MOJOAGUNG": {
     "latitude": -7.5905,
     "longitude": 112.3436,
-    "precision": "manual",
     "displayName": "GI 150KV MOJOAGUNG · JL. WONOSALAM, DS. KARANGWINONGAN, KEC MOJOAGUNG",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. WONOSALAM, DS. KARANGWINONGAN, KEC MOJOAGUNG",
+    "upt": "UPT MALANG",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV NEGARA": {
     "latitude": -8.3644,
     "longitude": 114.6607,
-    "precision": "manual",
     "displayName": "GI 150KV NEGARA · JL. RAYA SABUAL, NEGARA",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. RAYA SABUAL, NEGARA",
+    "upt": "UPT BALI",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV NEWNGANJUK": {
     "latitude": -7.6418290194521,
     "longitude": 111.87029808703,
-    "precision": "manual",
     "displayName": "GI 150KV NEWNGANJUK · JL. LURAH S KARTO PRAWIRO, NGANJUK",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. LURAH S KARTO PRAWIRO, NGANJUK",
+    "upt": "UPT MADIUN",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV NEWPACITAN": {
     "latitude": -8.1834341526955,
     "longitude": 111.11273918665,
-    "precision": "manual",
     "displayName": "GI 150KV NEWPACITAN · JL. T AMIR HAMZAH NO. 06 PACITAN - 63551",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. T AMIR HAMZAH NO. 06 PACITAN - 63551",
+    "upt": "UPT MADIUN",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV NEWPANDAAN": {
     "latitude": -7.638611,
     "longitude": 112.7024712,
-    "precision": "manual",
     "displayName": "GI 150KV NEWPANDAAN · JL. GUNUNG GANGSIR NO. 15 NAMPES KEL. NOGOSARI, KEC. PANDAAN, PASURUAN, JAWA TIMUR",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. GUNUNG GANGSIR NO. 15 NAMPES KEL. NOGOSARI, KEC. PANDAAN, PASURUAN, JAWA TIMUR",
+    "upt": "UPT PROBOLINGGO",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV NEWPONOROGO": {
     "latitude": -7.8696446153979,
     "longitude": 111.49326849054,
-    "precision": "manual",
     "displayName": "GI 150KV NEWPONOROGO · JL. LETJEN SUPRAPTO NO. 10, PONOROGO",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. LETJEN SUPRAPTO NO. 10, PONOROGO",
+    "upt": "UPT MADIUN",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV NEWPORONG": {
     "latitude": -7.566411,
     "longitude": 112.705714,
-    "precision": "manual",
     "displayName": "GI 150KV NEWPORONG · JL. BYPASS GEMPOL NO.195, WINONG, KEC. GEMPOL, PASURUAN, JAWA TIMUR 67155",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. BYPASS GEMPOL NO.195, WINONG, KEC. GEMPOL, PASURUAN, JAWA TIMUR 67155",
+    "upt": "UPT PROBOLINGGO",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV NEWTULUNGAGUNG": {
     "latitude": -8.0708915216153,
     "longitude": 111.99195734832,
-    "precision": "manual",
     "displayName": "GI 150KV NEWTULUNGAGUNG · PAKEL, NGANTRU, TULUNGAGUNG, JAWA TIMUR, 66252",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "PAKEL, NGANTRU, TULUNGAGUNG, JAWA TIMUR, 66252",
+    "upt": "UPT MADIUN",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV NEWWLINGI": {
     "latitude": -8.069306,
     "longitude": 112.314906,
-    "precision": "manual",
     "displayName": "GI 150KV NEWWLINGI · KAWERON, BLITAR, INDONESIA",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "KAWERON, BLITAR, INDONESIA",
+    "upt": "UPT MALANG",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV NGAGEL": {
     "latitude": -7.287761,
     "longitude": 112.749291,
-    "precision": "manual",
     "displayName": "GIS 150KV NGAGEL · JL. NGAGEL TIMUR 14",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. NGAGEL TIMUR 14",
+    "upt": "UPT SURABAYA",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV NGAWI": {
     "latitude": -7.407054511039,
     "longitude": 111.45692543828,
-    "precision": "manual",
     "displayName": "GI 150KV NGAWI · JL. SUKAWATI KARANG ASRI, NGAWI",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. SUKAWATI KARANG ASRI, NGAWI",
+    "upt": "UPT MADIUN",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV NGIMBANG": {
     "latitude": -7.286745,
     "longitude": 112.18909,
-    "precision": "manual",
     "displayName": "GI 150KV NGIMBANG · JL. NGIMBANG - BULUK DESA, KAKAT PENJALIN, KECAMATAN NGIMBANG, KABUPATEN LAMONGAN",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. NGIMBANG - BULUK DESA, KAKAT PENJALIN, KECAMATAN NGIMBANG, KABUPATEN LAMONGAN",
+    "upt": "UPT MADIUN",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV NGORO": {
     "latitude": -7.5563,
     "longitude": 112.613,
-    "precision": "manual",
     "displayName": "GI 150KV NGORO · NGORO INDUSTRIAL PARK EST. MOJOKERTO",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "NGORO INDUSTRIAL PARK EST. MOJOKERTO",
+    "upt": "UPT MALANG",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV NUSADUA": {
     "latitude": -8.7972,
     "longitude": 115.2225,
-    "precision": "manual",
     "displayName": "GI 150KV NUSADUA · JL. BRIGJEND NGURAH RAI, DENPASAR",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. BRIGJEND NGURAH RAI, DENPASAR",
+    "upt": "UPT BALI",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV PACIRAN": {
     "latitude": -6.890756,
     "longitude": 112.434172,
-    "precision": "manual",
     "displayName": "GI 150KV PACIRAN · JL. SIMPANG 3 BLURI TLOGOSADANG, PACIRAN",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. SIMPANG 3 BLURI TLOGOSADANG, PACIRAN",
+    "upt": "UPT MADIUN",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV PADANG SAMBIAN": {
     "latitude": -8.6669,
     "longitude": 115.1873,
-    "precision": "manual",
     "displayName": "GI 150KV PADANG SAMBIAN · JL. BUANA RAYA NO. 123 ,PADANG SAMBIAN, DENPASAR.",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. BUANA RAYA NO. 123 ,PADANG SAMBIAN, DENPASAR.",
+    "upt": "UPT BALI",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV PAITON": {
     "latitude": -7.718402,
     "longitude": 113.581713,
-    "precision": "manual",
     "displayName": "GI 150KV PAITON · JL. RAYA SURABAYA - SITUBONDO KM 142 DESA BHINOR PAITON PROBOLINGGO",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. RAYA SURABAYA - SITUBONDO KM 142 DESA BHINOR PAITON PROBOLINGGO",
+    "upt": "UPT PROBOLINGGO",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV PAKIS": {
     "latitude": -7.9681,
     "longitude": 112.6802,
-    "precision": "manual",
     "displayName": "GI 150KV PAKIS · AMPELDENTO 65138, JAWA TIMUR, INDONESIA",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "AMPELDENTO 65138, JAWA TIMUR, INDONESIA",
+    "upt": "UPT MALANG",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV PAMEKASAN": {
     "latitude": -7.1475,
     "longitude": 113.4556,
-    "precision": "manual",
     "displayName": "GI 150KV PAMEKASAN · JL. DIRGAHAYU, PAMEKASAN",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. DIRGAHAYU, PAMEKASAN",
+    "upt": "UPT GRESIK",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV PAYANGAN": {
     "latitude": -8.444,
     "longitude": 115.2422,
-    "precision": "manual",
     "displayName": "GI 150KV PAYANGAN · DS PAYANGAN, UBUD, GIANYAR",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "DS PAYANGAN, UBUD, GIANYAR",
+    "upt": "UPT BALI",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV PECATU": {
     "latitude": -8.8199966,
     "longitude": 115.1415947,
-    "precision": "manual",
     "displayName": "GIS 150KV PECATU · KAWASAN BALI, PECATU GRAHA KUTA SELATAN",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "KAWASAN BALI, PECATU GRAHA KUTA SELATAN",
+    "upt": "UPT BALI",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV PEMARON": {
     "latitude": -8.1358,
     "longitude": 115.0595,
-    "precision": "manual",
     "displayName": "GI 150KV PEMARON · JL. RAYA SIRIRIT KM.6 SINGARAJA, TELP. 0362-21027",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. RAYA SIRIRIT KM.6 SINGARAJA, TELP. 0362-21027",
+    "upt": "UPT BALI",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV PEMECUTAN KELOD": {
     "latitude": -8.6898,
     "longitude": 115.1892,
-    "precision": "manual",
     "displayName": "GI 150KV PEMECUTAN KELOD · JL. IMAN BONJOL NO. 350 DENPASAR",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. IMAN BONJOL NO. 350 DENPASAR",
+    "upt": "UPT BALI",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV PERAK": {
     "latitude": -7.2085721,
     "longitude": 112.722854,
-    "precision": "manual",
     "displayName": "GI 150KV PERAK · JL. NILAM BARAT 2-4, SURABAYA",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. NILAM BARAT 2-4, SURABAYA",
+    "upt": "UPT SURABAYA",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV PESANGGARAN": {
     "latitude": -8.71868,
     "longitude": 115.2100542,
-    "precision": "manual",
     "displayName": "GIS 150KV PESANGGARAN · JL. BYPASS BRIGJEN NGURAH RAI, PESANGGARAN-DPS",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. BYPASS BRIGJEN NGURAH RAI, PESANGGARAN-DPS",
+    "upt": "UPT BALI",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV PETROKIMIA": {
     "latitude": -7.1525,
     "longitude": 112.6354,
-    "precision": "manual",
     "displayName": "GI 150KV PETROKIMIA · JL. PROF. M. YAMIN, GRESIK",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. PROF. M. YAMIN, GRESIK",
+    "upt": "UPT GRESIK",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV PIER": {
     "latitude": -7.6285,
     "longitude": 112.8137,
-    "precision": "manual",
     "displayName": "GI 150KV PIER · KAWASAN INDUSTRI, REMBANG, PASURUHAN",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "KAWASAN INDUSTRI, REMBANG, PASURUHAN",
+    "upt": "UPT PROBOLINGGO",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV PLTU GRESIK": {
     "latitude": -7.1685506,
     "longitude": 112.661081,
-    "precision": "manual",
     "displayName": "GI 150KV PLTU GRESIK · JL. HARUN TOHIR PO BOX 01",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. HARUN TOHIR PO BOX 01",
+    "upt": "UPT GRESIK",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV PLTU PACITAN": {
     "latitude": -8.2562617596733,
     "longitude": 111.37320058047,
-    "precision": "manual",
     "displayName": "GIS 150KV PLTU PACITAN · DESA SUKOREJO, KECAMATAN SUDIMORO, KABUPATEN PACITAN",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "DESA SUKOREJO, KECAMATAN SUDIMORO, KABUPATEN PACITAN",
+    "upt": "UPT MADIUN",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV PROBOLINGGO": {
     "latitude": -7.7644,
     "longitude": 113.2129,
-    "precision": "manual",
     "displayName": "GI 150KV PROBOLINGGO · JL. COKRTOAMINOTO NO.947, PROBOLINGGO",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. COKRTOAMINOTO NO.947, PROBOLINGGO",
+    "upt": "UPT PROBOLINGGO",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV PUGER": {
     "latitude": -8.342621,
     "longitude": 113.494047,
-    "precision": "manual",
     "displayName": "GI 150KV PUGER · JL. KRASAK, AREA SAWAH, KEC. PUGER WETAN, KAB. JEMBER, JAWA TIMUR",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. KRASAK, AREA SAWAH, KEC. PUGER WETAN, KAB. JEMBER, JAWA TIMUR",
+    "upt": "UPT PROBOLINGGO",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV PURWOSARI": {
     "latitude": -7.767233333,
     "longitude": 112.7599167,
-    "precision": "manual",
     "displayName": "GI 150KV PURWOSARI · JL. RAYA PUNTIR DS. PAKEM PURWOSARI- PASURUAN TLP.",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. RAYA PUNTIR DS. PAKEM PURWOSARI- PASURUAN TLP.",
+    "upt": "UPT PROBOLINGGO",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV REJOSO": {
     "latitude": -7.6951478,
     "longitude": 112.9650267,
-    "precision": "manual",
     "displayName": "GI 150KV REJOSO · PABRIK PAKAN TERNAK PT. CHEIL SAMSUNG ASTRA, REJOSO",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "PABRIK PAKAN TERNAK PT. CHEIL SAMSUNG ASTRA, REJOSO",
+    "upt": "UPT PROBOLINGGO",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV RUNGKUT": {
     "latitude": -7.3407925,
     "longitude": 112.7457798,
-    "precision": "manual",
     "displayName": "GI 150KV RUNGKUT · JL. KUTISARI INDAH BARAT I, SURABAYA",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. KUTISARI INDAH BARAT I, SURABAYA",
+    "upt": "UPT SURABAYA",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV SAMBIKEREP": {
     "latitude": -7.2629,
     "longitude": 112.6437,
-    "precision": "manual",
     "displayName": "GI 150KV SAMBIKEREP · JL. ALAS MALANG KEL. BERINGIN KEC. SAMBIKEREP SURABAYA",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. ALAS MALANG KEL. BERINGIN KEC. SAMBIKEREP SURABAYA",
+    "upt": "UPT GRESIK",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV SAMPANG": {
     "latitude": -7.1796,
     "longitude": 113.2386,
-    "precision": "manual",
     "displayName": "GI 150KV SAMPANG · JL. KESUMA BANGSA, SAMPANG",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. KESUMA BANGSA, SAMPANG",
+    "upt": "UPT GRESIK",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV SANUR": {
     "latitude": -8.674523,
     "longitude": 115.253701,
-    "precision": "manual",
     "displayName": "GI 150KV SANUR · JL. HANGTUAH DENPASAR",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. HANGTUAH DENPASAR",
+    "upt": "UPT BALI",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV SAWAHAN": {
     "latitude": -7.2547335,
     "longitude": 112.7129852,
-    "precision": "manual",
     "displayName": "GIS 150KV SAWAHAN · JL. TIDAR 157, SURABAYA",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. TIDAR 157, SURABAYA",
+    "upt": "UPT SURABAYA",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV SEDATI": {
     "latitude": -7.3948924,
     "longitude": 112.7622013,
-    "precision": "manual",
     "displayName": "GI 150KV SEDATI · JL. RAYA INDUSTRI DESA BETRO - SEDATI, SIDOARJO",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. RAYA INDUSTRI DESA BETRO - SEDATI, SIDOARJO",
+    "upt": "UPT SURABAYA",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV SEGOROMADU": {
     "latitude": -7.1914438,
     "longitude": 112.6452398,
-    "precision": "manual",
     "displayName": "GI 150KV SEGOROMADU · JL. MAYJEND SUNGKONO, No. 4, GRESIK",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. MAYJEND SUNGKONO, No. 4, GRESIK",
+    "upt": "UPT GRESIK",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV SEKARPUTIH": {
     "latitude": -7.4678006,
     "longitude": 112.4600617,
-    "precision": "manual",
     "displayName": "GI 150KV SEKARPUTIH · JL. BAY PASS NO. 1 MOJOKERTO",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. BAY PASS NO. 1 MOJOKERTO",
+    "upt": "UPT MALANG",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV SEMEN TUBAN": {
     "latitude": -6.861661,
     "longitude": 111.908024,
-    "precision": "manual",
     "displayName": "GI 150KV SEMEN TUBAN · PT. SEMEN GRESIK, DESA SUMBE ARUM, KEREK, TUBAN.",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "PT. SEMEN GRESIK, DESA SUMBE ARUM, KEREK, TUBAN.",
+    "upt": "UPT MADIUN",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV SENGKALING": {
     "latitude": -7.9064817,
     "longitude": 112.5730128,
-    "precision": "manual",
     "displayName": "GI 150KV SENGKALING · DADAPREJO, DAU, MALANG",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "DADAPREJO, DAU, MALANG",
+    "upt": "UPT MALANG",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV SIDOARJO": {
     "latitude": -7.4949974,
     "longitude": 112.7000283,
-    "precision": "manual",
     "displayName": "GI 150KV SIDOARJO · JL. SUMORAME DS. BORO KEC.TANGGULANGIN KAB. SIDOARJO",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. SUMORAME DS. BORO KEC.TANGGULANGIN KAB. SIDOARJO",
+    "upt": "UPT SURABAYA",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV SIMPANG": {
     "latitude": -7.264504,
     "longitude": 112.7513217,
-    "precision": "manual",
     "displayName": "GIS 150KV SIMPANG · JL. GUBENG STASIUN, SURABAYA",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. GUBENG STASIUN, SURABAYA",
+    "upt": "UPT SURABAYA",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV SITUBONDO": {
     "latitude": -7.717087,
     "longitude": 114.018012,
-    "precision": "manual",
     "displayName": "GI 150KV SITUBONDO · JL. BUKIT PUTIH, SITUBONDO",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. BUKIT PUTIH, SITUBONDO",
+    "upt": "UPT PROBOLINGGO",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV SUKOLILO": {
     "latitude": -7.2900867,
     "longitude": 112.7703169,
-    "precision": "manual",
     "displayName": "GI 150KV SUKOLILO · JL. MENUR PUMPUNGAN, SURABAYA",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. MENUR PUMPUNGAN, SURABAYA",
+    "upt": "UPT SURABAYA",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV SUMENEP": {
     "latitude": -7.009,
     "longitude": 113.8358,
-    "precision": "manual",
     "displayName": "GI 150KV SUMENEP · JL. RAYA LENTENG, BATUAN, SUMENEP",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. RAYA LENTENG, BATUAN, SUMENEP",
+    "upt": "UPT GRESIK",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV SURABAYA BARAT": {
     "latitude": -7.346294489,
     "longitude": 112.6050695,
-    "precision": "manual",
     "displayName": "GI 150KV SURABAYA BARAT · DUSUN GUWO, SUMPUT, DRIYOREJO, GRESIK REGENCY, EAST JAVA 61177",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "DUSUN GUWO, SUMPUT, DRIYOREJO, GRESIK REGENCY, EAST JAVA 61177",
+    "upt": "UPT MALANG",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV SURABAYA SELATAN": {
     "latitude": -7.3076544,
     "longitude": 112.8097047,
-    "precision": "manual",
     "displayName": "GI 150KV SURABAYA SELATAN · JL WONOREJO TIMUR, KEL WONOREJO RUNGKUT, SURABAYA",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL WONOREJO TIMUR, KEL WONOREJO RUNGKUT, SURABAYA",
+    "upt": "UPT SURABAYA",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV SURYAZIGZAG": {
     "latitude": -7.7545887024856,
     "longitude": 112.0232950582,
-    "precision": "manual",
     "displayName": "GI 150KV SURYAZIGZAG · DESA NGEBRA, GAMPING REJO, KEDIRI",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "DESA NGEBRA, GAMPING REJO, KEDIRI",
+    "upt": "UPT MADIUN",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV SUTAMI": {
     "latitude": -8.160552157,
     "longitude": 112.4443784,
-    "precision": "manual",
     "displayName": "GI 150KV SUTAMI · KARANG KATES, SUMBER PUCUNG, MALANG",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "KARANG KATES, SUMBER PUCUNG, MALANG",
+    "upt": "UPT MALANG",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV TANAH LOT": {
     "latitude": -8.586663,
     "longitude": 115.102873,
-    "precision": "manual",
     "displayName": "GIS 150KV TANAH LOT · JL. PANTAI KEDUNGU, DESA BELALANG, KEC. KEDIRI, KABUPATEN TABANAN, BALI 82121",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. PANTAI KEDUNGU, DESA BELALANG, KEC. KEDIRI, KABUPATEN TABANAN, BALI 82121",
+    "upt": "UPT BALI",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV TANDES": {
     "latitude": -7.2546531,
     "longitude": 112.6850753,
-    "precision": "manual",
     "displayName": "GIS 150KV TANDES · JL. MARGOMULYO KOMPLEK GARDU INDUK PLN TANDES NO. 5 SURABAYA",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. MARGOMULYO KOMPLEK GARDU INDUK PLN TANDES NO. 5 SURABAYA",
+    "upt": "UPT GRESIK",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV TANGGUL": {
     "latitude": -8.1766672,
     "longitude": 113.4510583,
-    "precision": "manual",
     "displayName": "GI 150KV TANGGUL · JL.RAYA SEMBORO, KELURAHAN SEMBORO, KECAMATAN SEMBORO - TANGGUL",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL.RAYA SEMBORO, KELURAHAN SEMBORO, KECAMATAN SEMBORO - TANGGUL",
+    "upt": "UPT PROBOLINGGO",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV TANJUNG AWAR AWAR": {
     "latitude": -6.812383969527,
     "longitude": 111.99502876889,
-    "precision": "manual",
     "displayName": "GI 150KV TANJUNG AWAR-AWAR · DESA WADUNG, KEC. JENU - TUBAN",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "DESA WADUNG, KEC. JENU - TUBAN",
+    "upt": "UPT MADIUN",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV TUBAN": {
     "latitude": -6.8887132639429,
     "longitude": 112.03463278539,
-    "precision": "manual",
     "displayName": "GI 150KV TUBAN · JL. BASUKI RACHMAT, TUBAN",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. BASUKI RACHMAT, TUBAN",
+    "upt": "UPT MADIUN",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV UJUNG": {
     "latitude": -7.2099084,
     "longitude": 112.7441786,
-    "precision": "manual",
     "displayName": "GIS 150KV UJUNG · JL. PANTI MULYA III/21",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. PANTI MULYA III/21",
+    "upt": "UPT SURABAYA",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV UNDAAN": {
     "latitude": -7.2549008,
     "longitude": 112.742654,
-    "precision": "manual",
     "displayName": "GIS 150KV UNDAAN · JL. UNDAAN KULON NO 3, SURABAYA",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. UNDAAN KULON NO 3, SURABAYA",
+    "upt": "UPT SURABAYA",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV WARU": {
     "latitude": -7.3474374,
     "longitude": 112.7077849,
-    "precision": "manual",
     "displayName": "GIS 150KV WARU · JL. SUNINGRAT 45, TAMAN, SIDOARJO",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. SUNINGRAT 45, TAMAN, SIDOARJO",
+    "upt": "UPT SURABAYA",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV WILMAR": {
     "latitude": -7.1743,
     "longitude": 112.66624,
-    "precision": "manual",
     "displayName": "GI 150KV WILMAR · GRESIK, SIDORUKUN, PULOPANCIKAN, GRESIK, GRESIK REGENCY, EAST JAVA 61112",
-    "query": "GPS manual dari pengguna · 2026-08-10"
+    "address": "GRESIK, SIDORUKUN, PULOPANCIKAN, GRESIK, GRESIK REGENCY, EAST JAVA 61112",
+    "upt": "UPT GRESIK",
+    "source": "GPS manual dari pengguna · 2026-08-10"
   },
   "150KV WLINGI": {
     "latitude": -8.1419299,
     "longitude": 112.2456156,
-    "precision": "manual",
     "displayName": "GI 150KV WLINGI · JEGU, SUTO JAYAN, BLITAR",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JEGU, SUTO JAYAN, BLITAR",
+    "upt": "UPT MALANG",
+    "source": "GI UIT JBM_050326.xls"
   },
   "150KV WONOKROMO": {
     "latitude": -7.3035609,
     "longitude": 112.7406578,
-    "precision": "manual",
     "displayName": "GIS 150KV WONOKROMO · JL. JAGIR WONOKROMO NO. 84 A, SURABAYA",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. JAGIR WONOKROMO NO. 84 A, SURABAYA",
+    "upt": "UPT SURABAYA",
+    "source": "GI UIT JBM_050326.xls"
   },
   "30KV DOLOPO": {
     "latitude": -7.7465658329245,
     "longitude": 111.52746395336,
-    "precision": "manual",
     "displayName": "GI 30KV DOLOPO · JL. RAYA MADIUN - PONOROGO",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. RAYA MADIUN - PONOROGO",
+    "upt": "UPT MADIUN",
+    "source": "GI UIT JBM_050326.xls"
   },
   "30KV GIRINGAN": {
     "latitude": -7.7218175862902,
     "longitude": 111.67460670594,
-    "precision": "manual",
     "displayName": "GI 30KV GIRINGAN · DESA KEPEL KEC. KARE, MADIUN, TELP. 0351-44010",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "DESA KEPEL KEC. KARE, MADIUN, TELP. 0351-44010",
+    "upt": "UPT MADIUN",
+    "source": "GI UIT JBM_050326.xls"
   },
   "30KV GOLANG": {
     "latitude": -7.7040787618412,
     "longitude": 111.66004559108,
-    "precision": "manual",
     "displayName": "GI 30KV GOLANG · DESA KAWIRAN KEC. KARE MADIUN",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "DESA KAWIRAN KEC. KARE MADIUN",
+    "upt": "UPT MADIUN",
+    "source": "GI UIT JBM_050326.xls"
   },
   "30KV NGEBEL": {
     "latitude": -7.8146767372924,
     "longitude": 111.62040390754,
-    "precision": "manual",
     "displayName": "GI 30KV NGEBEL · DESA WAGIR LOR, NGEBEL, PONOROGO, TELP. 0351-42532",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "DESA WAGIR LOR, NGEBEL, PONOROGO, TELP. 0351-42532",
+    "upt": "UPT MADIUN",
+    "source": "GI UIT JBM_050326.xls"
   },
   "70KV AJINOMOTO": {
     "latitude": -7.44733957,
     "longitude": 112.4450415,
-    "precision": "manual",
     "displayName": "GI 70KV AJINOMOTO · PABRIK BUMBU MASAK AJINOMOTO, MOJOKERTO",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "PABRIK BUMBU MASAK AJINOMOTO, MOJOKERTO",
+    "upt": "UPT MALANG",
+    "source": "GI UIT JBM_050326.xls"
   },
   "70KV BANARAN": {
     "latitude": -7.8367638788053,
     "longitude": 112.03217727912,
-    "precision": "manual",
     "displayName": "GI 70KV BANARAN · JL. KAPTEN TENDEAN, BANARAN, KEDIRI",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. KAPTEN TENDEAN, BANARAN, KEDIRI",
+    "upt": "UPT MADIUN",
+    "source": "GI UIT JBM_050326.xls"
   },
   "70KV BANGUN": {
     "latitude": -7.48102505,
     "longitude": 112.5660239,
-    "precision": "manual",
     "displayName": "GI 70KV BANGUN · PABRIK KERTAS PAKERIN, SIDOARJO",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "PABRIK KERTAS PAKERIN, SIDOARJO",
+    "upt": "UPT MALANG",
+    "source": "GI UIT JBM_050326.xls"
   },
   "70KV BARATA": {
     "latitude": -7.1905747,
     "longitude": 112.6457478,
-    "precision": "manual",
     "displayName": "GI 70KV BARATA · PABRIK PENGECORAN BAJA BARATA STEEL",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "PABRIK PENGECORAN BAJA BARATA STEEL",
+    "upt": "UPT GRESIK",
+    "source": "GI UIT JBM_050326.xls"
   },
   "70KV BLIMBING": {
     "latitude": -7.9391922,
     "longitude": 112.6400147,
-    "precision": "manual",
     "displayName": "GI 70KV BLIMBING · JL. AHMAD YADI 59, MALANG",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. AHMAD YADI 59, MALANG",
+    "upt": "UPT MALANG",
+    "source": "GI UIT JBM_050326.xls"
   },
   "70KV BLITAR BARU": {
     "latitude": -8.0731949503966,
     "longitude": 112.18602533616,
-    "precision": "manual",
     "displayName": "GI 70KV BLITAR BARU · JL. SLAMET RIYADI, SENTUL, BLITAR",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. SLAMET RIYADI, SENTUL, BLITAR",
+    "upt": "UPT MADIUN",
+    "source": "GI UIT JBM_050326.xls"
   },
   "70KV BUDURAN": {
     "latitude": -7.423383,
     "longitude": 112.7214006,
-    "precision": "manual",
     "displayName": "GI 70KV BUDURAN · JL. INDUSTRI, BUDURAN, SIDOARJO TLP. 0318941811",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. INDUSTRI, BUDURAN, SIDOARJO TLP. 0318941811",
+    "upt": "UPT SURABAYA",
+    "source": "GI UIT JBM_050326.xls"
   },
   "70KV CARUBAN": {
     "latitude": -7.532835454808,
     "longitude": 111.6479029269,
-    "precision": "manual",
     "displayName": "GI 70KV CARUBAN · JL. A YANI NO.10, NGAMPEL, CARUBAN",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. A YANI NO.10, NGAMPEL, CARUBAN",
+    "upt": "UPT MADIUN",
+    "source": "GI UIT JBM_050326.xls"
   },
   "70KV DOLOPO": {
     "latitude": -7.7466405232303,
     "longitude": 111.52765939529,
-    "precision": "manual",
     "displayName": "GI 70KV DOLOPO · JL. RAYA MADIUN - PONOROGO",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. RAYA MADIUN - PONOROGO",
+    "upt": "UPT MADIUN",
+    "source": "GI UIT JBM_050326.xls"
   },
   "70KV DRIYOREJO": {
     "latitude": -7.368901562,
     "longitude": 112.5998321,
-    "precision": "manual",
     "displayName": "GI 70KV DRIYOREJO · JL. RAYA DRIYOREJO 322, DRIYOREJO, GRESIK",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. RAYA DRIYOREJO 322, DRIYOREJO, GRESIK",
+    "upt": "UPT MALANG",
+    "source": "GI UIT JBM_050326.xls"
   },
   "70KV GAMPINGAN": {
     "latitude": -8.1942197,
     "longitude": 112.5551219,
-    "precision": "manual",
     "displayName": "GI 70KV GAMPINGAN · PT. PABRIK KERTAS AYUWANGI, PAGAK, MALANG",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "PT. PABRIK KERTAS AYUWANGI, PAGAK, MALANG",
+    "upt": "UPT MALANG",
+    "source": "GI UIT JBM_050326.xls"
   },
   "70KV GUDANGGARAM": {
     "latitude": -7.803502083667,
     "longitude": 112.03072678024,
-    "precision": "manual",
     "displayName": "GI 70KV GUDANGGARAM · JALAN PAJANG, SUKOREJO, KEDIRI",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JALAN PAJANG, SUKOREJO, KEDIRI",
+    "upt": "UPT MADIUN",
+    "source": "GI UIT JBM_050326.xls"
   },
   "70KV KARANGKATES": {
     "latitude": -8.15923412,
     "longitude": 112.4440846,
-    "precision": "manual",
     "displayName": "GI 70KV KARANGKATES · KARANGKATES, SUMBERPUCUNG, MALANG",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "KARANGKATES, SUMBERPUCUNG, MALANG",
+    "upt": "UPT MALANG",
+    "source": "GI UIT JBM_050326.xls"
   },
   "70KV KEBONAGUNG": {
     "latitude": -8.02131895,
     "longitude": 112.6172425,
-    "precision": "manual",
     "displayName": "GI 70KV KEBONAGUNG · JL. SUPRIADI, MALANG",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. SUPRIADI, MALANG",
+    "upt": "UPT MALANG",
+    "source": "GI UIT JBM_050326.xls"
   },
   "70KV KERTOSONO": {
     "latitude": -7.614849,
     "longitude": 112.098088,
-    "precision": "manual",
     "displayName": "GI 70KV KERTOSONO · JL. RAYA JUWONO NO.10 DRENGES, KERTOSONO",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. RAYA JUWONO NO.10 DRENGES, KERTOSONO",
+    "upt": "UPT MADIUN",
+    "source": "GI UIT JBM_050326.xls"
   },
   "70KV MAGETAN": {
     "latitude": -7.6443044855291,
     "longitude": 111.32961027657,
-    "precision": "manual",
     "displayName": "GI 70KV MAGETAN · JL. MAJAN SUNGKONO NO.14, MAGETAN",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. MAJAN SUNGKONO NO.14, MAGETAN",
+    "upt": "UPT MADIUN",
+    "source": "GI UIT JBM_050326.xls"
   },
   "70KV MANISREJO": {
     "latitude": -7.640513,
     "longitude": 111.547782,
-    "precision": "manual",
     "displayName": "GI 70KV MANISREJO · JL. TANJUNG RAYA, MADIUN",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. TANJUNG RAYA, MADIUN",
+    "upt": "UPT MADIUN",
+    "source": "GI UIT JBM_050326.xls"
   },
   "70KV MANYAR": {
     "latitude": -7.1288,
     "longitude": 112.6131,
-    "precision": "manual",
     "displayName": "GI 70KV MANYAR · JL DELTA MASPION NOMER 5 MANYAR, GRESIK TLP. 03181271626",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL DELTA MASPION NOMER 5 MANYAR, GRESIK TLP. 03181271626",
+    "upt": "UPT GRESIK",
+    "source": "GI UIT JBM_050326.xls"
   },
   "70KV MASPION": {
     "latitude": -7.3754239,
     "longitude": 112.7205121,
-    "precision": "manual",
     "displayName": "GI 70KV MASPION · PABRIK ALAT2 RUMAH TANGGA MASPION, WARU, SIDOARJO",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "PABRIK ALAT2 RUMAH TANGGA MASPION, WARU, SIDOARJO",
+    "upt": "UPT SURABAYA",
+    "source": "GI UIT JBM_050326.xls"
   },
   "70KV MASPIONSBM": {
     "latitude": -7.1203889,
     "longitude": 112.6199444,
-    "precision": "manual",
     "displayName": "GI 70KV MASPIONSBM · KOMPLEK INDUSTRI MASPION PABRIK PT. SPA",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "KOMPLEK INDUSTRI MASPION PABRIK PT. SPA",
+    "upt": "UPT GRESIK",
+    "source": "GI UIT JBM_050326.xls"
   },
   "70KV MENDALAN": {
     "latitude": -7.855741554,
     "longitude": 112.3221147,
-    "precision": "manual",
     "displayName": "GI 70KV MENDALAN · PONDOK AGUNG, KASEMBON, MALANG",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "PONDOK AGUNG, KASEMBON, MALANG",
+    "upt": "UPT MALANG",
+    "source": "GI UIT JBM_050326.xls"
   },
   "70KV MIWON": {
     "latitude": -7.36736,
     "longitude": 112.6080772,
-    "precision": "manual",
     "displayName": "GI 70KV MIWON · PABRIK BUMBU MASAK MIWON, DRIYOREJO, SURABAYA",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "PABRIK BUMBU MASAK MIWON, DRIYOREJO, SURABAYA",
+    "upt": "UPT MALANG",
+    "source": "GI UIT JBM_050326.xls"
   },
   "70KV MRANGGEN": {
     "latitude": -7.587966,
     "longitude": 111.437971,
-    "precision": "manual",
     "displayName": "GI 70KV MRANGGEN · JL. BARAT, MRANGGEN, MAOSPATI",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. BARAT, MRANGGEN, MAOSPATI",
+    "upt": "UPT MADIUN",
+    "source": "GI UIT JBM_050326.xls"
   },
   "70KV NGANJUK": {
     "latitude": -7.611006210886,
     "longitude": 111.91295879694,
-    "precision": "manual",
     "displayName": "GI 70KV NGANJUK · JL. GAJAH MADA, KRAMAT, NGAJUK",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. GAJAH MADA, KRAMAT, NGAJUK",
+    "upt": "UPT MADIUN",
+    "source": "GI UIT JBM_050326.xls"
   },
   "70KV PARE": {
     "latitude": -7.8548752533987,
     "longitude": 112.16983606786,
-    "precision": "manual",
     "displayName": "GI 70KV PARE · DESA PRANGGANG KEC. PLOSO KLATEN, KEDIRI, TELP. 0354-92044",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "DESA PRANGGANG KEC. PLOSO KLATEN, KEDIRI, TELP. 0354-92044",
+    "upt": "UPT MADIUN",
+    "source": "GI UIT JBM_050326.xls"
   },
   "70KV PLOSO": {
     "latitude": -7.47309,
     "longitude": 112.23103,
-    "precision": "manual",
     "displayName": "GI 70KV PLOSO · JL. RAYA PLOSO, SENTUL, TEMBELANG, JOMBANG",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. RAYA PLOSO, SENTUL, TEMBELANG, JOMBANG",
+    "upt": "UPT MALANG",
+    "source": "GI UIT JBM_050326.xls"
   },
   "70KV PLTA TULUNGAGUNG": {
     "latitude": -8.253465297205,
     "longitude": 111.79417185031,
-    "precision": "manual",
     "displayName": "GI 70KV PLTA TULUNGAGUNG · BESUKI NIYAMA TULUNG AGUNG",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "BESUKI NIYAMA TULUNG AGUNG",
+    "upt": "UPT MADIUN",
+    "source": "GI UIT JBM_050326.xls"
   },
   "70KV POLEHAN": {
     "latitude": -7.9845622,
     "longitude": 112.6420992,
-    "precision": "manual",
     "displayName": "GI 70KV POLEHAN · JL. WERKUDORO 52, MALANG",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. WERKUDORO 52, MALANG",
+    "upt": "UPT MALANG",
+    "source": "GI UIT JBM_050326.xls"
   },
   "70KV PONOROGO": {
     "latitude": -7.8696557653799,
     "longitude": 111.49325155864,
-    "precision": "manual",
     "displayName": "GI 70KV PONOROGO · JL. LETJEND R. SUPRAPTO NO.10 PONOROGO",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. LETJEND R. SUPRAPTO NO.10 PONOROGO",
+    "upt": "UPT MADIUN",
+    "source": "GI UIT JBM_050326.xls"
   },
   "70KV SEGOROMADU": {
     "latitude": -7.1914438,
     "longitude": 112.6452398,
-    "precision": "manual",
     "displayName": "GI 70KV SEGOROMADU · JL. MAYJEND SUNGKONO, No. 4, GRESIK",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. MAYJEND SUNGKONO, No. 4, GRESIK",
+    "upt": "UPT GRESIK",
+    "source": "GI UIT JBM_050326.xls"
   },
   "70KV SEKARPUTIH": {
     "latitude": -7.468819139,
     "longitude": 112.4612185,
-    "precision": "manual",
     "displayName": "GI 70KV SEKARPUTIH · JL. BAY PASS NO. 1 MOJOKERTO",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. BAY PASS NO. 1 MOJOKERTO",
+    "upt": "UPT MALANG",
+    "source": "GI UIT JBM_050326.xls"
+  },
+  "70KV SELOREJO": {
+    "latitude": -7.873210306,
+    "longitude": 112.3517573,
+    "displayName": "GI 70KV SELOREJO · NGANTANG, MALANG, TELP. PUJON19PES17",
+    "address": "NGANTANG, MALANG, TELP. PUJON19PES17",
+    "upt": "UPT MALANG",
+    "source": "GI UIT JBM_050326.xls"
   },
   "70KV SEMENGRESIK": {
     "latitude": -7.1729458,
     "longitude": 112.6450897,
-    "precision": "manual",
     "displayName": "GI 70KV SEMENGRESIK · JL. VETERAN, KB DALEM, KEL. SIDOKUMPUL, KEC. GRESIK, KAB. GRESIK",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. VETERAN, KB DALEM, KEL. SIDOKUMPUL, KEC. GRESIK, KAB. GRESIK",
+    "upt": "UPT GRESIK",
+    "source": "GI UIT JBM_050326.xls"
   },
   "70KV SENGGURUH": {
     "latitude": -8.184110191,
     "longitude": 112.5496014,
-    "precision": "manual",
     "displayName": "GI 70KV SENGGURUH · SENGGURUH, KEPANJEN, MALANG",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "SENGGURUH, KEPANJEN, MALANG",
+    "upt": "UPT MALANG",
+    "source": "GI UIT JBM_050326.xls"
   },
   "70KV SENGKALING": {
     "latitude": -7.904327992,
     "longitude": 112.5752241,
-    "precision": "manual",
     "displayName": "GI 70KV SENGKALING · DADAPREJO, DAU, MALANG",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "DADAPREJO, DAU, MALANG",
+    "upt": "UPT MALANG",
+    "source": "GI UIT JBM_050326.xls"
   },
   "70KV SIMAN": {
     "latitude": -7.828787055,
     "longitude": 112.3080334,
-    "precision": "manual",
     "displayName": "GI 70KV SIMAN · PONDOK AGUNG, KASEMBON, MALANG",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "PONDOK AGUNG, KASEMBON, MALANG",
+    "upt": "UPT MALANG",
+    "source": "GI UIT JBM_050326.xls"
   },
   "70KV TARIK": {
     "latitude": -7.4593836,
     "longitude": 112.4961172,
-    "precision": "manual",
     "displayName": "GI 70KV TARIK · JL. KEDUNG BACOK, TARIK, MOJOKERTO",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. KEDUNG BACOK, TARIK, MOJOKERTO",
+    "upt": "UPT MALANG",
+    "source": "GI UIT JBM_050326.xls"
   },
   "70KV TJIWIKIMIA": {
     "latitude": -7.438958,
     "longitude": 112.472481,
-    "precision": "manual",
     "displayName": "GI 70KV TJIWIKIMIA · PABRIK KERTAS CIWIKIMIA, MOJOKERTO",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "PABRIK KERTAS CIWIKIMIA, MOJOKERTO",
+    "upt": "UPT MALANG",
+    "source": "GI UIT JBM_050326.xls"
   },
   "70KV TRENGGALEK": {
     "latitude": -8.0609872221474,
     "longitude": 111.71009868968,
-    "precision": "manual",
     "displayName": "GI 70KV TRENGGALEK · JL. H. SUTRAN, NGANTRU, TRENGGALEK",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. H. SUTRAN, NGANTRU, TRENGGALEK",
+    "upt": "UPT MADIUN",
+    "source": "GI UIT JBM_050326.xls"
   },
   "70KV TULUNGAGUNG": {
     "latitude": -8.0582309768877,
     "longitude": 111.91886760106,
-    "precision": "manual",
     "displayName": "GI 70KV TULUNGAGUNG · JL. SUDIRMAN GANG.4, RINGIN PITU, TULUNG AGUNG",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. SUDIRMAN GANG.4, RINGIN PITU, TULUNG AGUNG",
+    "upt": "UPT MADIUN",
+    "source": "GI UIT JBM_050326.xls"
   },
   "70KV TUREN": {
     "latitude": -8.1743747,
     "longitude": 112.6870406,
-    "precision": "manual",
     "displayName": "GI 70KV TUREN · JL. P. SUDIRMAN 174",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. P. SUDIRMAN 174",
+    "upt": "UPT MALANG",
+    "source": "GI UIT JBM_050326.xls"
   },
   "70KV WLINGI": {
     "latitude": -8.1419299,
     "longitude": 112.2456156,
-    "precision": "manual",
     "displayName": "GI 70KV WLINGI · JEGU, SUTO JAYAN, BLITAR",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JEGU, SUTO JAYAN, BLITAR",
+    "upt": "UPT MALANG",
+    "source": "GI UIT JBM_050326.xls"
   },
   "GISTET 500KV GRESIK": {
     "latitude": -7.164752,
     "longitude": 112.660084,
-    "precision": "manual",
     "displayName": "GISTET 500KV GRESIK · JL. BAKTI PERTIWI RAYA WETAN NO.3 GRESIK JAWA TIMUR TLP. 0313982602",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. BAKTI PERTIWI RAYA WETAN NO.3 GRESIK JAWA TIMUR TLP. 0313982602",
+    "upt": "UPT GRESIK",
+    "source": "GI UIT JBM_050326.xls"
   },
   "GISTET 500KV PAITON": {
     "latitude": -7.718402,
     "longitude": 113.581713,
-    "precision": "manual",
     "displayName": "GISTET 500KV PAITON · JL. RAYA SURABAYA - SITUBONDO KM 142 DESA BHINOR PAITON PROBOLINGGO",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. RAYA SURABAYA - SITUBONDO KM 142 DESA BHINOR PAITON PROBOLINGGO",
+    "upt": "UPT PROBOLINGGO",
+    "source": "GI UIT JBM_050326.xls"
   },
   "GITET 500KV GRATI": {
     "latitude": -7.653186,
     "longitude": 113.022383,
-    "precision": "manual",
     "displayName": "GITET 500KV GRATI · JL. RAYA SURABAYA - PROBOLINGGO KM 73 DESA WATES LEKOK PROBOLINGGO",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. RAYA SURABAYA - PROBOLINGGO KM 73 DESA WATES LEKOK PROBOLINGGO",
+    "upt": "UPT PROBOLINGGO",
+    "source": "GI UIT JBM_050326.xls"
   },
   "GITET 500KV KEDIRI": {
     "latitude": -7.8405252004481,
     "longitude": 112.03504065637,
-    "precision": "manual",
     "displayName": "GITET 500KV KEDIRI · JL. KAPTEN TENDEAN, KELURAHAN BENCE, KECAMATAN PESANTREN, KEDIRI",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. KAPTEN TENDEAN, KELURAHAN BENCE, KECAMATAN PESANTREN, KEDIRI",
+    "upt": "UPT MADIUN",
+    "source": "GI UIT JBM_050326.xls"
   },
   "GITET 500KV KRIAN": {
     "latitude": -7.3457014,
     "longitude": 112.6050869,
-    "precision": "manual",
     "displayName": "GITET 500KV KRIAN · DUSUN GUWO, SUMPUT, DRIYOREJO, GRESIK REGENCY, EAST JAVA 61177",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "DUSUN GUWO, SUMPUT, DRIYOREJO, GRESIK REGENCY, EAST JAVA 61177",
+    "upt": "UPT MALANG",
+    "source": "GI UIT JBM_050326.xls"
   },
   "GITET 500KV NGIMBANG": {
     "latitude": -7.28670069514,
     "longitude": 112.18891662775,
-    "precision": "manual",
     "displayName": "GITET 500KV NGIMBANG · JL. NGIMBANG - BULUK DESA, KAKAT PENJALIN, KECAMATAN NGIMBANG, KABUPATEN LAMONGAN",
-    "query": "GI UIT JBM_050326.xls"
+    "address": "JL. NGIMBANG - BULUK DESA, KAKAT PENJALIN, KECAMATAN NGIMBANG, KABUPATEN LAMONGAN",
+    "upt": "UPT MADIUN",
+    "source": "GI UIT JBM_050326.xls"
   }
-};
+}
