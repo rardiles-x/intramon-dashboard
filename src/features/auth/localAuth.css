@@ -1,0 +1,272 @@
+.monster-local-login-page {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background:
+    radial-gradient(
+      circle at 15% 15%,
+      rgba(44, 123, 229, 0.28),
+      transparent 34rem
+    ),
+    radial-gradient(
+      circle at 85% 85%,
+      rgba(0, 210, 122, 0.16),
+      transparent 30rem
+    ),
+    linear-gradient(
+      145deg,
+      #09111f 0%,
+      #111d32 48%,
+      #07121e 100%
+    );
+  color: #12263f;
+}
+
+.monster-local-login-card {
+  width: min(100%, 430px);
+  padding: 34px;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 26px 80px rgba(0, 0, 0, 0.34);
+}
+
+.monster-local-login-brand {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+
+.monster-local-login-logo {
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border-radius: 15px;
+  color: #fff;
+  background: linear-gradient(135deg, #2c7be5, #1d5fb7);
+  box-shadow: 0 10px 26px rgba(44, 123, 229, 0.3);
+}
+
+.monster-local-login-brand > div {
+  display: grid;
+  gap: 2px;
+}
+
+.monster-local-login-brand > div > span {
+  font-size: 1.12rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.monster-local-login-brand small {
+  color: #748194;
+  font-size: 0.75rem;
+}
+
+.monster-local-login-copy {
+  margin: 34px 0 26px;
+}
+
+.monster-local-login-copy h1 {
+  margin: 0 0 7px;
+  font-size: 1.65rem;
+  line-height: 1.2;
+}
+
+.monster-local-login-copy p {
+  margin: 0;
+  color: #6e7b8f;
+  font-size: 0.9rem;
+}
+
+.monster-local-login-form {
+  display: grid;
+  gap: 18px;
+}
+
+.monster-local-login-form label {
+  display: grid;
+  gap: 7px;
+  color: #34435a;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.monster-local-login-input {
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 13px;
+  border: 1px solid #d8e1ec;
+  border-radius: 12px;
+  background: #f9fbfd;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.monster-local-login-input:focus-within {
+  border-color: #2c7be5;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(44, 123, 229, 0.12);
+}
+
+.monster-local-login-input > svg {
+  flex: 0 0 auto;
+  color: #8290a3;
+}
+
+.monster-local-login-input input {
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: #12263f;
+  font: inherit;
+  font-weight: 500;
+}
+
+.monster-local-login-input input::placeholder {
+  color: #9aa8b9;
+}
+
+.monster-local-password-toggle {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  padding: 5px;
+  border: 0;
+  background: transparent;
+  color: #8290a3;
+  cursor: pointer;
+}
+
+.monster-local-login-error {
+  padding: 11px 13px;
+  border: 1px solid rgba(230, 55, 87, 0.25);
+  border-radius: 10px;
+  background: rgba(230, 55, 87, 0.08);
+  color: #bd2f4a;
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+
+.monster-local-login-submit {
+  min-height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  border: 0;
+  border-radius: 12px;
+  background: #2c7be5;
+  color: #fff;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 10px 22px rgba(44, 123, 229, 0.24);
+}
+
+.monster-local-login-submit:hover:not(:disabled) {
+  background: #236ac4;
+}
+
+.monster-local-login-submit:disabled {
+  opacity: 0.66;
+  cursor: wait;
+}
+
+.monster-local-login-spinner {
+  animation: monster-local-auth-spin 0.8s linear infinite;
+}
+
+.monster-local-login-card footer {
+  margin-top: 22px;
+  text-align: center;
+  color: #8592a5;
+  font-size: 0.75rem;
+}
+
+.monster-local-session {
+  position: fixed;
+  z-index: 10000;
+  top: 10px;
+  right: 14px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 5px 6px 5px 11px;
+  border: 1px solid rgba(125, 137, 152, 0.22);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 8px 24px rgba(18, 38, 63, 0.12);
+  backdrop-filter: blur(12px);
+}
+
+.monster-local-session-user {
+  display: grid;
+  line-height: 1.15;
+  text-align: right;
+}
+
+.monster-local-session-user strong {
+  max-width: 150px;
+  overflow: hidden;
+  color: #12263f;
+  font-size: 0.76rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.monster-local-session-user small {
+  margin-top: 2px;
+  color: #7d8998;
+  font-size: 0.66rem;
+}
+
+.monster-local-session button {
+  min-height: 32px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 10px;
+  border: 1px solid #d8e1ec;
+  border-radius: 9px;
+  background: #fff;
+  color: #52647b;
+  font: inherit;
+  font-size: 0.72rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.monster-local-session button:hover {
+  color: #bd2f4a;
+  border-color: rgba(230, 55, 87, 0.34);
+}
+
+@keyframes monster-local-auth-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 640px) {
+  .monster-local-login-page {
+    padding: 16px;
+  }
+
+  .monster-local-login-card {
+    padding: 26px 21px;
+    border-radius: 18px;
+  }
+
+  .monster-local-session-user {
+    display: none;
+  }
+}
