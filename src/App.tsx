@@ -66,30 +66,7 @@ type View =
   | "Pengguna & Akses"
   | "Preferensi";
 
-// MONSTER_ACCENT_TYPES_START
-type AccentColor =
-  | "blue"
-  | "cyan"
-  | "green"
-  | "violet"
-  | "amber"
-  | "red";
 
-const accentOptions: ReadonlyArray<{
-  id: AccentColor;
-  label: string;
-}> = [
-  { id: "blue", label: "Biru" },
-  { id: "cyan", label: "Cyan" },
-  { id: "green", label: "Hijau" },
-  { id: "violet", label: "Ungu" },
-  { id: "amber", label: "Amber" },
-  { id: "red", label: "Merah" },
-];
-
-const isAccentColor = (value: string | null): value is AccentColor =>
-  accentOptions.some((option) => option.id === value);
-// MONSTER_ACCENT_TYPES_END
 
 type MonitoringRecord = {
   id: string;
@@ -352,15 +329,7 @@ export default function Home() {
   const [unread, setUnread] = useState(3);
   const [toast, setToast] = useState("");
   const [darkMode, setDarkMode] = useState(false);
-// MONSTER_ACCENT_STATE_START
-  const [accentColor, setAccentColor] = useState<AccentColor>(() => {
-    const savedColor = window.localStorage.getItem(
-      "monster-accent-color",
-    );
 
-    return isAccentColor(savedColor) ? savedColor : "blue";
-  });
-  // MONSTER_ACCENT_STATE_END
 
   const [collapsed, setCollapsed] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -449,12 +418,7 @@ export default function Home() {
     });
   };
 
-// MONSTER_ACCENT_HANDLER_START
-  const chooseAccentColor = (color: AccentColor) => {
-    setAccentColor(color);
-    window.localStorage.setItem("monster-accent-color", color);
-  };
-  // MONSTER_ACCENT_HANDLER_END
+
 
   const chooseView = (view: View) => {
     setActiveView(view);
@@ -625,7 +589,7 @@ export default function Home() {
   const dataActions = <div className="action-row"><button className="secondary-action" type="button" onClick={exportRows}><Download size={14} />Export</button><label className="primary-action"><Upload size={14} />Import CSV<input type="file" accept=".csv,text/csv" onChange={importCsv} /></label></div>;
 
   return (
-    <div className={`app-shell ${darkMode ? "theme-dark" : ""} ${collapsed ? "is-collapsed" : ""}`} data-accent={accentColor}>
+    <div className={`app-shell ${darkMode ? "theme-dark" : ""} ${collapsed ? "is-collapsed" : ""}`} data-accent="blue">
       {mobileOpen && <button className="sidebar-scrim" aria-label="Tutup navigasi" type="button" onClick={() => setMobileOpen(false)} />}
       <aside className={`sidebar ${mobileOpen ? "mobile-open" : ""}`}>
         <div className="brand-row">
@@ -723,40 +687,7 @@ export default function Home() {
           { initials: "VW", name: "Viewer Management", email: "viewer@intranet.local", role: "Viewer", status: "Aktif" },
         ].map((user) => <div className="user-row" key={user.email}><span className="avatar">{user.initials}</span><span><strong>{user.name}</strong><small>{user.email}</small></span><em>{user.role}</em><span className="online-badge"><Check size={11} />{user.status}</span><button className="row-action" type="button" aria-label={`Atur ${user.name}`}><MoreHorizontal size={16} /></button></div>)}</div></article></section>}
 
-        {activeView === "Preferensi" && <section className="content-view settings-grid"><article className="panel settings-card"><div className="settings-title"><span><Sun size={19} /></span><div><h2>Tampilan</h2><p>Tema antarmuka dashboard</p></div></div><div className="theme-options"><button className={!darkMode ? "active" : ""} type="button" onClick={() => darkMode && toggleTheme()}><Sun size={19} /><span><strong>Light</strong><small>Tampilan terang</small></span></button><button className={darkMode ? "active" : ""} type="button" onClick={() => !darkMode && toggleTheme()}><Moon size={19} /><span><strong>Dark</strong><small>Tampilan gelap</small></span></button></div>{/* MONSTER_ACCENT_PICKER_START */}
-<div className="accent-preference">
-  <span>
-    <strong>Pilihan warna</strong>
-    <small>
-      Warna identitas MONSTER dan aksen antarmuka
-    </small>
-  </span>
-
-  <div
-    className="accent-options"
-    role="group"
-    aria-label="Pilihan warna aplikasi"
-  >
-    {accentOptions.map((option) => (
-      <button
-        className={
-          accentColor === option.id
-            ? `accent-option is-${option.id} active`
-            : `accent-option is-${option.id}`
-        }
-        type="button"
-        aria-pressed={accentColor === option.id}
-        onClick={() => chooseAccentColor(option.id)}
-        key={option.id}
-      >
-        <i aria-hidden="true" />
-        <span>{option.label}</span>
-        {accentColor === option.id && <Check size={12} />}
-      </button>
-    ))}
-  </div>
-</div>
-{/* MONSTER_ACCENT_PICKER_END */}</article><article className="panel settings-card"><div className="settings-title"><span><ListChecks size={19} /></span><div><h2>Kepadatan data</h2><p>Ukuran baris tabel monitoring</p></div></div><div className="setting-toggle"><span><strong>Mode tabel ringkas</strong><small>Tampilkan lebih banyak record</small></span><button className={`toggle ${compactTable ? "on" : ""}`} aria-label="Ubah kepadatan tabel" type="button" onClick={() => setCompactTable((value) => !value)}><i /></button></div><div className="setting-toggle"><span><strong>Sidebar ringkas</strong><small>Sembunyikan label menu</small></span><button className={`toggle ${collapsed ? "on" : ""}`} aria-label="Ubah ukuran sidebar" type="button" onClick={() => setCollapsed((value) => !value)}><i /></button></div></article><article className="panel settings-card wide"><div className="settings-title"><span><SlidersHorizontal size={19} /></span><div><h2>Perilaku dashboard</h2><p>Pengaturan pembaruan dan notifikasi</p></div></div><div className="preference-row"><label className="field-label">Interval refresh<select value={refreshSeconds} onChange={(event) => setRefreshSeconds(Number(event.target.value))}><option value={15}>15 detik</option><option value={30}>30 detik</option><option value={60}>1 menit</option><option value={300}>5 menit</option></select></label><div className="setting-toggle"><span><strong>Auto-refresh</strong><small>Pembaruan data otomatis</small></span><button className={`toggle ${autoRefresh ? "on" : ""}`} aria-label="Ubah auto-refresh" type="button" onClick={() => setAutoRefresh((value) => !value)}><i /></button></div></div><button className="primary-action save-action" type="button" onClick={saveSettings}><Save size={14} />Simpan preferensi</button></article></section>}
+        {activeView === "Preferensi" && <section className="content-view settings-grid"><article className="panel settings-card"><div className="settings-title"><span><Sun size={19} /></span><div><h2>Tampilan</h2><p>Tema antarmuka dashboard</p></div></div><div className="theme-options"><button className={!darkMode ? "active" : ""} type="button" onClick={() => darkMode && toggleTheme()}><Sun size={19} /><span><strong>Light</strong><small>Tampilan terang</small></span></button><button className={darkMode ? "active" : ""} type="button" onClick={() => !darkMode && toggleTheme()}><Moon size={19} /><span><strong>Dark</strong><small>Tampilan gelap</small></span></button></div></article><article className="panel settings-card"><div className="settings-title"><span><ListChecks size={19} /></span><div><h2>Kepadatan data</h2><p>Ukuran baris tabel monitoring</p></div></div><div className="setting-toggle"><span><strong>Mode tabel ringkas</strong><small>Tampilkan lebih banyak record</small></span><button className={`toggle ${compactTable ? "on" : ""}`} aria-label="Ubah kepadatan tabel" type="button" onClick={() => setCompactTable((value) => !value)}><i /></button></div><div className="setting-toggle"><span><strong>Sidebar ringkas</strong><small>Sembunyikan label menu</small></span><button className={`toggle ${collapsed ? "on" : ""}`} aria-label="Ubah ukuran sidebar" type="button" onClick={() => setCollapsed((value) => !value)}><i /></button></div></article><article className="panel settings-card wide"><div className="settings-title"><span><SlidersHorizontal size={19} /></span><div><h2>Perilaku dashboard</h2><p>Pengaturan pembaruan dan notifikasi</p></div></div><div className="preference-row"><label className="field-label">Interval refresh<select value={refreshSeconds} onChange={(event) => setRefreshSeconds(Number(event.target.value))}><option value={15}>15 detik</option><option value={30}>30 detik</option><option value={60}>1 menit</option><option value={300}>5 menit</option></select></label><div className="setting-toggle"><span><strong>Auto-refresh</strong><small>Pembaruan data otomatis</small></span><button className={`toggle ${autoRefresh ? "on" : ""}`} aria-label="Ubah auto-refresh" type="button" onClick={() => setAutoRefresh((value) => !value)}><i /></button></div></div><button className="primary-action save-action" type="button" onClick={saveSettings}><Save size={14} />Simpan preferensi</button></article></section>}
 
         <footer><span>MONSTER · Monitoring Sistem Proteksi Terintegrasi</span><span><span className="server-dot" />Terakhir diperbarui {lastSync} WIB</span></footer>
       </main>
