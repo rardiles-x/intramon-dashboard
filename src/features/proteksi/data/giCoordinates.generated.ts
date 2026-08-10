@@ -11,7 +11,7 @@
 import type { GiCoordinate } from "../types";
 
 export const GI_COORDINATES_GENERATED_AT =
-  "2026-08-10T05:18:30.312Z";
+  "2026-08-10T05:24:33.715Z";
 
 export const GI_COORDINATES: Record<string, GiCoordinate> =
   {
