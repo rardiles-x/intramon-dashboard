@@ -193,61 +193,108 @@
 }
 
 .monster-local-session {
+  --monster-session-bg:
+    color-mix(in srgb, var(--surface) 92%, transparent);
+  --monster-session-border: var(--border);
+  --monster-session-heading: var(--heading);
+  --monster-session-muted: var(--muted);
+  --monster-session-button-bg:
+    color-mix(in srgb, var(--surface-2) 88%, transparent);
+  --monster-session-button-hover:
+    color-mix(in srgb, var(--blue-soft) 78%, transparent);
+
   position: fixed;
   z-index: 10000;
-  top: 10px;
-  right: 14px;
+  top: 13px;
+  right: 30px;
+  width: auto;
+  max-width: min(260px, calc(100vw - 48px));
+  min-height: 42px;
   display: flex;
   align-items: center;
-  gap: 9px;
-  padding: 5px 6px 5px 11px;
-  border: 1px solid rgba(125, 137, 152, 0.22);
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.94);
-  box-shadow: 0 8px 24px rgba(18, 38, 63, 0.12);
-  backdrop-filter: blur(12px);
+  gap: 8px;
+  padding: 4px 5px 4px 10px;
+  overflow: hidden;
+  border: 1px solid var(--monster-session-border);
+  border-radius: 10px;
+  background: var(--monster-session-bg);
+  box-shadow: 0 5px 18px rgba(18, 38, 63, 0.12);
+  backdrop-filter: blur(16px) saturate(125%);
+  box-sizing: border-box;
 }
 
 .monster-local-session-user {
+  min-width: 0;
+  max-width: 126px;
   display: grid;
-  line-height: 1.15;
+  flex: 1 1 auto;
+  line-height: 1.08;
   text-align: right;
 }
 
 .monster-local-session-user strong {
-  max-width: 150px;
+  max-width: 100%;
   overflow: hidden;
-  color: #12263f;
-  font-size: 0.76rem;
+  color: var(--monster-session-heading);
+  font-size: 0.72rem;
+  font-weight: 750;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
 .monster-local-session-user small {
+  max-width: 100%;
   margin-top: 2px;
-  color: #7d8998;
-  font-size: 0.66rem;
+  overflow: hidden;
+  color: var(--monster-session-muted);
+  font-size: 0.62rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .monster-local-session button {
+  min-width: 72px;
+  height: 32px;
   min-height: 32px;
   display: inline-flex;
+  flex: 0 0 auto;
   align-items: center;
-  gap: 6px;
-  padding: 0 10px;
-  border: 1px solid #d8e1ec;
-  border-radius: 9px;
-  background: #fff;
-  color: #52647b;
+  justify-content: center;
+  gap: 5px;
+  padding: 0 9px;
+  border: 1px solid var(--monster-session-border);
+  border-radius: 8px;
+  background: var(--monster-session-button-bg);
+  color: var(--monster-session-heading);
   font: inherit;
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   font-weight: 700;
+  line-height: 1;
   cursor: pointer;
+  white-space: nowrap;
+  box-sizing: border-box;
 }
 
 .monster-local-session button:hover {
-  color: #bd2f4a;
-  border-color: rgba(230, 55, 87, 0.34);
+  border-color: color-mix(
+    in srgb,
+    var(--blue) 42%,
+    var(--monster-session-border)
+  );
+  background: var(--monster-session-button-hover);
+  color: var(--blue);
+}
+
+
+/* Session control follows the application's manual dark theme. */
+body:has(.app-shell.theme-dark) .monster-local-session {
+  --monster-session-bg: rgba(5, 22, 41, 0.9);
+  --monster-session-border: rgba(190, 218, 244, 0.17);
+  --monster-session-heading: #f2f7fc;
+  --monster-session-muted: #8fa8bf;
+  --monster-session-button-bg: rgba(4, 17, 34, 0.76);
+  --monster-session-button-hover: rgba(44, 123, 229, 0.18);
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.2);
 }
 
 @keyframes monster-local-auth-spin {
@@ -257,6 +304,23 @@
 }
 
 @media (max-width: 640px) {
+
+  .monster-local-session {
+    top: 10px;
+    right: 12px;
+    max-width: calc(100vw - 24px);
+    min-height: 40px;
+    padding: 4px;
+  }
+
+  .monster-local-session button {
+    min-width: 68px;
+    height: 30px;
+    min-height: 30px;
+    padding-inline: 8px;
+  }
+
+
   .monster-local-login-page {
     padding: 16px;
   }
